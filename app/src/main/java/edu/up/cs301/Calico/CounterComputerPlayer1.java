@@ -1,4 +1,4 @@
-package edu.up.cs301.counter;
+package edu.up.cs301.Calico;
 
 import edu.up.cs301.GameFramework.players.GameComputerPlayer;
 import edu.up.cs301.GameFramework.infoMessage.GameInfo;
