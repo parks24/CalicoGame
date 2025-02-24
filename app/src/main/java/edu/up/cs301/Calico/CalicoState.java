@@ -10,7 +10,7 @@ import edu.up.cs301.GameFramework.infoMessage.GameState;
  * @author Steven R. Vegdahl
  * @version July 2013
  */
-public class CounterState extends GameState {
+public class CalicoState extends GameState {
 	
 	// to satisfy Serializable interface
 	private static final long serialVersionUID = 7737393762469851826L;
@@ -24,7 +24,7 @@ public class CounterState extends GameState {
 	 * @param counterVal
 	 * 		the value to which the Calico's value should be initialized
 	 */
-	public CounterState(int counterVal) {
+	public CalicoState(int counterVal) {
 		counter = counterVal;
 	}
 	
@@ -34,7 +34,7 @@ public class CounterState extends GameState {
 	 * @param orig
 	 * 		the object from which the copy should be made
 	 */
-	public CounterState(CounterState orig) {
+	public CalicoState(CalicoState orig) {
 		// set the Calico to that of the original
 		this.counter = orig.counter;
 	}
