@@ -1,5 +1,7 @@
 package edu.up.cs301.Calico;
 
+import java.util.ArrayList;
+
 import edu.up.cs301.GameFramework.infoMessage.GameState;
 
 
@@ -10,52 +12,22 @@ import edu.up.cs301.GameFramework.infoMessage.GameState;
  * @author Steven R. Vegdahl
  * @version July 2013
  */
-public class CalicoState extends GameState {
-	
-	// to satisfy Serializable interface
-	private static final long serialVersionUID = 7737393762469851826L;
-	
-	// the value of the Calico
-	private int counter;
-	
-	/**
-	 * constructor, initializing the Calico value from the parameter
-	 * 
-	 * @param counterVal
-	 * 		the value to which the Calico's value should be initialized
-	 */
-	public CalicoState(int counterVal) {
-		counter = counterVal;
-	}
-	
-	/**
-	 * copy constructor; makes a copy of the original object
-	 * 
-	 * @param orig
-	 * 		the object from which the copy should be made
-	 */
-	public CalicoState(CalicoState orig) {
-		// set the Calico to that of the original
-		this.counter = orig.counter;
-	}
+public class CalicoState extends GameState
+{
 
-	/**
-	 * getter method for the Calico
-	 * 
-	 * @return
-	 * 		the value of the Calico
-	 */
-	public int getCounter() {
-		return counter;
-	}
-	
-	/**
-	 * setter method for the Calico
-	 * 
-	 * @param counter
-	 * 		the value to which the Calico should be set
-	 */
-	public void setCounter(int counter) {
-		this.counter = counter;
+	//Instance Variables
+	protected ArrayList<Integer> playerScores = new ArrayList<>();
+	protected int playerTurn;
+	protected int turnStage; //Player selecting or placing during turn
+	protected int gameStage; //Stage of game
+
+	protected ArrayList<Patch> communityPool = new ArrayList<>();
+	protected ArrayList<Patch[]> playerHand;
+	protected ArrayList<Patch> deck;
+	protected ArrayList<Board> playerBoard = new ArrayList<>();
+
+	public CalicoState()
+	{
+
 	}
 }
