@@ -1,6 +1,6 @@
 package edu.up.cs301.Calico;
 
-public class goalPatch
+public class goalPatch extends Patch
 {
     //Instance Variables
     protected int goal;

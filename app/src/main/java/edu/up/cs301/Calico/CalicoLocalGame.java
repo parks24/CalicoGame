@@ -45,7 +45,7 @@ public class CalicoLocalGame extends LocalGame {
 	public CalicoLocalGame(GameState state) {
 		// initialize the game state, with the Calico value starting at 0
 		if (! (state instanceof CalicoState)) {
-			state = new CalicoState(0);
+			state = new CalicoState();
 		}
 		this.gameState = (CalicoState)state;
 		super.state = state;
@@ -64,8 +64,8 @@ public class CalicoLocalGame extends LocalGame {
 			CalicoMoveAction cma = (CalicoMoveAction)action;
 
 			// Update the Calico values based upon the action
-			int result = gameState.getCounter() + (cma.isPlus() ? 1 : -1);
-			gameState.setCounter(result);
+			//int result = gameState.getCounter() + (cma.isPlus() ? 1 : -1);
+			//gameState.setCounter(result);
 			
 			// denote that this was a legal/successful move
 			return true;
@@ -98,29 +98,30 @@ public class CalicoLocalGame extends LocalGame {
 	@Override
 	protected String checkIfGameOver() {
 		
-		// get the value of the Calico
-		int counterVal = this.gameState.getCounter();
-		
-		if (counterVal >= TARGET_MAGNITUDE) {
-			// Calico has reached target magnitude, so return message that
-			// player 0 has won.
-			return playerNames[0]+" has won.";
-		}
-		else if (counterVal <= -TARGET_MAGNITUDE) {
-			// Calico has reached negative of target magnitude; if there
-			// is a second player, return message that this player has won,
-			// otherwise that the first player has lost
-			if (playerNames.length >= 2) {
-				return playerNames[1]+" has won.";
-			}
-			else {
-				return playerNames[0]+" has lost.";
-			}
-		}else {
-			// game is still between the two limit: return null, as the game
-			// is not yet over
-			return null;
-		}
+//		// get the value of the Calico
+//		int counterVal = this.gameState.getCounter();
+//
+//		if (counterVal >= TARGET_MAGNITUDE) {
+//			// Calico has reached target magnitude, so return message that
+//			// player 0 has won.
+//			return playerNames[0]+" has won.";
+//		}
+//		else if (counterVal <= -TARGET_MAGNITUDE) {
+//			// Calico has reached negative of target magnitude; if there
+//			// is a second player, return message that this player has won,
+//			// otherwise that the first player has lost
+//			if (playerNames.length >= 2) {
+//				return playerNames[1]+" has won.";
+//			}
+//			else {
+//				return playerNames[0]+" has lost.";
+//			}
+//		}else {
+//			// game is still between the two limit: return null, as the game
+//			// is not yet over
+//			return null;
+//		}
+		return null;
 
 	}
 
