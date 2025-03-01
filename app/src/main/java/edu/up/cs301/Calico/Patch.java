@@ -5,12 +5,15 @@ public class Patch{
     protected int patchColor;
     protected boolean hasCat;
     protected boolean hasButton;
+
+    protected boolean selectedPatch;
     public Patch()
     {
         patchPattern = 0;
         patchColor = 0;
         hasCat = false;
         hasButton = false;
+        selectedPatch = false;
     }
 
     public Patch(int _patchPattern, int _patchColor)
@@ -31,5 +34,10 @@ public class Patch{
     }
     public int getPatchColor(){
         return patchColor;
+    }
+
+    public void selectPatch()
+    {
+        selectedPatch = true;
     }
 }

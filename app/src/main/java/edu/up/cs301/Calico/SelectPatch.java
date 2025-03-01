@@ -21,4 +21,9 @@ public class SelectPatch extends GameAction
         super(player);
     }
 
+    public Patch getSelectedPatch()
+    {
+        return selectedPatch;
+    }
+
 }//SelectPatch

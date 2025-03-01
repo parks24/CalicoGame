@@ -17,6 +17,8 @@ public class CalicoState extends GameState {
 
 	//Instance Variables
 	protected ArrayList<Integer> playerScores = new ArrayList<>();
+
+	protected boolean objectiveMenuVisibility;
 	protected int playerTurn;
 	protected int turnStage; //Player selecting or placing during turn
 	protected int gameStage; //Stage of game
@@ -25,6 +27,8 @@ public class CalicoState extends GameState {
 	protected Patch[][] playerHand = new Patch[4][2];
 	protected ArrayList<Patch> deck;
 	protected ArrayList<Board> playerBoard = new ArrayList<>();
+
+	protected int[] lastPatchPlacement = {0,0}; //x,y coords of last patch placement for Undo Move
 
 	public CalicoState()
 	{
@@ -44,7 +48,7 @@ public class CalicoState extends GameState {
 		communityPool[1] = new Patch();
 		communityPool[2] = new Patch();
 
-		//initilize player hands to default patches
+		//Initialize player hands to default patches
 		for (int i = 0; i<4; i ++)
 		{
 			for (int j = 0; j<2; j++)
@@ -77,7 +81,7 @@ public class CalicoState extends GameState {
 
 	/** Copy Constructor
 	 *
-	 * @param other
+	 * @param other object to be copied
 	 */
 	public CalicoState(CalicoState other)
 	{
@@ -143,6 +147,13 @@ public class CalicoState extends GameState {
 	{
 		if(move instanceof UndoMove)
 		{
+			//Get players board
+			Board currentBoard = playerBoard.get(playerTurn);
+
+			//Set last placed patch to empty
+			Patch emptyPatch = new Patch();
+			currentBoard.setPatch(emptyPatch, lastPatchPlacement[0], lastPatchPlacement[1]);
+
 			return true;
 		}
 
@@ -175,6 +186,10 @@ public class CalicoState extends GameState {
 				currentBoard.setPatch(selectedPatch, selectedRow, selectedCol);
 				return true;
 			}
+
+			//Store x,y coordinates of patch placement
+			lastPatchPlacement[0] = selectedRow;
+			lastPatchPlacement[1] = selectedCol;
 		}
 
 		return false;
@@ -184,7 +199,7 @@ public class CalicoState extends GameState {
 	{
 		if(move instanceof SelectPatch)
 		{
-			//ToDo implement functionality
+			playerHand[playerTurn][0].selectPatch(); //Select Patch from Hand
 			return true;
 		}
 
@@ -192,11 +207,24 @@ public class CalicoState extends GameState {
 
 	}//selectPatch
 
+	public boolean closeMenu(GameAction move)
+	{
+		if(move instanceof CloseMenu)
+		{
+			objectiveMenuVisibility = false;
+			return true;
+		}
+
+		return false;
+	}
+
 	public boolean viewPlayerBoard(GameAction move)
 	{
 		if(move instanceof ViewPlayerBoard)
 		{
-
+			//Get players board
+			Board currentBoard = playerBoard.get(playerTurn);
+			currentBoard.setView(); //Update Current View to Board
 			return true;
 		}
 
@@ -207,12 +235,12 @@ public class CalicoState extends GameState {
 	{
 		if(move instanceof ViewObjectives)
 		{
+			objectiveMenuVisibility = true;
 			return true;
 		}
 
 		return false;
 	}
-
 
 
 

@@ -36,4 +36,8 @@ public class Board
         board[row][col] = selectedPatch;
     }
 
+    public void setView()
+    {
+        //ToDo update XML to current board instance
+    }
 }//Board
