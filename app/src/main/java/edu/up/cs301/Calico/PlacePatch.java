@@ -1,0 +1,28 @@
+package edu.up.cs301.Calico;
+
+import edu.up.cs301.GameFramework.actionMessage.GameAction;
+import edu.up.cs301.GameFramework.players.GamePlayer;
+
+public class PlacePatch extends GameAction
+{
+    //Instance Variables
+    protected boolean objectivePatch;
+    protected Patch selectedPatch;
+    protected int xTouch;
+    protected int yTouch;
+
+
+    /**
+     * constructor for GameAction
+     *
+     * @param player the player who created the action
+     */
+    public PlacePatch(GamePlayer player)
+    {
+        super(player);
+    }
+
+
+
+
+}//PlacePatch

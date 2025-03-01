@@ -83,7 +83,7 @@ public class CalicoMainActivity extends GameMainActivity {
 	 */
 	@Override
 	public LocalGame createLocalGame(GameState state) {
-		if (state == null) state = new CalicoState(0);
+		if (state == null) state = new CalicoState();	//Fixed Constructor Call compilation 28/02/24
 		return new CalicoLocalGame(state);
 	}
 

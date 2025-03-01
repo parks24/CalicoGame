@@ -2,6 +2,7 @@ package edu.up.cs301.Calico;
 
 import java.util.ArrayList;
 
+import edu.up.cs301.GameFramework.actionMessage.GameAction;
 import edu.up.cs301.GameFramework.infoMessage.GameState;
 
 
@@ -72,8 +73,12 @@ public class CalicoState extends GameState {
 		playerBoard.add(new Board());
 		playerBoard.add(new Board());
 
-	}
+	}//default Constructor
 
+	/** Copy Constructor
+	 *
+	 * @param other
+	 */
 	public CalicoState(CalicoState other)
 	{
 		//copy player scores
@@ -110,6 +115,75 @@ public class CalicoState extends GameState {
 			this.playerBoard.add(new Board(other.playerBoard.get(i)));
 		}
 	}
+
+	public boolean confirmMove(GameAction move)
+	{
+		if(move instanceof ConfirmMove)
+		{
+			//ToDo implement functionality
+
+			return true;
+		}
+
+		return false;
+	}//confirmMove
+
+	public boolean undoMove(GameAction move)
+	{
+		if(move instanceof UndoMove)
+		{
+			return true;
+		}
+
+		return false;
+	}//undoMove
+
+	public boolean placePatch(GameAction move)
+	{
+		if(move instanceof PlacePatch)
+		{
+			//ToDo implement functionality
+			return true;
+		}
+
+		return false;
+	}//placePatch
+
+	public boolean selectPatch(GameAction move)
+	{
+		if(move instanceof SelectPatch)
+		{
+			//ToDo implement functionality
+			return true;
+		}
+
+		return false;
+
+	}//selectPatch
+
+	public boolean viewPlayerBoard(GameAction move)
+	{
+		if(move instanceof ViewPlayerBoard)
+		{
+
+			return true;
+		}
+
+		return false;
+	}//viewPlayerBoard
+
+	public boolean viewObjectives(GameAction move)
+	{
+		if(move instanceof ViewObjectives)
+		{
+			return true;
+		}
+
+		return false;
+	}
+
+
+
 
 
 	@Override
