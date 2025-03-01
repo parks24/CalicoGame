@@ -110,4 +110,54 @@ public class CalicoState extends GameState {
 			this.playerBoard.add(new Board(other.playerBoard.get(i)));
 		}
 	}
+
+
+	@Override
+	public String toString()
+	{
+		//Current Player turn
+		String turnInfo = "Player Turn: " + playerTurn + "\n"
+				+ "Turn Stage: " + turnStage + "\n"
+				+ "Game Stage: " + gameStage + "\n";
+
+
+		//current Player scoring
+		String currentScores = "Player Scores\n";
+
+		//Append player scores to currentScores string
+		for(int i = 0; i < playerScores.size(); i++)
+		{
+			int playerNumber = i+1; //Index by one for accurate player number (1-4 not 0-3)
+			String playerScoreTemp = "Player " + playerNumber + " : " + playerScores.get(i) + "\n";
+			currentScores = currentScores.concat(playerScoreTemp); //Add player score to list
+		}
+
+		//Community Pool Info
+		String communityPoolInfo = "Patch One = Pattern: " + communityPool[0].getPatchPattern() + " Patch Color: " + communityPool[0].getPatchColor() + "\n"
+				+ "Patch Two = Pattern: " + communityPool[1].getPatchPattern() + " Patch Color: " + communityPool[1].getPatchColor() + "\n"
+				+ "Patch Three = Pattern: " + communityPool[2].getPatchPattern() + " Patch Color: " + communityPool[2].getPatchColor() + "\n";
+
+		//PlayerHand Info
+		String playerOneHand = "Player One's Hand: \n" +
+				"Patch One = Pattern:" + playerHand[0][0].getPatchPattern() + " Color: " + playerHand[0][0].getPatchColor() + "\n" +
+				"Patch Two = Pattern:" + playerHand[0][1].getPatchPattern() + " Color: " + playerHand[0][1].getPatchColor() + "\n";
+
+		String playerTwoHand = "Player Two's Hand: \n" +
+				"Patch One = Pattern:" + playerHand[1][0].getPatchPattern() + " Color: " + playerHand[1][0].getPatchColor() + "\n" +
+				"Patch Two = Pattern:" + playerHand[1][1].getPatchPattern() + " Color: " + playerHand[1][1].getPatchColor() + "\n";
+
+		String playerThreeHand = "Player Three's Hand: \n" +
+				"Patch One = Pattern:" + playerHand[2][0].getPatchPattern() + " Color: " + playerHand[2][0].getPatchColor() + "\n" +
+				"Patch Two = Pattern:" + playerHand[2][1].getPatchPattern() + " Color: " + playerHand[2][1].getPatchColor() + "\n";
+
+		String playerFourHand = "Player Four's Hand: \n" +
+				"Patch One = Pattern:" + playerHand[3][0].getPatchPattern() + " Color: " + playerHand[3][0].getPatchColor() + "\n" +
+				"Patch Two = Pattern:" + playerHand[3][1].getPatchPattern() + " Color: " + playerHand[3][1].getPatchColor() + "\n";
+
+		String playerHandInfo = playerOneHand + playerTwoHand + playerThreeHand + playerFourHand;
+
+		//Compile and return all info
+		String formattedInfo = turnInfo + currentScores + communityPoolInfo + playerHandInfo;
+		return formattedInfo;
+	}//toString
 }
