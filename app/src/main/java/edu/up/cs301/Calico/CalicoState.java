@@ -120,7 +120,18 @@ public class CalicoState extends GameState {
 	{
 		if(move instanceof ConfirmMove)
 		{
-			//ToDo implement functionality
+
+			//Check for player four's turn
+			if(playerTurn == 3)
+			{
+				playerTurn = 0;
+			}
+
+			//Move onto next player
+			else
+			{
+				playerTurn++;
+			}
 
 			return true;
 		}
@@ -142,8 +153,28 @@ public class CalicoState extends GameState {
 	{
 		if(move instanceof PlacePatch)
 		{
-			//ToDo implement functionality
-			return true;
+			move = (PlacePatch) move; //Cast move to PlacePatch type for method use
+
+			//Get players board
+			Board currentBoard = playerBoard.get(playerTurn);
+
+			//Get selected row col position on board
+			int selectedRow = ((PlacePatch) move).getBoardRow();
+			int selectedCol = ((PlacePatch) move).getBoardCol();
+
+			//Get selected patch on board
+			Patch selectedMove = currentBoard.getPatch(selectedRow, selectedCol);
+			//Get selected patch from player inventory
+			Patch selectedPatch = ((PlacePatch) move).getSelectedPatch();
+
+
+			//Check to make sure the selected patch on board is empty
+			if(selectedMove.getPatchPattern() == 0)
+			{
+				//Make the move
+				currentBoard.setPatch(selectedPatch, selectedRow, selectedCol);
+				return true;
+			}
 		}
 
 		return false;

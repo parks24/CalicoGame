@@ -26,4 +26,14 @@ public class Board
         }
     }
 
+    public Patch getPatch(int row, int col)
+    {
+        return board[row][col];
+    }//getPatch
+
+    public void setPatch(Patch selectedPatch, int row, int col)
+    {
+        board[row][col] = selectedPatch;
+    }
+
 }//Board

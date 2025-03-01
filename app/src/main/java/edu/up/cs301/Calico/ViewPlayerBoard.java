@@ -14,7 +14,8 @@ public class ViewPlayerBoard extends GameAction
      *
      * @param player the player who created the action
      */
-    public ViewPlayerBoard(GamePlayer player) {
+    public ViewPlayerBoard(GamePlayer player)
+    {
         super(player);
     }
 }

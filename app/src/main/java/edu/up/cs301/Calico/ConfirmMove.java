@@ -5,8 +5,6 @@ import edu.up.cs301.GameFramework.players.GamePlayer;
 
 public class ConfirmMove extends GameAction
 {
-    //ToDo implement functionality
-
 
     /**
      * constructor for GameAction

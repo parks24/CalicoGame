@@ -8,8 +8,8 @@ public class PlacePatch extends GameAction
     //Instance Variables
     protected boolean objectivePatch;
     protected Patch selectedPatch;
-    protected int xTouch;
-    protected int yTouch;
+    protected int boardRow;
+    protected int boardCol;
 
 
     /**
@@ -20,6 +20,28 @@ public class PlacePatch extends GameAction
     public PlacePatch(GamePlayer player)
     {
         super(player);
+    }
+
+    public PlacePatch(GamePlayer player, int row, int col)
+    {
+        super(player);
+        boardRow = row;
+        boardCol = col;
+    }
+
+    public int getBoardRow()
+    {
+        return boardRow;
+    }
+
+    public int getBoardCol()
+    {
+        return boardCol;
+    }
+
+    public Patch getSelectedPatch()
+    {
+        return selectedPatch;
     }
 
 
