@@ -6,14 +6,14 @@ public class GoalPatch extends Patch
     protected int goal;
 
     //goalPatch
-    public goalPatch()
+    public GoalPatch()
     {
         super();
         goal = 0;
     }
 
     //Overloaded Constructor
-    public goalPatch(int _goal)
+    public GoalPatch(int _goal)
     {
         super();
         goal = _goal;
