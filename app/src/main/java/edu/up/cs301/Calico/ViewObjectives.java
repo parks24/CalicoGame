@@ -6,7 +6,7 @@ import edu.up.cs301.GameFramework.players.GamePlayer;
 public class ViewObjectives extends GameAction
 {
     //Instance Variables
-    protected goalPatch objectivePatch;
+    protected GoalPatch objectivePatch;
     protected Board playerBoard;
 
     /**
