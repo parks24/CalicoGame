@@ -25,7 +25,7 @@ public class CalicoState extends GameState {
 
 	protected Patch[] communityPool = new Patch[3];
 	protected Patch[][] playerHand = new Patch[4][2];
-	protected ArrayList<Patch> deck;
+	protected ArrayList<Patch> deck = new ArrayList<>();
 	protected ArrayList<Board> playerBoard = new ArrayList<>();
 
 	protected int[] lastPatchPlacement = {0,0}; //x,y coords of last patch placement for Undo Move
