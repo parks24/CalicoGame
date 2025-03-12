@@ -123,7 +123,7 @@ public class CalicoComputerPlayer2 extends CalicoComputerPlayer1 {
 		this.guiHandler = new Handler();
 		
 		// Load the layout resource for the our GUI's configuration
-		activityForGui.setContentView(R.layout.counter_human_player);
+		activityForGui.setContentView(R.layout.calico_human_player);
 
 		// remember who our text view is, for updating the Calico value
 		this.counterValueTextView =

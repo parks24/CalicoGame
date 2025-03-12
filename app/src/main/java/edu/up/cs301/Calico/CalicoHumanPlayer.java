@@ -72,6 +72,11 @@ public class CalicoHumanPlayer extends GameHumanPlayer implements OnClickListene
 	public void onClick(View button) {
 		// if we are not yet connected to a game, ignore
 		if (game == null) return;
+		TextView textVeiw = myActivity.findViewById(R.id.testResultsTextView);
+		textVeiw.setText("");
+		CalicoState firstInstance = new CalicoState();
+		CalicoState firstCopy = new CalicoState(firstInstance);
+
 	}// onClick
 	
 	/**
