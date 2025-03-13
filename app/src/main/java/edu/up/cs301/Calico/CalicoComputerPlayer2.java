@@ -60,21 +60,25 @@ public class CalicoComputerPlayer2 extends CalicoComputerPlayer1 {
      * 		the information (presumably containing the game's state)
      */
 	@Override
-	protected void receiveInfo(GameInfo info) {
-		// perform superclass behavior
+	protected void receiveInfo(GameInfo info)
+	{
+		/* // perform superclass behavior
 		super.receiveInfo(info);
 		
 		Log.i("computer player", "receiving");
 		
 		// if there is no game, ignore
-		if (game == null) {
+		if (game == null)
+		{
 			return;
 		}
-		else if (info instanceof CalicoState) {
+		else if (info instanceof CalicoState)
+		{
 			// if we indeed have a Calico-state, update the GUI
 			currentGameState = (CalicoState)info;
 			updateDisplay();
 		}
+		*/
 	}
 	
 	

@@ -44,6 +44,18 @@ public class PlacePatch extends GameAction
         return selectedPatch;
     }
 
+    /** Places a patch onto a player board
+     *
+     *
+     * @param board Player Board
+     * @param row Row of Board to place patch
+     * @param col Column of board to place patch
+     * @param patch Patch from player inventory to place on board
+     */
+    public void placePatch(Patch[][] board, int row, int col, Patch patch)
+    {
+        board[row][col] = patch;
+    }//placePatch
 
 
 

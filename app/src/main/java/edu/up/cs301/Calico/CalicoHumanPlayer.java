@@ -9,6 +9,8 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.view.View.OnClickListener;
 
+import java.util.ArrayList;
+
 /**
  * A GUI of a Calico-player. The GUI displays the current value of the Calico,
  * and allows the human player to press the '+' and '-' buttons in order to
@@ -34,6 +36,9 @@ public class CalicoHumanPlayer extends GameHumanPlayer implements OnClickListene
 	
 	// the android activity that we are running
 	private GameMainActivity myActivity;
+
+	//Player hand
+	protected ArrayList<Patch> playerHand = new ArrayList<>();
 	
 	/**
 	 * constructor
@@ -50,9 +55,11 @@ public class CalicoHumanPlayer extends GameHumanPlayer implements OnClickListene
 	 * @return
 	 * 		the top object in the GUI's view heirarchy
 	 */
-	public View getTopView() {
+	public View getTopView()
+	{
 		return myActivity.findViewById(R.id.top_test_layout);
-	}
+
+	}//getTopView
 	
 	/**
 	 * sets the Calico value in the text view

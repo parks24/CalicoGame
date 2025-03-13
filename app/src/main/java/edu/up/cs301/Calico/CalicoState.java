@@ -164,19 +164,19 @@ public class CalicoState extends GameState {
 	{
 		if(move instanceof PlacePatch)
 		{
-			move = (PlacePatch) move; //Cast move to PlacePatch type for method use
+			PlacePatch placeMove = (PlacePatch) move; //Cast move to PlacePatch type for method use
 
 			//Get players board
 			Board currentBoard = playerBoard.get(playerTurn);
 
 			//Get selected row col position on board
-			int selectedRow = ((PlacePatch) move).getBoardRow();
-			int selectedCol = ((PlacePatch) move).getBoardCol();
+			int selectedRow = placeMove.getBoardRow();
+			int selectedCol = placeMove.getBoardCol();
 
 			//Get selected patch on board
 			Patch selectedMove = currentBoard.getPatch(selectedRow, selectedCol);
 			//Get selected patch from player inventory
-			Patch selectedPatch = ((PlacePatch) move).getSelectedPatch();
+			Patch selectedPatch = placeMove.getSelectedPatch();
 
 
 			//Check to make sure the selected patch on board is empty

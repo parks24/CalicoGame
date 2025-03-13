@@ -4,23 +4,19 @@ public class GoalPatch extends Patch
 {
     //Instance Variables
     protected int goal;
-
-    //goalPatch
-    public goalPatch()
+    public GoalPatch()
     {
         super();
         goal = 0;
-    }
 
-    //Overloaded Constructor
-    public goalPatch(int _goal)
+    }//default Constructor
+
+    public GoalPatch(int _goal)
     {
         super();
         goal = _goal;
     }
 
-
-    //Getter and Setter Methods
     public int getGoal()
     {
         return goal;
@@ -30,5 +26,4 @@ public class GoalPatch extends Patch
     {
         goal = _goal;
     }
-
 }
