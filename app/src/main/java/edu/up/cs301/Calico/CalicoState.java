@@ -290,7 +290,6 @@ public class CalicoState extends GameState {
 		String playerHandInfo = playerOneHand + playerTwoHand + playerThreeHand + playerFourHand;
 
 		//Compile and return all info
-		String formattedInfo = turnInfo + currentScores + communityPoolInfo + playerHandInfo;
-		return formattedInfo;
+		return turnInfo + currentScores + communityPoolInfo + playerHandInfo;
 	}//toString
 }

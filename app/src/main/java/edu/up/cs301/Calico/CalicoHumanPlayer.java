@@ -77,6 +77,82 @@ public class CalicoHumanPlayer extends GameHumanPlayer implements OnClickListene
 		CalicoState firstInstance = new CalicoState();
 		CalicoState firstCopy = new CalicoState(firstInstance);
 
+		Patch patch1 = new Patch(3,6);
+		Patch patch2 = new Patch(2,6);
+
+		// turn 1 player 4
+		game.sendAction(new SelectPatch(this,patch1));
+		textVeiw.append("player 4 selects patch to place\n");
+		game.sendAction(new PlacePatch(this,1,4));
+		textVeiw.append("player 4 places patch on board\n");
+		game.sendAction(new ConfirmMove(this));
+		textVeiw.append("player 4 confirms placement\n");
+		game.sendAction(new SelectCommunityPatch(this, patch2));
+		textVeiw.append("player 4 selects a community tile to take\n");
+		game.sendAction(new ConfirmMove(this));
+		textVeiw.append("player 4 confirms selection\n");
+
+		// turn 2 player 1
+		game.sendAction(new SelectPatch(this, patch2));
+		textVeiw.append("player 1 selects patch to place\n");
+		game.sendAction(new PlacePatch(this,1,5));
+		textVeiw.append("player 1 places patch on board\n");
+		game.sendAction(new ConfirmMove(this));
+		textVeiw.append("player 1 confirms placement\n");
+		game.sendAction(new SelectCommunityPatch(this, patch1));
+		textVeiw.append("player 1 selects a community tile to take\n");
+		game.sendAction(new ConfirmMove(this));
+		textVeiw.append("player 1 confirms selection\n");
+
+		// turn 3 player 2
+		game.sendAction(new SelectPatch(this, patch2));
+		textVeiw.append("player 2 selects patch to place\n");
+		game.sendAction(new PlacePatch(this,1,5));
+		textVeiw.append("player 2 places patch on board\n");
+		game.sendAction(new ConfirmMove(this));
+		textVeiw.append("player 2 confirms placement\n");
+		game.sendAction(new SelectCommunityPatch(this, patch1));
+		textVeiw.append("player 2 selects a community tile to take\n");
+		game.sendAction(new ConfirmMove(this));
+		textVeiw.append("player 2 confirms selection\n");
+
+		// turn 4 player 3
+		game.sendAction(new SelectPatch(this, patch2));
+		textVeiw.append("player 3 selects patch to place\n");
+		game.sendAction(new PlacePatch(this,1,5));
+		textVeiw.append("player 3 places patch on board\n");
+		game.sendAction(new ConfirmMove(this));
+		textVeiw.append("player 3 confirms placement\n");
+		game.sendAction(new SelectCommunityPatch(this, patch1));
+		textVeiw.append("player 3 selects a community tile to take\n");
+		game.sendAction(new ConfirmMove(this));
+		textVeiw.append("player 3 confirms selection\n");
+
+		// turn 5 player 4
+		game.sendAction(new SelectPatch(this, patch2));
+		textVeiw.append("player 4 selects patch to place\n");
+		game.sendAction(new PlacePatch(this,1,5));
+		textVeiw.append("player 4 places patch on board\n");
+		game.sendAction(new ConfirmMove(this));
+		textVeiw.append("player 4 confirms placement\n");
+		game.sendAction(new SelectCommunityPatch(this, patch1));
+		textVeiw.append("player 4 selects a community tile to take\n");
+		game.sendAction(new ConfirmMove(this));
+		textVeiw.append("player 4 confirms selection\n");
+
+		CalicoState secondInstance = new CalicoState();
+		CalicoState secondCopy = new CalicoState(secondInstance);
+
+		textVeiw.append("\n copy 1\n");
+		textVeiw.append(firstCopy.toString());
+		textVeiw.append("\n copy 2\n");
+		textVeiw.append(secondCopy.toString());
+		if (firstCopy.toString().equals(secondCopy.toString())){
+			textVeiw.append("\nfirst and second copy are the same\n");
+		}else{
+			textVeiw.append("\nfirst and second copy are different\n");
+		}
+
 	}// onClick
 	
 	/**
@@ -117,5 +193,5 @@ public class CalicoHumanPlayer extends GameHumanPlayer implements OnClickListene
 
 	}
 
-}// class CounterHumanPlayer
+}// class CalicoHumanPlayer
 

@@ -3,7 +3,7 @@ package edu.up.cs301.Calico;
 import edu.up.cs301.GameFramework.actionMessage.GameAction;
 import edu.up.cs301.GameFramework.players.GamePlayer;
 
-public class SelectPatch extends GameAction
+public class SelectCommunityPatch extends GameAction
 {
 
     //Instance Variables
@@ -14,12 +14,12 @@ public class SelectPatch extends GameAction
      *
      * @param player the player who created the action
      */
-    public SelectPatch(GamePlayer player)
+    public SelectCommunityPatch(GamePlayer player)
     {
         super(player);
     }
 
-    public SelectPatch(GamePlayer player, Patch patch)
+    public SelectCommunityPatch(GamePlayer player, Patch patch)
     {
         super(player);
         selectedPatch = patch;
@@ -30,4 +30,4 @@ public class SelectPatch extends GameAction
         return selectedPatch;
     }
 
-}//SelectPatch
+}//SelectCommunityPatch
