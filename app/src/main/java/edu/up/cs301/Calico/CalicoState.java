@@ -27,8 +27,10 @@ public class CalicoState extends GameState {
 	protected Patch[][] playerHand = new Patch[4][2];
 	protected ArrayList<Patch> deck = new ArrayList<>();
 	protected ArrayList<Board> playerBoard = new ArrayList<>();
+	protected Patch selectedPatch;
+	protected Patch[][] preMovePlayerHand;
+	protected Board preMoveBoard;
 
-	protected int[] lastPatchPlacement = {0,0}; //x,y coords of last patch placement for Undo Move
 
 	public CalicoState()
 	{
@@ -248,9 +250,6 @@ public class CalicoState extends GameState {
 			//Get players board
 			Board currentBoard = playerBoard.get(playerTurn);
 
-			//Set last placed patch to empty
-			Patch emptyPatch = new Patch();
-			currentBoard.setPatch(emptyPatch, lastPatchPlacement[0], lastPatchPlacement[1]);
 
 			return true;
 		}
@@ -258,14 +257,18 @@ public class CalicoState extends GameState {
 		return false;
 	}//undoMove
 
+	/** Places selectedPatch from player inventory to player board
+	 *
+	 * @param move gameAction
+	 * @return
+	 */
 	public boolean placePatch(GameAction move)
 	{
 		if(move instanceof PlacePatch)
 		{
-			move = (PlacePatch) move; //Cast move to PlacePatch type for method use
-
 			//Get players board
 			Board currentBoard = playerBoard.get(playerTurn);
+
 
 			//Get selected row col position on board
 			int selectedRow = ((PlacePatch) move).getBoardRow();
@@ -273,9 +276,6 @@ public class CalicoState extends GameState {
 
 			//Get selected patch on board
 			Patch selectedMove = currentBoard.getPatch(selectedRow, selectedCol);
-			//Get selected patch from player inventory
-			Patch selectedPatch = ((PlacePatch) move).getSelectedPatch();
-
 
 			//Check to make sure the selected patch on board is empty
 			if(selectedMove.getPatchPattern() == 0)
@@ -285,10 +285,7 @@ public class CalicoState extends GameState {
 				return true;
 			}
 
-			//Store x,y coordinates of patch placement
-			lastPatchPlacement[0] = selectedRow;
-			lastPatchPlacement[1] = selectedCol;
-		}
+		}//placePatch
 
 		return false;
 	}//placePatch
