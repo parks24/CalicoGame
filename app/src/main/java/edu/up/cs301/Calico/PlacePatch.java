@@ -6,8 +6,6 @@ import edu.up.cs301.GameFramework.players.GamePlayer;
 public class PlacePatch extends GameAction
 {
     //Instance Variables
-    protected boolean objectivePatch;
-    protected Patch selectedPatch;
     protected int boardRow;
     protected int boardCol;
 
@@ -39,10 +37,6 @@ public class PlacePatch extends GameAction
         return boardCol;
     }
 
-    public Patch getSelectedPatch()
-    {
-        return selectedPatch;
-    }
 
 
 
