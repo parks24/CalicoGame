@@ -243,6 +243,38 @@ public class CalicoState extends GameState {
 	}
 
 
+	public void checkButton(int[] patchToCheck, int player)
+	{
+
+		//gets Arraylist of all patches with same color
+		//and if a button already exists for those patches
+		ArrayList<int[]> similarPatchesColor = new ArrayList<>();
+		int placedPatchColor = playerBoard.get(player).getPatch(patchToCheck[0],patchToCheck[1]).patchColor;
+		boolean buttonExistsColor =
+				playerBoard.get(player).getSimilarPatchesColor(similarPatchesColor,patchToCheck,placedPatchColor);
+
+
+		//increases the player button count
+		//if enough patches and no button already
+		if(similarPatchesColor.size()>=3 || !buttonExistsColor)
+		{
+			//update button count
+		}
+
+		//gets Arraylist of all patches with same pattern
+		//and if a cat already exists for those patches
+		ArrayList<int[]> similarPatchesPattern = new ArrayList<>();
+		int placedPatchPattern = playerBoard.get(player).getPatch(patchToCheck[0],patchToCheck[1]).patchPattern;
+		boolean buttonExistsPattern =
+				playerBoard.get(player).getSimilarPatchesColor(similarPatchesPattern,patchToCheck,placedPatchPattern);
+
+
+		//calls cat function to see if cat should be added
+		if(similarPatchesColor.size()>=3 || !buttonExistsPattern)
+		{
+			//update button count
+		}
+	}
 
 
 	@Override
