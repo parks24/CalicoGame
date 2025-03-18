@@ -195,5 +195,12 @@ public class CalicoHumanPlayer extends GameHumanPlayer implements OnClickListene
 
 	}
 
+	public CalicoState getState() {
+		return state;
+	}
+
+	public void setState(CalicoState state) {
+		this.state = state;
+	}
 }// class CalicoHumanPlayer
 
