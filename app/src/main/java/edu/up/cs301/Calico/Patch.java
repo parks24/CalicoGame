@@ -7,6 +7,32 @@ public class Patch{
     protected boolean hasButton;
 
     protected boolean selectedPatch;
+
+    /*
+        Number Codes
+
+        Color Code:
+            Blank: 0
+            Red: 1
+            Orange: 2
+            Yellow: 3
+            Green: 4
+            Blue: 5
+            Pink: 6
+
+        Pattern Code:
+            Blank: 0
+
+            dots: 1
+            fractal: 2
+            heart: 3
+            lines: 4
+            smile: 5
+            star: 6
+
+            goal: 7
+     */
+
     public Patch()
     {
         patchPattern = 0;
