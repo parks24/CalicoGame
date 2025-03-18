@@ -77,7 +77,105 @@ public class CalicoState extends GameState {
 		playerBoard.add(new Board());
 		playerBoard.add(new Board());
 
+
+		//Initialize board edges for all players
+		initializeBoardEdges();
+
+		//Initialize player boards
+		initPlayerBoard(0); //Player One
+		initPlayerBoard(1); //Player Two
+		initPlayerBoard(2); //Player Three
+		initPlayerBoard(3); //Player Four
+
+
+
+
+
 	}//default Constructor
+
+	public void initPlayerBoard(int player)
+	{
+		Board tempPlayer = playerBoard.get(player);
+
+		//Row One
+		tempPlayer.setPatch(new Patch(6,4),1,1); //1,1 (star, green)
+		tempPlayer.setPatch(new Patch(6,3),1,2); //1,2 (star, yellow)
+		tempPlayer.setPatch(new Patch(2,1),1,3); //1,3 (fract, red)
+
+		if(player != 3) //Check for Player Four
+		{
+			tempPlayer.setPatch(new Patch(5,6),1,4); //1,4 (smile, pink)
+		}
+
+		//Row Two
+		tempPlayer.setPatch(new Patch(3,6),2,1); //2,1
+		tempPlayer.setPatch(new Patch(5, 3),2,2); //2,2
+		tempPlayer.setPatch(new Patch(4, 1),2,3); //2,3
+		tempPlayer.setPatch(new GoalPatch(),2,4); //2,4 GOAL
+		tempPlayer.setPatch(new Patch(1,2),2,5); //2,5
+
+		//Row Three
+		tempPlayer.setPatch(new Patch(3, 4),3,1); //3,1 (,)
+		tempPlayer.setPatch(new GoalPatch(),3,2); //3,2 GOAL
+		tempPlayer.setPatch(new Patch(5,4),3,3); //3,3 (,)
+		tempPlayer.setPatch(new Patch(5,6),3,4); //3,4 (,)
+		tempPlayer.setPatch(new Patch(1,1),3,5); //3,5 (,)
+
+		//Row Four
+		tempPlayer.setPatch(new Patch(2,1),4,1); //4,1 (,)
+		tempPlayer.setPatch(new Patch(4,5),4,2); //4,2 (,)
+		tempPlayer.setPatch(new Patch(3,5),4,3); //4,3 (,)
+		tempPlayer.setPatch(new GoalPatch(),4,4); //4,4 GOAL
+		tempPlayer.setPatch(new Patch(3,6),4,5); //4,5 (,)
+
+		//Row Five
+		tempPlayer.setPatch(new Patch(2,5),5,1); //5,1 (,)
+		tempPlayer.setPatch(new Patch(4,1),5,2); //5,2 (,)
+		tempPlayer.setPatch(new Patch(4,2),5,3); //5,3 (,)
+		tempPlayer.setPatch(new Patch(5,6),5,4); //5,4 (,)
+		tempPlayer.setPatch(new Patch(3,1),5,5); //5,5 (,)
+
+	}
+
+	public void initializeBoardEdges()
+	{
+		//Initialize board edges
+		for(int i = 0; i < 4; i++)
+		{
+			//pattern then color
+			Board tempPlayer = playerBoard.get(i); //get Board
+
+			//Top Row (row 0)
+			tempPlayer.setPatch(new Patch(4, 3),0 , 0); //0,0 (lines, yellow)
+			tempPlayer.setPatch(new Patch(3, 5),0 , 1); //0,1 (heart, blue)
+			tempPlayer.setPatch(new Patch(1, 1),0 , 2); //0,2 (dots, red)
+			tempPlayer.setPatch(new Patch(2, 6),0 , 3); //0,3 (fract, pink)
+			tempPlayer.setPatch(new Patch(5, 3),0 , 4); //0,4 (smile, yellow)
+			tempPlayer.setPatch(new Patch(6, 2),0 , 5); //0,5 (star, orange)
+
+			//Left Col (col 0)
+			tempPlayer.setPatch(new Patch(5, 6),1 , 0); //1,0 (smile, pink)
+			tempPlayer.setPatch(new Patch(6, 4),2 , 0); //2,0 (star, green)
+			tempPlayer.setPatch(new Patch(4, 1),3 , 0); //3,0 (line, red)
+			tempPlayer.setPatch(new Patch(2, 2),4 , 0); //4,0 (fract,orange)
+			tempPlayer.setPatch(new Patch(3, 3),5 , 0); //5,0 (heart,yellow)
+			tempPlayer.setPatch(new Patch(1, 5),6 , 0); //6,0 (dot,blue)
+
+			//Right Rol (col 6)
+			tempPlayer.setPatch(new Patch(3, 4),1 , 6); //1,6 (heart,green)
+			tempPlayer.setPatch(new Patch(2, 3),2 , 6); //2,6 (fract,yellow)
+			tempPlayer.setPatch(new Patch(1, 5),3 , 6); //3,6 (dot,blue)
+			tempPlayer.setPatch(new Patch(4, 2),4 , 6); //4,6 (line,orange)
+			tempPlayer.setPatch(new Patch(6, 6),5 , 6); //5,6 (star,pink)
+
+			//Bottom Row (row 6)
+			tempPlayer.setPatch(new Patch(5, 6),6 , 1); //6,1 (smile,pink)
+			tempPlayer.setPatch(new Patch(3, 1),6 , 2); //6,2 (heart,red)
+			tempPlayer.setPatch(new Patch(6, 4),6 , 3); //6,3 (star,green)
+			tempPlayer.setPatch(new Patch(5, 3),6 , 4); //6,4 (smile,yellow)
+			tempPlayer.setPatch(new Patch(2, 2),6 , 5); //6,5 (fract,orange)
+		}
+	}//initializeBoardEdges
 
 	/** Copy Constructor
 	 *

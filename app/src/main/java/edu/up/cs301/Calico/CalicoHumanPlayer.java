@@ -74,6 +74,8 @@ public class CalicoHumanPlayer extends GameHumanPlayer implements OnClickListene
 		if (game == null) return;
 		TextView textVeiw = myActivity.findViewById(R.id.testResultsTextView);
 		textVeiw.setText("");
+
+		//Deepcopy
 		CalicoState firstInstance = new CalicoState();
 		CalicoState firstCopy = new CalicoState(firstInstance);
 
