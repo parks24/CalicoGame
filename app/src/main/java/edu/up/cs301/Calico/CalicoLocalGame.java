@@ -58,19 +58,23 @@ public class CalicoLocalGame extends LocalGame {
 	protected boolean makeMove(GameAction action) {
 		Log.i("action", action.getClass().toString());
 		
-		if (action instanceof CalicoMoveAction) {
-		
-			// cast so that we Java knows it's a CounterMoveAction
-			CalicoMoveAction cma = (CalicoMoveAction)action;
-
-			// Update the Calico values based upon the action
-			//int result = gameState.getCounter() + (cma.isPlus() ? 1 : -1);
-			//gameState.setCounter(result);
-			
-			// denote that this was a legal/successful move
+		if (action instanceof SelectPatch) {
+			return gameState.selectPatch(action);
+		} else if (action instanceof PlacePatch) {
+			return gameState.placePatch(action);
+		} else if (action instanceof SelectCommunityPatch) {
+			return gameState.selectCommunityPatch(action);
+		} else if (action instanceof ConfirmMove) {
+			return gameState.confirmMove(action);
+		} else if (action instanceof UndoMove) {
+			return gameState.undoMove(action);
+		} else if (action instanceof ViewObjectives) {
 			return true;
-		}
-		else {
+		} else if (action instanceof CloseMenu) {
+			return true;
+		} else if (action instanceof ViewPlayerBoard) {
+			return true;
+		} else {
 			// denote that this was an illegal move
 			return false;
 		}
