@@ -61,7 +61,8 @@ public class Patch{
     public int getPatchColor(){
         return patchColor;
     }
-
+    public boolean isNotGoal(){return true;}
+    public int getGoalPatchPoints(int[][] x) { return 0;}
     public void selectPatch()
     {
         selectedPatch = true;
