@@ -57,7 +57,8 @@ public class CalicoLocalGame extends LocalGame {
 	@Override
 	protected boolean makeMove(GameAction action) {
 		Log.i("action", action.getClass().toString());
-		
+
+
 		if (action instanceof SelectPatch) {
 			return gameState.selectPatch(action);
 		} else if (action instanceof PlacePatch) {

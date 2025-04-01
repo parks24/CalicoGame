@@ -22,6 +22,12 @@ public class CalicoState extends GameState {
 	protected boolean objectiveMenuVisibility;
 	protected int playerTurn;
 	protected int turnStage; //Player selecting or placing during turn
+	/* 0 = Selecting patch
+	 * 1 = Selecting where to place
+	 * 2 = confirm move
+	 * 3 = draw patch from community pool
+	 * 4 = confirm/end turn
+	 */
 	protected int gameStage; //Stage of game
 
 	protected Patch[] communityPool = new Patch[3];
@@ -109,6 +115,8 @@ public class CalicoState extends GameState {
 
 	}//default Constructor
 
+
+	
 	public void initPlayerBoard(int player)
 	{
 		Board tempPlayer = playerBoard.get(player);
@@ -240,16 +248,7 @@ public class CalicoState extends GameState {
 		{
 
 			//Check for player four's turn
-			if(playerTurn == 3)
-			{
-				playerTurn = 0;
-			}
-
-			//Move onto next player
-			else
-			{
-				playerTurn++;
-			}
+			playerTurn = (playerTurn +1) %4;
 
 			return true;
 		}
@@ -351,6 +350,17 @@ public class CalicoState extends GameState {
 		return false;
 	}
 
+	public boolean selectCommunityPatch(GameAction move)
+	{
+		if(move instanceof SelectCommunityPatch)
+		{
+			//ToDo implementation
+			return true;
+		}
+
+		return false;
+	}//selectCommunityPatch
+
 
 	public void checkButton(int[] patchToCheck, int player)
 	{
@@ -385,7 +395,8 @@ public class CalicoState extends GameState {
 				if (this.cats[i].addCat(similarPatchesPattern, placedPatchPattern))
 					playerScores.get(player).increaseCatCount(i);
 		}
-	}
+
+	}//checkButton
 
 
 	@Override
@@ -435,4 +446,12 @@ public class CalicoState extends GameState {
 		//Compile and return all info
 		return turnInfo + currentScores + communityPoolInfo + playerHandInfo;
 	}//toString
+
+
+
+	//Getters
+	public int getPlayerTurn()
+	{
+		return playerTurn;
+	}
 }
