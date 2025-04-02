@@ -57,7 +57,8 @@ public class CalicoLocalGame extends LocalGame {
 	@Override
 	protected boolean makeMove(GameAction action) {
 		Log.i("action", action.getClass().toString());
-		
+
+
 		if (action instanceof SelectPatch) {
 			return gameState.selectPatch(action);
 		} else if (action instanceof PlacePatch) {
@@ -84,7 +85,8 @@ public class CalicoLocalGame extends LocalGame {
 	 * send the updated state to a given player
 	 */
 	@Override
-	protected void sendUpdatedStateTo(GamePlayer p) {
+	protected void sendUpdatedStateTo(GamePlayer p)
+	{
 		// this is a perfect-information game, so we'll make a
 		// complete copy of the state to send to the player
 		p.sendInfo(new CalicoState(this.gameState));
