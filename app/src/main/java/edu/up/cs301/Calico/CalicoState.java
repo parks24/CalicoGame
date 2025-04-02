@@ -16,7 +16,6 @@ import edu.up.cs301.GameFramework.infoMessage.GameState;
 public class CalicoState extends GameState {
 
 	//Instance Variables
-	protected ArrayList<PlayerScore> playerScores = new ArrayList<>();
     protected Cat[] cats = new Cat[3];
 
 	protected boolean objectiveMenuVisibility;
@@ -35,11 +34,6 @@ public class CalicoState extends GameState {
 
 	public CalicoState()
 	{
-		//initialize player scores to 0 for each player
-		playerScores.add(new PlayerScore());
-		playerScores.add(new PlayerScore());
-		playerScores.add(new PlayerScore());
-		playerScores.add(new PlayerScore());
 
 		//start of game stage of game values
 		playerTurn = 0;
@@ -199,8 +193,6 @@ public class CalicoState extends GameState {
 	 */
 	public CalicoState(CalicoState other)
 	{
-		//copy player scores
-        this.playerScores.addAll(other.playerScores);
 
 		//start of game stage of game values
 		this.playerTurn = other.playerTurn;
@@ -358,24 +350,25 @@ public class CalicoState extends GameState {
 		//gets Arraylist of all patches with same color
 		//and if a button already exists for those patches
 		ArrayList<int[]> similarPatchesColor = new ArrayList<>();
-		int placedPatchColor = playerBoard.get(player).getPatch(patchToCheck[0],patchToCheck[1]).patchColor;
+		Board board = playerBoard.get(player);
+		int placedPatchColor = board.getPatch(patchToCheck[0],patchToCheck[1]).patchColor;
 		boolean buttonExists =
-				playerBoard.get(player).getSimilarPatchesColor(similarPatchesColor,patchToCheck,placedPatchColor);
+				board.getSimilarPatchesColor(similarPatchesColor,patchToCheck,placedPatchColor);
 
 
 		//increases the player button count
 		//if enough patches and no button already
 		if(similarPatchesColor.size()>=3 && !buttonExists)
 		{
-			playerScores.get(player).increaseButtonCount(placedPatchColor);
+			board.playerScore.increaseButtonCount(placedPatchColor);
 		}
 
 		//gets Arraylist of all patches with same pattern
 		//and if a cat already exists for those patches
 		ArrayList<int[]> similarPatchesPattern = new ArrayList<>();
-		int placedPatchPattern = playerBoard.get(player).getPatch(patchToCheck[0],patchToCheck[1]).patchPattern;
+		int placedPatchPattern = board.getPatch(patchToCheck[0],patchToCheck[1]).patchPattern;
 		boolean catExists =
-				playerBoard.get(player).getSimilarPatchesPattern(similarPatchesPattern,patchToCheck,placedPatchPattern);
+				board.getSimilarPatchesPattern(similarPatchesPattern,patchToCheck,placedPatchPattern);
 
 
 		//calls cat function to see if cat should be added
@@ -383,7 +376,7 @@ public class CalicoState extends GameState {
 		{
 			for (int i = 0; i < 3; i++)
 				if (this.cats[i].addCat(similarPatchesPattern, placedPatchPattern))
-					playerScores.get(player).increaseCatCount(i);
+					board.playerScore.increaseCatCount(i);
 		}
 	}
 
@@ -401,10 +394,10 @@ public class CalicoState extends GameState {
 		String currentScores = "Player Scores\n";
 
 		//Append player scores to currentScores string
-		for(int i = 0; i < playerScores.size(); i++)
+		for(int i = 0; i < playerBoard.size(); i++)
 		{
 			int playerNumber = i+1; //Index by one for accurate player number (1-4 not 0-3)
-			String playerScoreTemp = "Player " + playerNumber + " : " + playerScores.get(i) + "\n";
+			String playerScoreTemp = "Player " + playerNumber + " : " + playerBoard.get(i).playerScore + "\n";
 			currentScores = currentScores.concat(playerScoreTemp); //Add player score to list
 		}
 

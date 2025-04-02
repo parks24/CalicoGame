@@ -6,6 +6,8 @@ public class Board
 {
     public Patch[][] board = new Patch[6][6];
 
+    public PlayerScore playerScore;
+
     public Board()
     {
         for (int i = 0; i<5; i ++)
@@ -15,6 +17,8 @@ public class Board
                 board[i][j] = new Patch();
             }
         }
+
+        playerScore = new PlayerScore();
     }
 
     public Board(Board other)
@@ -26,6 +30,8 @@ public class Board
                 board[i][j] = new Patch(other.board[i][j]);
             }
         }
+
+        playerScore = new PlayerScore(other.playerScore);
     }
 
     public Patch getPatch(int row, int col)
