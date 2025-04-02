@@ -115,13 +115,13 @@ public class CalicoHumanPlayer extends GameHumanPlayer implements OnClickListene
 	protected ImageView playerTile2 = null;
 
 
-
 	/**
 	 * constructor
 	 * @param name
 	 * 		the player's name
 	 */
-	public CalicoHumanPlayer(String name) {
+	public CalicoHumanPlayer(String name)
+	{
 		super(name);
 		playerNum = 0;
 	}
