@@ -8,6 +8,7 @@ public class SelectPatch extends GameAction
 
     //Instance Variables
     protected Patch selectedPatch;
+    protected int selectedSlot;
 
     /**
      * constructor for GameAction
@@ -25,9 +26,20 @@ public class SelectPatch extends GameAction
         selectedPatch = patch;
     }
 
+    public SelectPatch(GamePlayer player, int slot)
+    {
+        super(player);
+        selectedSlot = slot;
+    }
+
     public Patch getSelectedPatch()
     {
         return selectedPatch;
+    }
+
+    public int getSelectedSlot()
+    {
+        return selectedSlot;
     }
 
 }//SelectPatch

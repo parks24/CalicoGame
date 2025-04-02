@@ -238,7 +238,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:text="Buttons: 0"
+                    android:text="Buttons: 5"
                     android:textColor="@android:color/darker_gray"
                     android:textSize="34sp" />
 
@@ -495,20 +495,20 @@
                             app:srcCompat="@drawable/blank_blank" />
 
                         <ImageView
-                            android:id="@+id/board23"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:adjustViewBounds="true"
-                            android:clickable="true"
-                            app:srcCompat="@drawable/blank_blank" />
-
-                        <ImageView
                             android:id="@+id/objectiveTop"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:adjustViewBounds="true"
                             android:clickable="true"
                             app:srcCompat="@drawable/blank_goal" />
+
+                        <ImageView
+                            android:id="@+id/board24"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:adjustViewBounds="true"
+                            android:clickable="true"
+                            app:srcCompat="@drawable/blank_blank" />
 
                         <ImageView
                             android:id="@+id/board25"

@@ -27,6 +27,7 @@ public class GoalPatch extends Patch
      {
          super();
          goal = 0;
+         patchPattern = 7;
      }
 
      //creates specific goal patch

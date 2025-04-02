@@ -22,7 +22,6 @@ public class Patch{
 
         Pattern Code:
             Blank: 0
-
             dots: 1
             fractal: 2
             heart: 3

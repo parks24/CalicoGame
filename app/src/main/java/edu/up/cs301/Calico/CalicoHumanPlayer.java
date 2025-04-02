@@ -29,12 +29,13 @@ public class CalicoHumanPlayer extends GameHumanPlayer implements OnClickListene
 	
 	// The TextView the displays the current Calico value
 	private TextView testResultsTextView;
-
-	protected int playerNumber;
 	
 	// the most recent game state, as given to us by the CounterLocalGame
 	private CalicoState state;
-	
+
+	// indicates the players number for assessing if it is their turn
+	private int playerNum;
+
 	// the android activity that we are running
 	private GameMainActivity myActivity;
 
@@ -122,6 +123,7 @@ public class CalicoHumanPlayer extends GameHumanPlayer implements OnClickListene
 	 */
 	public CalicoHumanPlayer(String name) {
 		super(name);
+		playerNum = 0;
 	}
 
 	//Overloaded constructor
@@ -144,15 +146,41 @@ public class CalicoHumanPlayer extends GameHumanPlayer implements OnClickListene
 	/**
 	 * sets the Calico value in the text view
 	 */
-	protected void updateDisplay()
-	{
+	protected void updateDisplay() {
+		int[][] patchAsset =
+			{{R.drawable.red_dots, R.drawable.red_fract, R.drawable.red_heart,
+			R.drawable.red_lines, R.drawable.red_smile, R.drawable.red_star},
+			{R.drawable.orange_dots, R.drawable.orange_fract, R.drawable.orange_heart,
+			R.drawable.orange_lines, R.drawable.orange_smile, R.drawable.orange_star},
+			{R.drawable.yellow_dots, R.drawable.yellow_fract, R.drawable.yellow_heart,
+			R.drawable.yellow_lines, R.drawable.yellow_smile, R.drawable.yellow_star},
+			{R.drawable.green_dots, R.drawable.green_fract, R.drawable.green_heart,
+			R.drawable.green_lines, R.drawable.green_smile, R.drawable.green_star},
+			{R.drawable.blue_dots, R.drawable.blue_fract, R.drawable.blue_heart,
+			R.drawable.blue_lines, R.drawable.blue_smile, R.drawable.blue_star},
+			{R.drawable.pink_dots, R.drawable.pink_fract, R.drawable.pink_heart,
+			R.drawable.pink_lines, R.drawable.pink_smile, R.drawable.pink_star},};
 
+		ImageView[][] boardViews =
+			{{null,null,null,null,null,null},
+			{null,null,null,null,null,null},
+			{null,null,null,null,null,null},
+			{null,null,null,null,null,null},
+			{null,null,null,null,null,null},
+			{null,null,null,null,null,null}};
 
-
-
-		// set the text in the appropriate widget
-		//counterValueTextView.setText("" + state.getCounter());
-	}//updateDisplay
+		int i = 0;
+		for (Patch[] row : state.playerBoard.get(playerNum).board) {
+			int j = 0;
+			for (Patch col : row) {
+				if (col.getPatchPattern() != 0 && col.getPatchPattern() != 7){
+					boardViews[i][j].setImageResource(patchAsset[col.getPatchColor()-1][col.getPatchPattern()-1]);
+				}
+				j++;
+			}
+			i++;
+		}
+	}
 
 	/**
 	 *
@@ -163,12 +191,171 @@ public class CalicoHumanPlayer extends GameHumanPlayer implements OnClickListene
 	{
 		// if we are not yet connected to a game, ignore
 		if (game == null) return;
+		TextView textVeiw = myActivity.findViewById(R.id.testResultsTextView);
+		textVeiw.setText("");
 
-		//If it is users turn, sent event to CalicoLocalGame
-		if(state.getPlayerTurn() == playerNum)
-		{
+		//Deepcopy
+		CalicoState firstInstance = new CalicoState();
+		CalicoState firstCopy = new CalicoState(firstInstance);
 
+		Patch patch1 = new Patch(3,6);
+		Patch patch2 = new Patch(2,6);
+
+		// turn 1 player 4
+		game.sendAction(new SelectPatch(this,patch1));
+		textVeiw.append("player 4 selects patch to place\n");
+		game.sendAction(new PlacePatch(this,1,4));
+		textVeiw.append("player 4 places patch on board\n");
+		game.sendAction(new ConfirmMove(this));
+		textVeiw.append("player 4 confirms placement\n");
+		game.sendAction(new SelectCommunityPatch(this, patch2));
+		textVeiw.append("player 4 selects a community tile to take\n");
+		game.sendAction(new ConfirmMove(this));
+		textVeiw.append("player 4 confirms selection\n");
+
+		// turn 2 player 1
+		game.sendAction(new SelectPatch(this, patch2));
+		textVeiw.append("player 1 selects patch to place\n");
+		game.sendAction(new PlacePatch(this,1,5));
+		textVeiw.append("player 1 places patch on board\n");
+		game.sendAction(new ConfirmMove(this));
+		textVeiw.append("player 1 confirms placement\n");
+		game.sendAction(new SelectCommunityPatch(this, patch1));
+		textVeiw.append("player 1 selects a community tile to take\n");
+		game.sendAction(new ConfirmMove(this));
+		textVeiw.append("player 1 confirms selection\n");
+
+		// turn 3 player 2
+		game.sendAction(new SelectPatch(this, patch2));
+		textVeiw.append("player 2 selects patch to place\n");
+		game.sendAction(new PlacePatch(this,1,5));
+		textVeiw.append("player 2 places patch on board\n");
+		game.sendAction(new ConfirmMove(this));
+		textVeiw.append("player 2 confirms placement\n");
+		game.sendAction(new SelectCommunityPatch(this, patch1));
+		textVeiw.append("player 2 selects a community tile to take\n");
+		game.sendAction(new ConfirmMove(this));
+		textVeiw.append("player 2 confirms selection\n");
+
+		// turn 4 player 3
+		game.sendAction(new SelectPatch(this, patch2));
+		textVeiw.append("player 3 selects patch to place\n");
+		game.sendAction(new PlacePatch(this,1,5));
+		textVeiw.append("player 3 places patch on board\n");
+		game.sendAction(new ConfirmMove(this));
+		textVeiw.append("player 3 confirms placement\n");
+		game.sendAction(new SelectCommunityPatch(this, patch1));
+		textVeiw.append("player 3 selects a community tile to take\n");
+		game.sendAction(new ConfirmMove(this));
+		textVeiw.append("player 3 confirms selection\n");
+
+		// turn 5 player 4
+		game.sendAction(new SelectPatch(this, patch2));
+		textVeiw.append("player 4 selects patch to place\n");
+		game.sendAction(new PlacePatch(this,1,5));
+		textVeiw.append("player 4 places patch on board\n");
+		game.sendAction(new ConfirmMove(this));
+		textVeiw.append("player 4 confirms placement\n");
+		game.sendAction(new SelectCommunityPatch(this, patch1));
+		textVeiw.append("player 4 selects a community tile to take\n");
+		game.sendAction(new ConfirmMove(this));
+		textVeiw.append("player 4 confirms selection\n");
+
+		CalicoState secondInstance = new CalicoState();
+		CalicoState secondCopy = new CalicoState(secondInstance);
+
+		textVeiw.append("\n copy 1\n");
+		textVeiw.append(firstCopy.toString());
+		textVeiw.append("\n copy 2\n");
+		textVeiw.append(secondCopy.toString());
+		if (firstCopy.toString().equals(secondCopy.toString())){
+			textVeiw.append("\nfirst and second copy are the same\n");
+		}else{
+			textVeiw.append("\nfirst and second copy are different\n");
 		}
+
+		// Board space buttons
+//		if (playerNum == state.playerTurn) {
+//			if (button.getId() == R.id.board11) {
+//				game.sendAction(new PlacePatch(this, 1, 1));
+//			} else if (button.getId() == R.id.board12) {
+//				game.sendAction(new PlacePatch(this, 1, 2));
+//			} else if (button.getId() == R.id.board13) {
+//				game.sendAction(new PlacePatch(this, 1, 3));
+//			} else if (button.getId() == R.id.board14) {
+//				game.sendAction(new PlacePatch(this, 1, 4));
+//			} else if (button.getId() == R.id.board15) {
+//				game.sendAction(new PlacePatch(this, 1, 5));
+//			} else if (button.getId() == R.id.board21) {
+//				game.sendAction(new PlacePatch(this, 2, 1));
+//			} else if (button.getId() == R.id.board22) {
+//				game.sendAction(new PlacePatch(this, 2, 2));
+//			} else if (button.getId() == R.id.board24) {
+//				game.sendAction(new PlacePatch(this, 2, 4));
+//			} else if (button.getId() == R.id.board25) {
+//				game.sendAction(new PlacePatch(this, 2, 5));
+//			} else if (button.getId() == R.id.board31) {
+//				game.sendAction(new PlacePatch(this, 3, 1));
+//			} else if (button.getId() == R.id.board33) {
+//				game.sendAction(new PlacePatch(this, 3, 3));
+//			} else if (button.getId() == R.id.board34) {
+//				game.sendAction(new PlacePatch(this, 3, 4));
+//			} else if (button.getId() == R.id.board35) {
+//				game.sendAction(new PlacePatch(this, 3, 5));
+//			} else if (button.getId() == R.id.board41) {
+//				game.sendAction(new PlacePatch(this, 4, 1));
+//			} else if (button.getId() == R.id.board42) {
+//				game.sendAction(new PlacePatch(this, 4, 2));
+//			} else if (button.getId() == R.id.board43) {
+//				game.sendAction(new PlacePatch(this, 4, 3));
+//			} else if (button.getId() == R.id.board45) {
+//				game.sendAction(new PlacePatch(this, 4, 5));
+//			} else if (button.getId() == R.id.board51) {
+//				game.sendAction(new PlacePatch(this, 5, 1));
+//			} else if (button.getId() == R.id.board52) {
+//				game.sendAction(new PlacePatch(this, 5, 2));
+//			} else if (button.getId() == R.id.board53) {
+//				game.sendAction(new PlacePatch(this, 5, 3));
+//			} else if (button.getId() == R.id.board54) {
+//				game.sendAction(new PlacePatch(this, 5, 4));
+//			} else if (button.getId() == R.id.board55) {
+//				game.sendAction(new PlacePatch(this, 5, 5));
+//			}
+//			// player patch buttons
+//			else if (button.getId() == R.id.playerTile1) {
+//				game.sendAction(new SelectPatch(this,0));
+//			} else if (button.getId() == R.id.playerTile2) {
+//				game.sendAction(new SelectPatch(this,1));
+//			}
+//			// community patch buttons
+//			else if (button.getId() == R.id.commonTile1) {
+//				game.sendAction(new SelectCommunityPatch(this));
+//			} else if (button.getId() == R.id.commonTile2) {
+//				game.sendAction(new SelectCommunityPatch(this));
+//			} else if (button.getId() == R.id.commonTile3) {
+//				game.sendAction(new SelectCommunityPatch(this));
+//			}
+//			// confirm and undo buttons
+//			else if (button.getId() == R.id.confirm) {
+//				game.sendAction(new ConfirmMove(this));
+//			} else if (button.getId() == R.id.undo) {
+//				game.sendAction(new UndoMove(this));
+//			}
+//			// change displayed board
+//			else if (button.getId() == R.id.player1) {
+//				game.sendAction(new ViewPlayerBoard(this));
+//			} else if (button.getId() == R.id.player2) {
+//				game.sendAction(new ViewPlayerBoard(this));
+//			} else if (button.getId() == R.id.player3) {
+//				game.sendAction(new ViewPlayerBoard(this));
+//			} else if (button.getId() == R.id.player4) {
+//				game.sendAction(new ViewPlayerBoard(this));
+//			}
+//			// objectives menu
+//			else if (button.getId() == R.id.objectives) {
+//				game.sendAction(new ViewObjectives(this));
+//			}
+//		}
 
 	}// onClick
 	
@@ -179,9 +366,8 @@ public class CalicoHumanPlayer extends GameHumanPlayer implements OnClickListene
 	 * 		the message
 	 */
 	@Override
-	public void receiveInfo(GameInfo info)
-	{
-		// ignore the message if it's not a CounterState message
+	public void receiveInfo(GameInfo info) {
+		// ignore the message if it's not a CalicoState message
 		if (!(info instanceof CalicoState)) return;
 		
 		// update our state; then update the display

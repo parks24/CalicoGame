@@ -307,6 +307,18 @@ public class CalicoState extends GameState {
 
 	}//selectPatch
 
+	public boolean selectCommunityPatch(GameAction move)
+	{
+		if(move instanceof SelectCommunityPatch)
+		{
+			playerHand[playerTurn][0].selectPatch(); //Select Patch from Hand
+			return true;
+		}
+
+		return false;
+
+	}//selectPatch
+
 	public boolean closeMenu(GameAction move)
 	{
 		if(move instanceof CloseMenu)
