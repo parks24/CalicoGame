@@ -345,6 +345,7 @@ public class CalicoState extends GameState {
 				}
 			}
 
+			checkButtonCat(((CalicoMoveAction) move).getLocOnBoard(), player);
 
 			return true;
 		}
