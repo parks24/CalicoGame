@@ -6,7 +6,6 @@ import edu.up.cs301.GameFramework.actionMessage.GameAction;
 import edu.up.cs301.GameFramework.infoMessage.GameInfo;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.view.View.OnClickListener;
@@ -115,6 +114,14 @@ public class CalicoHumanPlayer extends GameHumanPlayer implements OnClickListene
 	protected ImageView playerTile1 = null;
 	protected ImageView playerTile2 = null;
 
+	protected ImageView confirm = null;
+	protected ImageView undo = null;
+
+	protected Button viewP1 = null;
+	protected Button viewP2 = null;
+	protected Button viewP3 = null;
+	protected Button viewP4 = null;
+
 
 	/**
 	 * constructor
@@ -160,7 +167,11 @@ public class CalicoHumanPlayer extends GameHumanPlayer implements OnClickListene
 			{R.drawable.blue_dots, R.drawable.blue_fract, R.drawable.blue_heart,
 			R.drawable.blue_lines, R.drawable.blue_smile, R.drawable.blue_star},
 			{R.drawable.pink_dots, R.drawable.pink_fract, R.drawable.pink_heart,
-			R.drawable.pink_lines, R.drawable.pink_smile, R.drawable.pink_star},};
+			R.drawable.pink_lines, R.drawable.pink_smile, R.drawable.pink_star}};
+
+		int[] goalPatchAsset =
+				{R.drawable.noteq_goal, R.drawable.two3kind_goal, R.drawable.three2kind_goal,
+				R.drawable.fourkind_goal, R.drawable.threekind_goal, R.drawable.twokind_goal};
 
 		// updating display of the game board
 		ImageView[][] boardViews =
@@ -176,8 +187,10 @@ public class CalicoHumanPlayer extends GameHumanPlayer implements OnClickListene
 		for (Patch[] row : state.playerBoard.get(playerNum).board) {
 			int j = 0;
 			for (Patch col : row) {
-				if (col != null){
-					if (col.getPatchPattern() != 0 && col.getPatchPattern() != 7){
+				if (col != null) {
+					if (col.getPatchPattern() == 7){
+						boardViews[i][j].setImageResource(goalPatchAsset[((GoalPatch)col).getGoal()-1]);
+					}else if (col.getPatchPattern() != 0){
 						if (boardViews[i][j] != null) {
 							boardViews[i][j].setImageResource(patchAsset[col.getPatchColor() - 1][col.getPatchPattern() - 1]);
 						}
@@ -576,6 +589,21 @@ public class CalicoHumanPlayer extends GameHumanPlayer implements OnClickListene
 		this.catCount3 = (TextView) activity.findViewById(R.id.catCount3);
 		this.buttonCount = (TextView) activity.findViewById(R.id.buttonCount);
 
+		//Confirm and undo buttons
+		this.confirm = (ImageView) activity.findViewById((R.id.confirm));
+		this.undo = (ImageView) activity.findViewById((R.id.undo));
+		confirm.setOnClickListener(this);
+		undo.setOnClickListener(this);
+
+		//Player board buttons
+		this.viewP1 = (Button) activity.findViewById(R.id.player1);
+		this.viewP2 = (Button) activity.findViewById(R.id.player2);
+		this.viewP3 = (Button) activity.findViewById(R.id.player3);
+		this.viewP4 = (Button) activity.findViewById(R.id.player4);
+		viewP1.setOnClickListener(this);
+		viewP2.setOnClickListener(this);
+		viewP3.setOnClickListener(this);
+		viewP4.setOnClickListener(this);
 
 	}
 

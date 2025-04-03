@@ -10,9 +10,9 @@ public class Board
 
     public Board()
     {
-        for (int i = 0; i<5; i ++)
+        for (int i = 0; i<7; i ++)
         {
-            for (int j = 0; j<5; j++)
+            for (int j = 0; j<7; j++)
             {
                 board[i][j] = new Patch();
             }
@@ -23,9 +23,9 @@ public class Board
 
     public Board(Board other)
     {
-        for (int i = 0; i<5; i ++)
+        for (int i = 0; i<7; i ++)
         {
-            for (int j = 0; j<5; j++)
+            for (int j = 0; j<7; j++)
             {
                 board[i][j] = new Patch(other.board[i][j]);
             }
