@@ -358,17 +358,6 @@ public class CalicoState extends GameState {
 		return false;
 	}
 
-	public boolean selectCommunityPatch(GameAction move)
-	{
-		if(move instanceof SelectCommunityPatch)
-		{
-			//ToDo implementation
-			return true;
-		}
-
-		return false;
-	}//selectCommunityPatch
-
 
 	public void checkButtonCat(int[] patchToCheck, int player)
 	{
