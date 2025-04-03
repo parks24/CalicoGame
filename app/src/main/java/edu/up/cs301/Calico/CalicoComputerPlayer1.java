@@ -94,22 +94,22 @@ public class CalicoComputerPlayer1 extends GameComputerPlayer implements Tickabl
 	 * callback method: the timer ticked
 	 */
 	protected void timerTicked() {
-		if (playerNum != state.playerTurn && state.gameStage == 1){return;}
-
-		//randomly selects place on board, patch from inventory, and patch from community
-		int avaliablePatchIndex = 1 + (int)(Math.random() * (availablePatches.size()));
-		int[] locOnBoard = availablePatches.get(avaliablePatchIndex);
-		availablePatches.remove(avaliablePatchIndex);
-
-		int inventoryIndex = (int) (Math.random() * (2));
-		Patch placedPatch = state.playerHand[playerNum][inventoryIndex];
-
-		int communityIndex = (int) (Math.random()*3);
-		Patch communityPatch = state.communityPool[communityIndex];
-
-		//call necessary function (same as human player I think) to update game
-		// send the move-action to the game
-		game.sendAction(new CalicoMoveAction(this, locOnBoard, placedPatch, communityPatch));
+//		if (playerNum != state.playerTurn && state.gameStage == 1){return;}
+//
+//		//randomly selects place on board, patch from inventory, and patch from community
+//		int avaliablePatchIndex = 1 + (int)(Math.random() * (availablePatches.size()));
+//		int[] locOnBoard = availablePatches.get(avaliablePatchIndex);
+//		availablePatches.remove(avaliablePatchIndex);
+//
+//		int inventoryIndex = (int) (Math.random() * (2));
+//		Patch placedPatch = state.playerHand[playerNum][inventoryIndex];
+//
+//		int communityIndex = (int) (Math.random()*3);
+//		Patch communityPatch = state.communityPool[communityIndex];
+//
+//		//call necessary function (same as human player I think) to update game
+//		// send the move-action to the game
+//		game.sendAction(new CalicoMoveAction(this, locOnBoard, placedPatch, communityPatch));
 
 	}
 

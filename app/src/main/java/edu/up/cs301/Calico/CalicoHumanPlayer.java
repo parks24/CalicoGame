@@ -439,12 +439,12 @@ public class CalicoHumanPlayer extends GameHumanPlayer implements OnClickListene
 		this.myActivity = activity;
 		
 	    // Load the layout resource for our GUI
-		activity.setContentView(R.layout.game_state_test);
+		activity.setContentView(R.layout.calico_human_player);
 
-		Button testButton = (Button) activity.findViewById(R.id.testButton);
-		testButton.setOnClickListener(this);
+//		Button testButton = (Button) activity.findViewById(R.id.testButton);
+//		testButton.setOnClickListener(this);
 
-		this.testResultsTextView = (TextView) activity.findViewById(R.id.testResultsTextView);
+//		this.testResultsTextView = (TextView) activity.findViewById(R.id.testResultsTextView);
 
 		//Register Board
 		//Row 0

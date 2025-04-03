@@ -61,7 +61,7 @@ public class CalicoState extends GameState {
 		{
 			for (int j = 0; j<2; j++)
 			{
-				playerHand[i][j] = new Patch();
+				playerHand[i][j] = new Patch(5,2);
 			}
 		}
 
