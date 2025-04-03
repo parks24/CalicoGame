@@ -454,6 +454,12 @@ public class CalicoHumanPlayer extends GameHumanPlayer implements OnClickListene
 		this.board03 = (ImageView) activity.findViewById(R.id.board03);
 		this.board04 = (ImageView) activity.findViewById(R.id.board04);
 		this.board05 = (ImageView) activity.findViewById(R.id.board05);
+		board00.setOnClickListener(this);
+		board01.setOnClickListener(this);
+		board02.setOnClickListener(this);
+		board03.setOnClickListener(this);
+		board04.setOnClickListener(this);
+		board05.setOnClickListener(this);
 
 		//Row 1
 		this.board10 = (ImageView) activity.findViewById(R.id.board10);
@@ -463,6 +469,13 @@ public class CalicoHumanPlayer extends GameHumanPlayer implements OnClickListene
 		this.board14 = (ImageView) activity.findViewById(R.id.board14);
 		this.board15 = (ImageView) activity.findViewById(R.id.board15);
 		this.board16 = (ImageView) activity.findViewById(R.id.board16);
+		board10.setOnClickListener(this);
+		board11.setOnClickListener(this);
+		board12.setOnClickListener(this);
+		board13.setOnClickListener(this);
+		board14.setOnClickListener(this);
+		board15.setOnClickListener(this);
+		board16.setOnClickListener(this);
 
 		//Row 2
 		this.board20 = (ImageView) activity.findViewById(R.id.board20);
@@ -472,6 +485,13 @@ public class CalicoHumanPlayer extends GameHumanPlayer implements OnClickListene
 		this.board24 = (ImageView) activity.findViewById(R.id.board24);
 		this.board25 = (ImageView) activity.findViewById(R.id.board25);
 		this.board26 = (ImageView) activity.findViewById(R.id.board26);
+		board20.setOnClickListener(this);
+		board21.setOnClickListener(this);
+		board22.setOnClickListener(this);
+		objectiveTop.setOnClickListener(this);
+		board24.setOnClickListener(this);
+		board25.setOnClickListener(this);
+		board26.setOnClickListener(this);
 
 		//Row 3
 		this.board30 = (ImageView) activity.findViewById(R.id.board30);
@@ -481,6 +501,13 @@ public class CalicoHumanPlayer extends GameHumanPlayer implements OnClickListene
 		this.board34 = (ImageView) activity.findViewById(R.id.board34);
 		this.board35 = (ImageView) activity.findViewById(R.id.board35);
 		this.board36 = (ImageView) activity.findViewById(R.id.board36);
+		board30.setOnClickListener(this);
+		board31.setOnClickListener(this);
+		objectiveMiddle.setOnClickListener(this);
+		board33.setOnClickListener(this);
+		board34.setOnClickListener(this);
+		board35.setOnClickListener(this);
+		board36.setOnClickListener(this);
 
 		//Row 4
 		this.board40 = (ImageView) activity.findViewById(R.id.board40);
@@ -490,6 +517,13 @@ public class CalicoHumanPlayer extends GameHumanPlayer implements OnClickListene
 		this.objectiveBottom = (ImageView) activity.findViewById(R.id.objectiveBottom);
 		this.board45 = (ImageView) activity.findViewById(R.id.board45);
 		this.board46 = (ImageView) activity.findViewById(R.id.board46);
+		board40.setOnClickListener(this);
+		board41.setOnClickListener(this);
+		board42.setOnClickListener(this);
+		board43.setOnClickListener(this);
+		objectiveBottom.setOnClickListener(this);
+		board45.setOnClickListener(this);
+		board46.setOnClickListener(this);
 
 		//Row 5
 		this.board50 = (ImageView) activity.findViewById(R.id.board50);
@@ -499,6 +533,13 @@ public class CalicoHumanPlayer extends GameHumanPlayer implements OnClickListene
 		this.board54 = (ImageView) activity.findViewById(R.id.board54);
 		this.board55 = (ImageView) activity.findViewById(R.id.board55);
 		this.board56 = (ImageView) activity.findViewById(R.id.board56);
+		board50.setOnClickListener(this);
+		board51.setOnClickListener(this);
+		board52.setOnClickListener(this);
+		board53.setOnClickListener(this);
+		board54.setOnClickListener(this);
+		board55.setOnClickListener(this);
+		board56.setOnClickListener(this);
 
 		//Row 6
 		this.board60 = (ImageView) activity.findViewById(R.id.board60);
@@ -507,15 +548,27 @@ public class CalicoHumanPlayer extends GameHumanPlayer implements OnClickListene
 		this.board63 = (ImageView) activity.findViewById(R.id.board63);
 		this.board64 = (ImageView) activity.findViewById(R.id.board64);
 		this.board65 = (ImageView) activity.findViewById(R.id.board65);
+		board60.setOnClickListener(this);
+		board61.setOnClickListener(this);
+		board62.setOnClickListener(this);
+		board63.setOnClickListener(this);
+		board64.setOnClickListener(this);
+		board65.setOnClickListener(this);
+
 
 		//Community Pool
 		this.commonTile1 = (ImageView) activity.findViewById(R.id.commonTile1);
 		this.commonTile2 = (ImageView) activity.findViewById(R.id.commonTile2);
 		this.commonTile3 = (ImageView) activity.findViewById(R.id.commonTile3);
+		commonTile1.setOnClickListener(this);
+		commonTile2.setOnClickListener(this);
+		commonTile3.setOnClickListener(this);
 
 		//Player Inventory
 		this.playerTile1 = (ImageView) activity.findViewById(R.id.playerTile1);
 		this.playerTile2 = (ImageView) activity.findViewById(R.id.playerTile2);
+		playerTile1.setOnClickListener(this);
+		playerTile2.setOnClickListener(this);
 
 		//Cat and Button count
 		this.catCount1 = (TextView) activity.findViewById(R.id.catCount1);
