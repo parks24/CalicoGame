@@ -111,4 +111,6 @@ public class CalicoComputerPlayer1 extends GameComputerPlayer implements Tickabl
 		game.sendAction(new CalicoMoveAction(this, locOnBoard, placedPatch, communityPatch));
 
 	}
+
+
 }

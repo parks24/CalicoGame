@@ -53,6 +53,10 @@ public abstract class GameComputerPlayer implements GamePlayer, Tickable {
         return myTimer;
     }
 
+    public int getPlayerNum()
+    {
+        return playerNum;
+    }
     /**
      * Called when the timer ticks; satisfies the Tickable interface.
      */
