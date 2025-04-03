@@ -166,7 +166,7 @@ public class CalicoHumanPlayer extends GameHumanPlayer implements OnClickListene
 		ImageView[][] boardViews =
 			{{board00,board01,board02,board03,board04,board05,null},
 			{board10,board11,board12,board13,board14,board15,board16},
-			{board20,board21,board22,board23,objectiveTop,board25,board26},
+			{board20,board21,board22,objectiveTop,board24,board25,board26},
 			{board30,board31,objectiveMiddle,board33,board34,board35,board36},
 			{board40,board41,board42,board43,objectiveBottom,board45,board46},
 			{board50,board51,board52,board53,board54,board55,board56},
