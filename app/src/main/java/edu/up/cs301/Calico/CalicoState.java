@@ -28,6 +28,10 @@ public class CalicoState extends GameState {
 	 * 4 = confirm/end turn
 	 */
 	protected int gameStage; //Stage of game
+	/* 0 = placing goal tiles
+	 * 1 = placing tiles
+	 * 2 = board filled
+	 */
 
 	protected Patch[] communityPool = new Patch[3];
 	protected Patch[][] playerHand = new Patch[4][2];
