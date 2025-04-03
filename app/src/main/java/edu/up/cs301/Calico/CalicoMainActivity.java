@@ -42,16 +42,28 @@ public class CalicoMainActivity extends GameMainActivity {
 			}});
 		
 		// a computer player type (player type 1)
-		playerTypes.add(new GamePlayerType("Computer Player") {
+		playerTypes.add(new GamePlayerType("Computer Player 1") {
+			public GamePlayer createPlayer(String name) {
+				return new CalicoComputerPlayer1(name, 1);
+			}});
+
+		// a computer player type (player type 1)
+		playerTypes.add(new GamePlayerType("Computer Player 2") {
+			public GamePlayer createPlayer(String name) {
+				return new CalicoComputerPlayer1(name, 2);
+			}});
+
+		// a computer player type (player type 1)
+		playerTypes.add(new GamePlayerType("Computer Player 3") {
 			public GamePlayer createPlayer(String name) {
 				return new CalicoComputerPlayer1(name);
 			}});
 		
-		// a computer player type (player type 2)
-		playerTypes.add(new GamePlayerType("Computer Player (GUI)") {
-			public GamePlayer createPlayer(String name) {
-				return new CalicoComputerPlayer2(name);
-			}});
+//		// a computer player type (player type 2)
+//		playerTypes.add(new GamePlayerType("Computer Player (GUI)") {
+//			public GamePlayer createPlayer(String name) {
+//				return new CalicoComputerPlayer2(name);
+//			}});
 
 		// Create a game configuration class for Counter:
 		// - player types as given above
