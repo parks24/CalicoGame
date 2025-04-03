@@ -25,13 +25,13 @@ public class CalicoComputerPlayer1 extends GameComputerPlayer implements Tickabl
      */
 
 	private CalicoState state;
-	private ArrayList<int[]> avaliablePatches;
+	private ArrayList<int[]> availablePatches;
 
     public CalicoComputerPlayer1(String name) {
         // invoke superclass constructor
         super(name);
 
-		//create arraList of all avaliable patches
+		//create arraList of all available patches
 		int[] patch;
 		for(int i = 1; i<=5; i++)
 		{
@@ -42,7 +42,7 @@ public class CalicoComputerPlayer1 extends GameComputerPlayer implements Tickabl
 					patch = new int[2];
 					patch[0] = i;
 					patch[1] = j;
-					avaliablePatches.add(patch);
+					availablePatches.add(patch);
 				}
 			}
 		}
@@ -68,7 +68,7 @@ public class CalicoComputerPlayer1 extends GameComputerPlayer implements Tickabl
 					patch = new int[2];
 					patch[0] = i;
 					patch[1] = j;
-					avaliablePatches.add(patch);
+					availablePatches.add(patch);
 				}
 			}
 		}
@@ -96,9 +96,9 @@ public class CalicoComputerPlayer1 extends GameComputerPlayer implements Tickabl
 		if (playerNum != state.playerTurn && state.gameStage == 1){return;}
 
 		//randomly selects place on board, patch from inventory, and patch from community
-		int avaliablePatchIndex = 1 + (int)(Math.random() * (avaliablePatches.size()));
-		int[] locOnBoard = avaliablePatches.get(avaliablePatchIndex);
-		avaliablePatches.remove(avaliablePatchIndex);
+		int avaliablePatchIndex = 1 + (int)(Math.random() * (availablePatches.size()));
+		int[] locOnBoard = availablePatches.get(avaliablePatchIndex);
+		availablePatches.remove(avaliablePatchIndex);
 
 		int inventoryIndex = (int) (Math.random() * (2));
 		Patch placedPatch = state.playerHand[playerNum][inventoryIndex];
@@ -107,7 +107,8 @@ public class CalicoComputerPlayer1 extends GameComputerPlayer implements Tickabl
 		Patch communityPatch = state.communityPool[communityIndex];
 
 		//call necessary function (same as human player I think) to update game
-
+		// send the move-action to the game
+		game.sendAction(new CalicoMoveAction(this, locOnBoard, placedPatch, communityPatch));
 
 	}
 }

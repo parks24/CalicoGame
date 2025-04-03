@@ -16,20 +16,30 @@ public class CalicoMoveAction extends GameAction {
 	// to satisfy the serializable interface
 	private static final long serialVersionUID = 28062013L;
 
-	//whether this move is a plus (true) or minus (false)
-	private boolean isPlus;
+	//location on board for patch to be placed
+	private int[] locOnBoard;
+
+	//patch from inventory to place on board
+	private Patch placedPatch;
+
+	//community patch to put in hand
+	private Patch communityPatch;
 	
 	/**
 	 * Constructor for the CounterMoveAction class.
 	 * 
 	 * @param player
 	 *            the player making the move
-	 * @param isPlus
-	 *            value to initialize this.isPlus
+	 * @param _locOnBoard
+	 * @param _placedPatch
+	 * @param _communityPatch
+	 *
 	 */
-	public CalicoMoveAction(GamePlayer player, boolean isPlus) {
+	public CalicoMoveAction(GamePlayer player, int[] _locOnBoard, Patch _placedPatch, Patch _communityPatch) {
 		super(player);
-		this.isPlus = isPlus;
+		this.locOnBoard = _locOnBoard;
+		this.placedPatch = _placedPatch;
+		this.communityPatch = _communityPatch;
 	}
 	
 	/**
@@ -38,8 +48,16 @@ public class CalicoMoveAction extends GameAction {
 	 * @return
 	 * 		a boolean that tells whether this move is a "plus"
 	 */
-	public boolean isPlus() {
-		return isPlus;
+	public Patch getCommunityPatch() {
+		return communityPatch;
 		
+	}
+
+	public int[] getLocOnBoard() {
+		return locOnBoard;
+	}
+
+	public Patch getPlacedPatch() {
+		return placedPatch;
 	}
 }//class CounterMoveAction
