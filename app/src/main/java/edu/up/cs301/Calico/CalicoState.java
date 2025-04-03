@@ -346,7 +346,7 @@ public class CalicoState extends GameState {
 			}
 
 			checkButtonCat(((CalicoMoveAction) move).getLocOnBoard(), player);
-
+			playerTurn = (playerTurn +1) %4;
 			return true;
 		}
 		return false;
