@@ -576,6 +576,7 @@ public class CalicoHumanPlayer extends GameHumanPlayer implements OnClickListene
 		this.catCount3 = (TextView) activity.findViewById(R.id.catCount3);
 		this.buttonCount = (TextView) activity.findViewById(R.id.buttonCount);
 
+
 	}
 
 	public CalicoState getState() {
