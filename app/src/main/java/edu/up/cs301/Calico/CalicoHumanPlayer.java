@@ -108,12 +108,12 @@ public class CalicoHumanPlayer extends GameHumanPlayer implements OnClickListene
 	protected TextView catCount3 = null;
 	protected TextView buttonCount = null;
 
-	protected ImageButton commonTile1 = null;
-	protected ImageButton commonTile2 = null;
-	protected ImageButton commonTile3 = null;
+	protected ImageView commonTile1 = null;
+	protected ImageView commonTile2 = null;
+	protected ImageView commonTile3 = null;
 
-	protected ImageButton playerTile1 = null;
-	protected ImageButton playerTile2 = null;
+	protected ImageView playerTile1 = null;
+	protected ImageView playerTile2 = null;
 
 
 	/**
@@ -141,7 +141,7 @@ public class CalicoHumanPlayer extends GameHumanPlayer implements OnClickListene
 	 * 		the top object in the GUI's view heirarchy
 	 */
 	public View getTopView() {
-		return myActivity.findViewById(R.id.top_test_layout);
+		return myActivity.findViewById(R.id.top_gui_layout);
 	}
 	
 	/**
@@ -176,8 +176,12 @@ public class CalicoHumanPlayer extends GameHumanPlayer implements OnClickListene
 		for (Patch[] row : state.playerBoard.get(playerNum).board) {
 			int j = 0;
 			for (Patch col : row) {
-				if (col.getPatchPattern() != 0 && col.getPatchPattern() != 7){
-					boardViews[i][j].setImageResource(patchAsset[col.getPatchColor()-1][col.getPatchPattern()-1]);
+				if (col != null){
+					if (col.getPatchPattern() != 0 && col.getPatchPattern() != 7){
+						if (boardViews[i][j] != null) {
+							boardViews[i][j].setImageResource(patchAsset[col.getPatchColor() - 1][col.getPatchPattern() - 1]);
+						}
+					}
 				}
 				j++;
 			}
@@ -185,20 +189,24 @@ public class CalicoHumanPlayer extends GameHumanPlayer implements OnClickListene
 		}
 
 		// updating the display of the community patches
-		ImageButton[] communityViews = {commonTile1, commonTile2, commonTile3};
+		ImageView[] communityViews = {commonTile1, commonTile2, commonTile3};
 
 		i = 0;
 		for ( Patch patch : state.communityPool) {
-			communityViews[i].setImageResource(patchAsset[patch.getPatchColor()-1][patch.getPatchPattern()-1]);
+			if (communityViews[i] != null) {
+				communityViews[i].setImageResource(patchAsset[patch.getPatchColor() - 1][patch.getPatchPattern() - 1]);
+			}
 			i++;
 		}
 
 		// updating the display of the player hand patches
-		ImageButton[] handViews = {playerTile1, playerTile2};
+		ImageView[] handViews = {playerTile1, playerTile2};
 
 		i = 0;
 		for ( Patch patch : state.playerHand[playerNum]) {
-			handViews[i].setImageResource(patchAsset[patch.getPatchColor()-1][patch.getPatchPattern()-1]);
+			if (handViews[i] != null) {
+				handViews[i].setImageResource(patchAsset[patch.getPatchColor() - 1][patch.getPatchPattern() - 1]);
+			}
 			i++;
 		}
 
@@ -209,7 +217,9 @@ public class CalicoHumanPlayer extends GameHumanPlayer implements OnClickListene
 		i = 0;
 		for ( int numCat : state.playerBoard.get(playerNum).playerScore.catCount) {
 			String text = cats[i] + numCat;
-			catViews[i].setText(text);
+			if (catViews[i] != null) {
+				catViews[i].setText(text);
+			}
 			i++;
 		}
 
@@ -218,7 +228,9 @@ public class CalicoHumanPlayer extends GameHumanPlayer implements OnClickListene
 			sum += num;
 		}
 		String text = "Buttons: " + sum;
-		buttonCount.setText(text);
+		if (buttonCount != null) {
+			buttonCount.setText(text);
+		}
 	}
 
 	/**
@@ -497,13 +509,13 @@ public class CalicoHumanPlayer extends GameHumanPlayer implements OnClickListene
 		this.board65 = (ImageView) activity.findViewById(R.id.board65);
 
 		//Community Pool
-		this.commonTile1 = (ImageButton) activity.findViewById(R.id.commonTile1);
-		this.commonTile2 = (ImageButton) activity.findViewById(R.id.commonTile2);
-		this.commonTile3 = (ImageButton) activity.findViewById(R.id.commonTile3);
+		this.commonTile1 = (ImageView) activity.findViewById(R.id.commonTile1);
+		this.commonTile2 = (ImageView) activity.findViewById(R.id.commonTile2);
+		this.commonTile3 = (ImageView) activity.findViewById(R.id.commonTile3);
 
 		//Player Inventory
-		this.playerTile1 = (ImageButton) activity.findViewById(R.id.playerTile1);
-		this.playerTile2 = (ImageButton) activity.findViewById(R.id.playerTile2);
+		this.playerTile1 = (ImageView) activity.findViewById(R.id.playerTile1);
+		this.playerTile2 = (ImageView) activity.findViewById(R.id.playerTile2);
 
 		//Cat and Button count
 		this.catCount1 = (TextView) activity.findViewById(R.id.catCount1);

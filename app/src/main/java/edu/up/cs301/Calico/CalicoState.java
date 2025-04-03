@@ -52,9 +52,9 @@ public class CalicoState extends GameState {
 		gameStage = 0;
 
 		//initialize community pool to default patches
-		communityPool[0] = new Patch();
-		communityPool[1] = new Patch();
-		communityPool[2] = new Patch();
+		communityPool[0] = new Patch(5,2);
+		communityPool[1] = new Patch(3,5);
+		communityPool[2] = new Patch(2,3);
 
 		//Initialize player hands to default patches
 		for (int i = 0; i<4; i ++)
@@ -107,7 +107,7 @@ public class CalicoState extends GameState {
         {
 			patternsSent[0] = patterns.get((int) (Math.random() * (patterns.size()-1)));
 			patternsSent[1] = patterns.get((int) (Math.random() * (patterns.size()-1)));
-            cats[0] = new Cat(i+1, patternsSent);
+            cats[i] = new Cat(i+1, patternsSent);
         }
 
 

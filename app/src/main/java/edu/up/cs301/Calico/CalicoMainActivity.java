@@ -38,7 +38,7 @@ public class CalicoMainActivity extends GameMainActivity {
 		// a human player player type (player type 0)
 		playerTypes.add(new GamePlayerType("Local Human Player") {
 			public GamePlayer createPlayer(String name) {
-				return new CalicoHumanPlayer(name);
+				return new CalicoHumanPlayer(name,0);
 			}});
 		
 		// a computer player type (player type 1)
@@ -56,7 +56,7 @@ public class CalicoMainActivity extends GameMainActivity {
 		// a computer player type (player type 1)
 		playerTypes.add(new GamePlayerType("Computer Player 3") {
 			public GamePlayer createPlayer(String name) {
-				return new CalicoComputerPlayer1(name);
+				return new CalicoComputerPlayer1(name,3);
 			}});
 		
 //		// a computer player type (player type 2)
@@ -70,7 +70,7 @@ public class CalicoMainActivity extends GameMainActivity {
 		// - from 1 to 2 players
 		// - name of game is "Counter Game"
 		// - port number as defined above
-		GameConfig defaultConfig = new GameConfig(playerTypes, 1, 2, "Calico",
+		GameConfig defaultConfig = new GameConfig(playerTypes, 1, 4, "Calico",
 				PORT_NUMBER);
 
 		// Add the default players to the configuration

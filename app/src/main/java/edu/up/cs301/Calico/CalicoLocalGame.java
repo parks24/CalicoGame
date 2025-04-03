@@ -64,7 +64,8 @@ public class CalicoLocalGame extends LocalGame {
 		} else if (action instanceof PlacePatch) {
 			return gameState.placePatch(action);
 		} else if (action instanceof SelectCommunityPatch) {
-			return gameState.selectCommunityPatch(action);
+			//return gameState.selectCommunityPatch(action);
+			return true;
 		} else if (action instanceof ConfirmMove) {
 			return gameState.confirmMove(action);
 		} else if (action instanceof UndoMove) {

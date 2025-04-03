@@ -25,7 +25,7 @@ public class CalicoComputerPlayer1 extends GameComputerPlayer implements Tickabl
      */
 
 	private CalicoState state;
-	private ArrayList<int[]> availablePatches;
+	private ArrayList<int[]> availablePatches = new ArrayList<>();
 
     public CalicoComputerPlayer1(String name) {
         // invoke superclass constructor
@@ -87,6 +87,7 @@ public class CalicoComputerPlayer1 extends GameComputerPlayer implements Tickabl
 	protected void receiveInfo(GameInfo info) {
 		// Do nothing, as we ignore all state in deciding our next move. It
 		// depends totally on the timer and random numbers.
+		this.state = (CalicoState)info;
 	}
 	
 	/**
