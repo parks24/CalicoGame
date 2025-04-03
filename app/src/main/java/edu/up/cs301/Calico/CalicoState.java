@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import edu.up.cs301.GameFramework.actionMessage.GameAction;
 import edu.up.cs301.GameFramework.infoMessage.GameState;
+import edu.up.cs301.GameFramework.players.GameComputerPlayer;
 
 
 /**
@@ -311,17 +312,45 @@ public class CalicoState extends GameState {
 
 	}//selectPatch
 
-	public boolean selectCommunityPatch(GameAction move)
+	public boolean computerMove(GameAction move)
 	{
-		if(move instanceof SelectCommunityPatch)
+		if (move instanceof CalicoMoveAction && move.getPlayer() instanceof GameComputerPlayer)
 		{
-			playerHand[playerTurn][0].selectPatch(); //Select Patch from Hand
+			//get player num
+			int player = ((GameComputerPlayer)move.getPlayer()).getPlayerNum();
+
+			//place patch
+			playerBoard.get(player).setPatch(((CalicoMoveAction) move).getPlacedPatch(),
+					((CalicoMoveAction) move).getLocOnBoard()[0], ((CalicoMoveAction) move).getLocOnBoard()[1]);
+
+			//move communityPatch to hand
+			for(int i = 0; i < 2; i++)
+			{
+				if(playerHand[player][i].patchColor == ((CalicoMoveAction) move).getCommunityPatch().patchColor
+				&& playerHand[player][i].patchPattern == ((CalicoMoveAction) move).getCommunityPatch().patchPattern)
+				{
+					playerHand[player][i] = ((CalicoMoveAction) move).getCommunityPatch();
+					break;
+				}
+			}
+
+			//get new community patch and update deck
+			for(int i = 0; i < 3; i++)
+			{
+				if(communityPool[i].patchColor == ((CalicoMoveAction) move).getCommunityPatch().patchColor
+						&& communityPool[i].patchPattern == ((CalicoMoveAction) move).getCommunityPatch().patchPattern)
+				{
+					drawNewCommunityPatch(i);
+					break;
+				}
+			}
+
+			checkButtonCat(((CalicoMoveAction) move).getLocOnBoard(), player);
+
 			return true;
 		}
-
 		return false;
-
-	}//selectPatch
+	}
 
 	public boolean closeMenu(GameAction move)
 	{
@@ -445,7 +474,14 @@ public class CalicoState extends GameState {
 		return turnInfo + currentScores + communityPoolInfo + playerHandInfo;
 	}//toString
 
-
+	//Cycle deck
+	//param is int of index of patch to get rid of
+	private void drawNewCommunityPatch(int communityIndex)
+	{
+		int patchInDeck = 1 + (int)(Math.random() * (deck.size()));
+		communityPool[communityIndex] = deck.get(patchInDeck);
+		deck.remove(patchInDeck);
+	}
 
 	//Getters
 	public int getPlayerTurn()

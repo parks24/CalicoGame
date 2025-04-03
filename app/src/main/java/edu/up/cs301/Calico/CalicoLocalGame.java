@@ -75,6 +75,8 @@ public class CalicoLocalGame extends LocalGame {
 			return true;
 		} else if (action instanceof ViewPlayerBoard) {
 			return true;
+		} else if (action instanceof CalicoMoveAction) {
+			return gameState.computerMove(action);
 		} else {
 			// denote that this was an illegal move
 			return false;

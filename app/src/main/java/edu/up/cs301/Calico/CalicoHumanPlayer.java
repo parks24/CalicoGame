@@ -63,8 +63,8 @@ public class CalicoHumanPlayer extends GameHumanPlayer implements OnClickListene
 	protected ImageView board20 = null;
 	protected ImageView board21 = null;
 	protected ImageView board22 = null;
-	protected ImageView board23 = null;
 	protected ImageView objectiveTop = null;
+	protected ImageView board24 = null;
 	protected ImageView board25 = null;
 	protected ImageView board26 = null;
 
@@ -457,7 +457,7 @@ public class CalicoHumanPlayer extends GameHumanPlayer implements OnClickListene
 		this.board21 = (ImageView) activity.findViewById(R.id.board21);
 		this.board22 = (ImageView) activity.findViewById(R.id.board22);
 		this.objectiveTop = (ImageView) activity.findViewById(R.id.objectiveTop); //Top Goal Patch
-		this.board23 = (ImageView) activity.findViewById(R.id.board24);
+		this.board24 = (ImageView) activity.findViewById(R.id.board24);
 		this.board25 = (ImageView) activity.findViewById(R.id.board25);
 		this.board26 = (ImageView) activity.findViewById(R.id.board26);
 
