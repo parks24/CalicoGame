@@ -46,9 +46,6 @@ public class CalicoComputerPlayer1 extends GameComputerPlayer implements Tickabl
 				}
 			}
 		}
-        // start the timer, ticking every 100 miliseconds
-        getTimer().setInterval(100);
-        getTimer().start();
     }
 
 	public CalicoComputerPlayer1(String name, int playerNum) {
@@ -72,9 +69,6 @@ public class CalicoComputerPlayer1 extends GameComputerPlayer implements Tickabl
 				}
 			}
 		}
-		// start the timer, ticking every 100 miliseconds
-		getTimer().setInterval(100);
-		getTimer().start();
 	}
     
     /**
@@ -88,29 +82,29 @@ public class CalicoComputerPlayer1 extends GameComputerPlayer implements Tickabl
 		// Do nothing, as we ignore all state in deciding our next move. It
 		// depends totally on the timer and random numbers.
 		this.state = (CalicoState)info;
+		if (playerNum == state.playerTurn && state.gameStage == 1) {
+
+			//randomly selects place on board, patch from inventory, and patch from community
+			int avaliablePatchIndex = 1 + (int) (Math.random() * (availablePatches.size()));
+			int[] locOnBoard = availablePatches.get(avaliablePatchIndex);
+			availablePatches.remove(avaliablePatchIndex);
+
+			int inventoryIndex = (int) (Math.random() * (2));
+			Patch placedPatch = state.playerHand[playerNum][inventoryIndex];
+
+			int communityIndex = (int) (Math.random() * 3);
+			Patch communityPatch = state.communityPool[communityIndex];
+
+			//call necessary function (same as human player I think) to update game
+			// send the move-action to the game
+			game.sendAction(new CalicoMoveAction(this, locOnBoard, placedPatch, communityPatch));
+		}
 	}
 	
 	/**
 	 * callback method: the timer ticked
 	 */
 	protected void timerTicked() {
-//		if (playerNum != state.playerTurn && state.gameStage == 1){return;}
-//
-//		//randomly selects place on board, patch from inventory, and patch from community
-//		int avaliablePatchIndex = 1 + (int)(Math.random() * (availablePatches.size()));
-//		int[] locOnBoard = availablePatches.get(avaliablePatchIndex);
-//		availablePatches.remove(avaliablePatchIndex);
-//
-//		int inventoryIndex = (int) (Math.random() * (2));
-//		Patch placedPatch = state.playerHand[playerNum][inventoryIndex];
-//
-//		int communityIndex = (int) (Math.random()*3);
-//		Patch communityPatch = state.communityPool[communityIndex];
-//
-//		//call necessary function (same as human player I think) to update game
-//		// send the move-action to the game
-//		game.sendAction(new CalicoMoveAction(this, locOnBoard, placedPatch, communityPatch));
-
 	}
 
 
