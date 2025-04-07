@@ -59,10 +59,8 @@ public class CalicoState extends GameState {
 		//Initialize player hands to default patches
 		for (int i = 0; i<4; i ++)
 		{
-			for (int j = 0; j<2; j++)
-			{
-				playerHand[i][j] = new Patch(5,2);
-			}
+			playerHand[i][0] = new Patch(5,2);
+			playerHand[i][1] = new Patch(3,5);
 		}
 
 		//create deck
@@ -120,43 +118,43 @@ public class CalicoState extends GameState {
 	{
 		Board tempPlayer = playerBoard.get(player);
 
-		//Row One
-		tempPlayer.setPatch(new Patch(6,4),1,1); //1,1 (star, green)
-		tempPlayer.setPatch(new Patch(6,3),1,2); //1,2 (star, yellow)
-		tempPlayer.setPatch(new Patch(2,1),1,3); //1,3 (fract, red)
-
-		if(player != 3) //Check for Player Four
-		{
-			tempPlayer.setPatch(new Patch(5,6),1,4); //1,4 (smile, pink)
-		}
-
-		//Row Two
-		tempPlayer.setPatch(new Patch(3,6),2,1); //2,1
-		tempPlayer.setPatch(new Patch(5, 3),2,2); //2,2
-		tempPlayer.setPatch(new GoalPatch(6),2,3); //2,3 GOAL
-		tempPlayer.setPatch(new Patch(4, 1),2,4); //2,4
-		tempPlayer.setPatch(new Patch(1,2),2,5); //2,5
-
-		//Row Three
-		tempPlayer.setPatch(new Patch(3, 4),3,1); //3,1
-		tempPlayer.setPatch(new GoalPatch(1),3,2); //3,2 GOAL
-		tempPlayer.setPatch(new Patch(5,4),3,3); //3,3
-		tempPlayer.setPatch(new Patch(5,6),3,4); //3,4
-		tempPlayer.setPatch(new Patch(1,1),3,5); //3,5
-
-		//Row Four
-		tempPlayer.setPatch(new Patch(2,1),4,1); //4,1
-		tempPlayer.setPatch(new Patch(4,5),4,2); //4,2
-		tempPlayer.setPatch(new Patch(3,5),4,3); //4,3
-		tempPlayer.setPatch(new GoalPatch(3),4,4); //4,4 GOAL
-		tempPlayer.setPatch(new Patch(3,6),4,5); //4,5
-
-		//Row Five
-		tempPlayer.setPatch(new Patch(2,5),5,1); //5,1
-		tempPlayer.setPatch(new Patch(4,1),5,2); //5,2
-		tempPlayer.setPatch(new Patch(4,2),5,3); //5,3
-		tempPlayer.setPatch(new Patch(5,6),5,4); //5,4
-		tempPlayer.setPatch(new Patch(3,1),5,5); //5,5
+//		//Row One
+//		tempPlayer.setPatch(new Patch(6,4),1,1); //1,1 (star, green)
+//		tempPlayer.setPatch(new Patch(6,3),1,2); //1,2 (star, yellow)
+//		tempPlayer.setPatch(new Patch(2,1),1,3); //1,3 (fract, red)
+//
+//		if(player != 3) //Check for Player Four
+//		{
+//			tempPlayer.setPatch(new Patch(5,6),1,4); //1,4 (smile, pink)
+//		}
+//
+//		//Row Two
+//		tempPlayer.setPatch(new Patch(3,6),2,1); //2,1
+//		tempPlayer.setPatch(new Patch(5, 3),2,2); //2,2
+//		tempPlayer.setPatch(new GoalPatch(6),2,3); //2,3 GOAL
+//		tempPlayer.setPatch(new Patch(4, 1),2,4); //2,4
+//		tempPlayer.setPatch(new Patch(1,2),2,5); //2,5
+//
+//		//Row Three
+//		tempPlayer.setPatch(new Patch(3, 4),3,1); //3,1
+//		tempPlayer.setPatch(new GoalPatch(1),3,2); //3,2 GOAL
+//		tempPlayer.setPatch(new Patch(5,4),3,3); //3,3
+//		tempPlayer.setPatch(new Patch(5,6),3,4); //3,4
+//		tempPlayer.setPatch(new Patch(1,1),3,5); //3,5
+//
+//		//Row Four
+//		tempPlayer.setPatch(new Patch(2,1),4,1); //4,1
+//		tempPlayer.setPatch(new Patch(4,5),4,2); //4,2
+//		tempPlayer.setPatch(new Patch(3,5),4,3); //4,3
+//		tempPlayer.setPatch(new GoalPatch(3),4,4); //4,4 GOAL
+//		tempPlayer.setPatch(new Patch(3,6),4,5); //4,5
+//
+//		//Row Five
+//		tempPlayer.setPatch(new Patch(2,5),5,1); //5,1
+//		tempPlayer.setPatch(new Patch(4,1),5,2); //5,2
+//		tempPlayer.setPatch(new Patch(4,2),5,3); //5,3
+//		tempPlayer.setPatch(new Patch(5,6),5,4); //5,4
+//		tempPlayer.setPatch(new Patch(3,1),5,5); //5,5
 
 	}
 
@@ -214,8 +212,8 @@ public class CalicoState extends GameState {
 
 		//initialize community pool to default patches
 		this.communityPool[0] = new Patch(other.communityPool[0]);
-		this.communityPool[1] = new Patch(other.communityPool[0]);
-		this.communityPool[2] = new Patch(other.communityPool[0]);
+		this.communityPool[1] = new Patch(other.communityPool[1]);
+		this.communityPool[2] = new Patch(other.communityPool[2]);
 
 		//copy player hands
 		for (int i = 0; i<4; i ++)
@@ -258,7 +256,7 @@ public class CalicoState extends GameState {
 		if(move instanceof UndoMove)
 		{
 			//Get players board
-			Board currentBoard = playerBoard.get(playerTurn);
+
 
 
 			return true;
@@ -314,6 +312,16 @@ public class CalicoState extends GameState {
 		return false;
 
 	}//selectPatch
+
+	public boolean selectCommunityPatch(GameAction move)
+	{
+		if(move instanceof SelectCommunityPatch)
+		{
+
+			return true;
+		}
+		return false;
+	}//selectCommunityPatch
 
 	public boolean computerMove(GameAction move)
 	{

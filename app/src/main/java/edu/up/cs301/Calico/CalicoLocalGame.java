@@ -26,6 +26,7 @@ public class CalicoLocalGame extends LocalGame {
 
 	// the game's state
 	private CalicoState gameState;
+	protected CalicoState savedState; //pre change state for undoMove
 	
 	/**
 	 * can this player move
@@ -42,13 +43,16 @@ public class CalicoLocalGame extends LocalGame {
 	/**
 	 * This ctor should be called when a new Calico game is started
 	 */
-	public CalicoLocalGame(GameState state) {
+	public CalicoLocalGame(GameState state)
+	{
 		// initialize the game state, with the Calico value starting at 0
 		if (! (state instanceof CalicoState)) {
 			state = new CalicoState();
 		}
 		this.gameState = (CalicoState)state;
 		super.state = state;
+
+		savedState = new CalicoState(gameState);
 	}
 
 	/**
@@ -66,10 +70,14 @@ public class CalicoLocalGame extends LocalGame {
 		} else if (action instanceof SelectCommunityPatch) {
 			//return gameState.selectCommunityPatch(action);
 			return true;
-		} else if (action instanceof ConfirmMove) {
-			return gameState.confirmMove(action);
-		} else if (action instanceof UndoMove) {
-			return gameState.undoMove(action);
+		} else if (action instanceof ConfirmMove)
+		{
+			savedState = new CalicoState(this.gameState);
+			return true;
+		} else if (action instanceof UndoMove)
+		{
+			gameState = new CalicoState(this.savedState);
+			return true;
 		} else if (action instanceof ViewObjectives) {
 			return true;
 		} else if (action instanceof CloseMenu) {

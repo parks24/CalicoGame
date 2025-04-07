@@ -220,6 +220,8 @@ public class CalicoHumanPlayer extends GameHumanPlayer implements OnClickListene
 			if (handViews[i] != null) {
 				handViews[i].setImageResource(patchAsset[patch.getPatchColor() - 1][patch.getPatchPattern() - 1]);
 			}
+
+
 			i++;
 		}
 
@@ -244,7 +246,7 @@ public class CalicoHumanPlayer extends GameHumanPlayer implements OnClickListene
 		if (buttonCount != null) {
 			buttonCount.setText(text);
 		}
-	}
+	}//updateDisplay
 
 	/**
 	 *
