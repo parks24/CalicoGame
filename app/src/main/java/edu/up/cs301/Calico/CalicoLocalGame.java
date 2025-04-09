@@ -26,7 +26,7 @@ public class CalicoLocalGame extends LocalGame {
 
 	// the game's state
 	private CalicoState gameState;
-	protected CalicoState savedState; //pre change state for undoMove
+	protected CalicoState savedState; //pre-change state for undoMove
 	
 	/**
 	 * can this player move
@@ -70,15 +70,22 @@ public class CalicoLocalGame extends LocalGame {
 		} else if (action instanceof SelectCommunityPatch) {
 			//return gameState.selectCommunityPatch(action);
 			return true;
-		} else if (action instanceof ConfirmMove)
+		}
+
+		else if (action instanceof ConfirmMove)
 		{
-			savedState = new CalicoState(this.gameState);
+				savedState = new CalicoState(this.gameState);
 			return true;
-		} else if (action instanceof UndoMove)
+		}//confirmMove
+
+		else if (action instanceof UndoMove)
 		{
+			//Revert state to pre-move copy and set to start of turn
 			gameState = new CalicoState(this.savedState);
 			return true;
-		} else if (action instanceof ViewObjectives) {
+		}//undoMove
+
+		else if (action instanceof ViewObjectives) {
 			return true;
 		} else if (action instanceof CloseMenu) {
 			return true;

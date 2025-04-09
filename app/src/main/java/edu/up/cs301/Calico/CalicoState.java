@@ -1,5 +1,7 @@
 package edu.up.cs301.Calico;
 
+import android.util.Log;
+
 import java.util.ArrayList;
 
 import edu.up.cs301.GameFramework.actionMessage.GameAction;
@@ -23,8 +25,8 @@ public class CalicoState extends GameState {
 	protected int playerTurn;
 	protected int turnStage; //Player selecting or placing during turn
 	/* 0 = Selecting patch
-	 * 1 = Selecting where to place
-	 * 2 = confirm move
+	 * 1 = Selecting where to place (place patch)
+	 * 2 = confirm/undo move
 	 * 3 = draw patch from community pool
 	 * 4 = confirm/end turn
 	 */
@@ -51,17 +53,6 @@ public class CalicoState extends GameState {
 		turnStage = 0;
 		gameStage = 0;
 
-		//initialize community pool to default patches
-		communityPool[0] = new Patch(5,2);
-		communityPool[1] = new Patch(3,5);
-		communityPool[2] = new Patch(2,3);
-
-		//Initialize player hands to default patches
-		for (int i = 0; i<4; i ++)
-		{
-			playerHand[i][0] = new Patch(5,2);
-			playerHand[i][1] = new Patch(3,5);
-		}
 
 		//create deck
 		//6 of each tile
@@ -76,6 +67,24 @@ public class CalicoState extends GameState {
 				}
 			}
 		}
+
+		//initialize community pool
+		drawNewCommunityPatch(0);
+		drawNewCommunityPatch(1);
+		drawNewCommunityPatch(2);
+
+		//Initialize player hands to default patches
+		for (int i = 0; i<4; i ++)
+		{
+			int patchInDeck = 1 + (int)(Math.random() * (deck.size()));
+			playerHand[i][0] = deck.get(patchInDeck);
+			deck.remove(patchInDeck);
+
+			patchInDeck = 1 + (int)(Math.random() * (deck.size()));
+			playerHand[i][1] = deck.get(patchInDeck);
+			deck.remove(patchInDeck);
+		}
+
 
 		//add a new board for each player
 		playerBoard.add(new Board());
@@ -241,23 +250,34 @@ public class CalicoState extends GameState {
 	{
 		if(move instanceof ConfirmMove)
 		{
+			//Change Player after Round
+			if(turnStage == 4)
+			{
+				playerTurn = (playerTurn +1) %4;
+			}
 
-			//Check for player four's turn
-			playerTurn = (playerTurn +1) %4;
-
+			//Move to next stage of turn
+			turnStage = (turnStage + 1) % 5;
 			return true;
 		}
 
 		return false;
 	}//confirmMove
 
+	//PlaceHolder method, actual change occurs in CalicoLocalGame makeMove method
 	public boolean undoMove(GameAction move)
 	{
 		if(move instanceof UndoMove)
 		{
-			//Get players board
+			if(turnStage == 2)
+			{
+				turnStage = 0;
+			}
 
-
+			else if(turnStage == 4)
+			{
+				turnStage = 3;
+			}
 
 			return true;
 		}
@@ -272,6 +292,8 @@ public class CalicoState extends GameState {
 	 */
 	public boolean placePatch(GameAction move)
 	{
+
+		//TODO check placePatch playerhand reset w/ tablet
 		if(move instanceof PlacePatch)
 		{
 			//Get players board
@@ -290,7 +312,13 @@ public class CalicoState extends GameState {
 			{
 				//Make the move
 				currentBoard.setPatch(selectedPatch, selectedRow, selectedCol);
-				selectedPatch = null;
+
+
+				selectedPatch = new Patch();
+				Log.i("SelectedPatchInfo","selectedPatch: " + selectedPatch.getPatchPattern() + selectedPatch.getPatchColor());
+				Log.i("PlayerHandInfo", "Player Hand 0: " + playerHand[playerTurn][0].getPatchPattern() + playerHand[playerTurn][0].getPatchColor());
+				turnStage++;
+				//confirm move validity
 				return true;
 			}
 
@@ -306,6 +334,8 @@ public class CalicoState extends GameState {
 			SelectPatch selectMove = (SelectPatch) move;
 			playerHand[playerTurn][selectMove.selectedSlot].selectPatch(); //Select Patch from Hand
 			selectedPatch = playerHand[playerTurn][selectMove.selectedSlot];
+
+			turnStage++; //Move to placepatch phase of turn
 			return true;
 		}
 
@@ -317,7 +347,7 @@ public class CalicoState extends GameState {
 	{
 		if(move instanceof SelectCommunityPatch)
 		{
-
+			gameStage++;
 			return true;
 		}
 		return false;

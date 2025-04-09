@@ -349,85 +349,105 @@ public class CalicoHumanPlayer extends GameHumanPlayer implements OnClickListene
 
 		// Board space buttons
 		if (playerNum == state.playerTurn) {
-			if (button.getId() == R.id.board11) {
-				game.sendAction(new PlacePatch(this, 1, 1));
-			} else if (button.getId() == R.id.board12) {
-				game.sendAction(new PlacePatch(this, 1, 2));
-			} else if (button.getId() == R.id.board13) {
-				game.sendAction(new PlacePatch(this, 1, 3));
-			} else if (button.getId() == R.id.board14) {
-				game.sendAction(new PlacePatch(this, 1, 4));
-			} else if (button.getId() == R.id.board15) {
-				game.sendAction(new PlacePatch(this, 1, 5));
-			} else if (button.getId() == R.id.board21) {
-				game.sendAction(new PlacePatch(this, 2, 1));
-			} else if (button.getId() == R.id.board22) {
-				game.sendAction(new PlacePatch(this, 2, 2));
-			} else if (button.getId() == R.id.board24) {
-				game.sendAction(new PlacePatch(this, 2, 4));
-			} else if (button.getId() == R.id.board25) {
-				game.sendAction(new PlacePatch(this, 2, 5));
-			} else if (button.getId() == R.id.board31) {
-				game.sendAction(new PlacePatch(this, 3, 1));
-			} else if (button.getId() == R.id.board33) {
-				game.sendAction(new PlacePatch(this, 3, 3));
-			} else if (button.getId() == R.id.board34) {
-				game.sendAction(new PlacePatch(this, 3, 4));
-			} else if (button.getId() == R.id.board35) {
-				game.sendAction(new PlacePatch(this, 3, 5));
-			} else if (button.getId() == R.id.board41) {
-				game.sendAction(new PlacePatch(this, 4, 1));
-			} else if (button.getId() == R.id.board42) {
-				game.sendAction(new PlacePatch(this, 4, 2));
-			} else if (button.getId() == R.id.board43) {
-				game.sendAction(new PlacePatch(this, 4, 3));
-			} else if (button.getId() == R.id.board45) {
-				game.sendAction(new PlacePatch(this, 4, 5));
-			} else if (button.getId() == R.id.board51) {
-				game.sendAction(new PlacePatch(this, 5, 1));
-			} else if (button.getId() == R.id.board52) {
-				game.sendAction(new PlacePatch(this, 5, 2));
-			} else if (button.getId() == R.id.board53) {
-				game.sendAction(new PlacePatch(this, 5, 3));
-			} else if (button.getId() == R.id.board54) {
-				game.sendAction(new PlacePatch(this, 5, 4));
-			} else if (button.getId() == R.id.board55) {
-				game.sendAction(new PlacePatch(this, 5, 5));
+			if(state.turnStage==1) {
+
+				if (button.getId() == R.id.board11) {
+					game.sendAction(new PlacePatch(this, 1, 1));
+				} else if (button.getId() == R.id.board12) {
+					game.sendAction(new PlacePatch(this, 1, 2));
+				} else if (button.getId() == R.id.board13) {
+					game.sendAction(new PlacePatch(this, 1, 3));
+				} else if (button.getId() == R.id.board14) {
+					game.sendAction(new PlacePatch(this, 1, 4));
+				} else if (button.getId() == R.id.board15) {
+					game.sendAction(new PlacePatch(this, 1, 5));
+				} else if (button.getId() == R.id.board21) {
+					game.sendAction(new PlacePatch(this, 2, 1));
+				} else if (button.getId() == R.id.board22) {
+					game.sendAction(new PlacePatch(this, 2, 2));
+				} else if (button.getId() == R.id.board24) {
+					game.sendAction(new PlacePatch(this, 2, 4));
+				} else if (button.getId() == R.id.board25) {
+					game.sendAction(new PlacePatch(this, 2, 5));
+				} else if (button.getId() == R.id.board31) {
+					game.sendAction(new PlacePatch(this, 3, 1));
+				} else if (button.getId() == R.id.board33) {
+					game.sendAction(new PlacePatch(this, 3, 3));
+				} else if (button.getId() == R.id.board34) {
+					game.sendAction(new PlacePatch(this, 3, 4));
+				} else if (button.getId() == R.id.board35) {
+					game.sendAction(new PlacePatch(this, 3, 5));
+				} else if (button.getId() == R.id.board41) {
+					game.sendAction(new PlacePatch(this, 4, 1));
+				} else if (button.getId() == R.id.board42) {
+					game.sendAction(new PlacePatch(this, 4, 2));
+				} else if (button.getId() == R.id.board43) {
+					game.sendAction(new PlacePatch(this, 4, 3));
+				} else if (button.getId() == R.id.board45) {
+					game.sendAction(new PlacePatch(this, 4, 5));
+				} else if (button.getId() == R.id.board51) {
+					game.sendAction(new PlacePatch(this, 5, 1));
+				} else if (button.getId() == R.id.board52) {
+					game.sendAction(new PlacePatch(this, 5, 2));
+				} else if (button.getId() == R.id.board53) {
+					game.sendAction(new PlacePatch(this, 5, 3));
+				} else if (button.getId() == R.id.board54) {
+					game.sendAction(new PlacePatch(this, 5, 4));
+				} else if (button.getId() == R.id.board55) {
+					game.sendAction(new PlacePatch(this, 5, 5));
+				}
 			}
-			// player patch buttons
-			else if (button.getId() == R.id.playerTile1) {
-				game.sendAction(new SelectPatch(this,0));
-			} else if (button.getId() == R.id.playerTile2) {
-				game.sendAction(new SelectPatch(this,1));
+
+			//check for select patch from player hand stage of turn
+			else if(state.turnStage == 0) {
+
+				// player patch buttons
+				   if (button.getId() == R.id.playerTile1) {
+					game.sendAction(new SelectPatch(this, 0));
+				} else if (button.getId() == R.id.playerTile2) {
+					game.sendAction(new SelectPatch(this, 1));
+				}
 			}
-			// community patch buttons
-			else if (button.getId() == R.id.commonTile1) {
-				game.sendAction(new SelectCommunityPatch(this));
-			} else if (button.getId() == R.id.commonTile2) {
-				game.sendAction(new SelectCommunityPatch(this));
-			} else if (button.getId() == R.id.commonTile3) {
-				game.sendAction(new SelectCommunityPatch(this));
+
+			else if(state.turnStage == 3) {
+
+				// community patch buttons
+				 if (button.getId() == R.id.commonTile1) {
+					game.sendAction(new SelectCommunityPatch(this));
+				} else if (button.getId() == R.id.commonTile2) {
+					game.sendAction(new SelectCommunityPatch(this));
+				} else if (button.getId() == R.id.commonTile3) {
+					game.sendAction(new SelectCommunityPatch(this));
+				}
+
 			}
-			// confirm and undo buttons
-			else if (button.getId() == R.id.confirm) {
-				game.sendAction(new ConfirmMove(this));
-			} else if (button.getId() == R.id.undo) {
-				game.sendAction(new UndoMove(this));
+
+			if(state.turnStage == 2 || state.turnStage == 4) {
+				// confirm and undo buttons
+				 if (button.getId() == R.id.confirm) {
+					game.sendAction(new ConfirmMove(this));
+				} else if (button.getId() == R.id.undo) {
+					game.sendAction(new UndoMove(this));
+				}
 			}
-			// change displayed board
-			else if (button.getId() == R.id.player1) {
-				game.sendAction(new ViewPlayerBoard(this));
-			} else if (button.getId() == R.id.player2) {
-				game.sendAction(new ViewPlayerBoard(this));
-			} else if (button.getId() == R.id.player3) {
-				game.sendAction(new ViewPlayerBoard(this));
-			} else if (button.getId() == R.id.player4) {
-				game.sendAction(new ViewPlayerBoard(this));
-			}
-			// objectives menu
-			else if (button.getId() == R.id.objectives) {
-				game.sendAction(new ViewObjectives(this));
-			}
+
+				// change displayed board
+				else if (button.getId() == R.id.player1) {
+					game.sendAction(new ViewPlayerBoard(this));
+				} else if (button.getId() == R.id.player2) {
+					game.sendAction(new ViewPlayerBoard(this));
+				} else if (button.getId() == R.id.player3) {
+					game.sendAction(new ViewPlayerBoard(this));
+				} else if (button.getId() == R.id.player4) {
+					game.sendAction(new ViewPlayerBoard(this));
+				}
+
+				// objectives menu
+				else if (button.getId() == R.id.objectives) {
+					game.sendAction(new ViewObjectives(this));
+				}
+
+
 		}
 
 	}// onClick
