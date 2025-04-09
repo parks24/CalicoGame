@@ -271,26 +271,29 @@ public class CalicoState extends GameState {
 
 			//Move to next stage of turn
 			turnStage = (turnStage + 1) % 5;
+
+			//Log turnStage for debugging purposes
+			Log.i("TurnStage","Turn Stage: " + turnStage);
+
 			return true;
 		}
 
 		return false;
 	}//confirmMove
 
-	//PlaceHolder method, actual change occurs in CalicoLocalGame makeMove method
+	//Actual gameState revert occurs in makeMove method of CalicoLocalGame
 	public boolean undoMove(GameAction move)
 	{
 		if(move instanceof UndoMove)
 		{
-			if(turnStage == 2)
-			{
-				turnStage = 0;
-			}
 
-			else if(turnStage == 4)
+			//Reverting gamestate in localGame auto reverts from 2->0 and 4->2
+			if(turnStage == 2)
 			{
 				turnStage = 3;
 			}
+			//Log turnStage for debugging purposes
+			Log.i("TurnStage","UNDO to Turn Stage: " + turnStage);
 
 			return true;
 		}
@@ -330,6 +333,8 @@ public class CalicoState extends GameState {
 				selectedPatch = null;
 				turnStage++;
 
+				//Log turnStage for debugging purposes
+				Log.i("TurnStage","Turn Stage: " + turnStage);
 
 				//confirm move validity
 				return true;
@@ -350,6 +355,9 @@ public class CalicoState extends GameState {
 			selectedSlot = selectMove.selectedSlot;
 
 			turnStage++; //Move to placepatch phase of turn
+
+			//Log turnStage for debugging purposes
+			Log.i("TurnStage","Turn Stage: " + turnStage);
 			return true;
 		}
 
@@ -363,6 +371,7 @@ public class CalicoState extends GameState {
 		{
 			SelectCommunityPatch selectMove = (SelectCommunityPatch) move;
 
+			//Check which position in the player hand is empty and replace slot
 			if(playerHand[playerTurn][0].getPatchColor() == 0 && playerHand[playerTurn][0].getPatchPattern() == 0)
 			{
 				playerHand[playerTurn][0] = communityPool[selectMove.selectedSlot];
@@ -373,9 +382,14 @@ public class CalicoState extends GameState {
 				playerHand[playerTurn][1] = communityPool[selectMove.selectedSlot];
 			}
 
+
 			drawNewCommunityPatch(selectMove.selectedSlot);
 			selectedSlot = selectMove.selectedSlot;
-			gameStage++;
+			turnStage++;
+
+			//Log turnStage for debugging purposes
+			Log.i("TurnStage","Turn Stage: " + turnStage);
+
 			return true;
 		}
 		return false;

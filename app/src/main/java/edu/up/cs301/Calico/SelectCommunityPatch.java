@@ -21,6 +21,12 @@ public class SelectCommunityPatch extends GameAction
         selectedPatch = patch;
     }
 
+    public SelectCommunityPatch(GamePlayer player, int slot)
+    {
+        super(player);
+        selectedSlot = slot;
+    }
+
     public Patch getSelectedPatch()
     {
         return selectedPatch;
