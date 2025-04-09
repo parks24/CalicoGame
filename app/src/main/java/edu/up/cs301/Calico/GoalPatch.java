@@ -7,7 +7,7 @@ import java.util.Arrays;
  * Goal Patch Class
  * Establishes the goal patches and calculates how many points they score at the end
  * of the game
- *
+
  * goal values table
  * 0 - no goal
  * 1 - !=
@@ -25,26 +25,22 @@ public class GoalPatch extends Patch
      //creates empty goal patch
      public GoalPatch()
      {
-         super(7,0);
+         patchColor = 0;
+         patchPattern = 7;
          goal = 0;
      }
 
      //creates specific goal patch
      public GoalPatch(int _goal)
      {
-         super(7,0);
+         patchColor = 0;
+         patchPattern = 7;
          goal = _goal;
      }
 
      //is the object not a goal?
      @Override
      public boolean isNotGoal(){return false;}
-
-     //sets goal
-     public void setGoal(int _goal)
-     {
-         goal = _goal;
-     }
 
      //returns the number of points a specific goal patch has
      @Override

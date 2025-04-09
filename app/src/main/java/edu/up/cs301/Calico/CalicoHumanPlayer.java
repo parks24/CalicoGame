@@ -4,6 +4,8 @@ import edu.up.cs301.GameFramework.players.GameHumanPlayer;
 import edu.up.cs301.GameFramework.GameMainActivity;
 import edu.up.cs301.GameFramework.actionMessage.GameAction;
 import edu.up.cs301.GameFramework.infoMessage.GameInfo;
+
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -189,6 +191,7 @@ public class CalicoHumanPlayer extends GameHumanPlayer implements OnClickListene
 			int j = 0;
 			for (Patch col : row) {
 				if (col != null) {
+//					Log.i("patch_info", col.toString());
 					if (col.getPatchPattern() == 7){
 						if (boardViews[i][j] != null) {
 							boardViews[i][j].setImageResource(goalPatchAsset[col.getGoal()]);
@@ -214,7 +217,11 @@ public class CalicoHumanPlayer extends GameHumanPlayer implements OnClickListene
 		i = 0;
 		for ( Patch patch : state.communityPool) {
 			if (communityViews[i] != null) {
-				communityViews[i].setImageResource(patchAsset[patch.getPatchColor() - 1][patch.getPatchPattern() - 1]);
+				if (patch.getPatchColor() == 0){
+					communityViews[i].setImageResource(R.drawable.blank_blank);
+				} else {
+					communityViews[i].setImageResource(patchAsset[patch.getPatchColor() - 1][patch.getPatchPattern() - 1]);
+				}
 			}
 			i++;
 		}
@@ -225,7 +232,11 @@ public class CalicoHumanPlayer extends GameHumanPlayer implements OnClickListene
 		i = 0;
 		for ( Patch patch : state.playerHand[playerNum]) {
 			if (handViews[i] != null) {
-				handViews[i].setImageResource(patchAsset[patch.getPatchColor() - 1][patch.getPatchPattern() - 1]);
+				if (patch.getPatchColor() == 0){
+					handViews[i].setImageResource(R.drawable.blank_blank);
+				} else {
+					handViews[i].setImageResource(patchAsset[patch.getPatchColor() - 1][patch.getPatchPattern() - 1]);
+				}
 			}
 
 
