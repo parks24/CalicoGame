@@ -133,6 +133,7 @@
                     android:layout_weight="0.75"
                     android:adjustViewBounds="true"
                     android:src="@drawable/catgoal4" />
+
             </LinearLayout>
 
             <TextView

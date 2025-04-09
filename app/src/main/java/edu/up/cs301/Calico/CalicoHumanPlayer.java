@@ -170,7 +170,8 @@ public class CalicoHumanPlayer extends GameHumanPlayer implements OnClickListene
 			R.drawable.pink_lines, R.drawable.pink_smile, R.drawable.pink_star}};
 
 		int[] goalPatchAsset =
-				{R.drawable.noteq_goal, R.drawable.two3kind_goal, R.drawable.three2kind_goal,
+				{R.drawable.blank_goal,
+				R.drawable.noteq_goal, R.drawable.two3kind_goal, R.drawable.three2kind_goal,
 				R.drawable.fourkind_goal, R.drawable.threekind_goal, R.drawable.twokind_goal};
 
 		// updating display of the game board
@@ -189,8 +190,14 @@ public class CalicoHumanPlayer extends GameHumanPlayer implements OnClickListene
 			for (Patch col : row) {
 				if (col != null) {
 					if (col.getPatchPattern() == 7){
-						boardViews[i][j].setImageResource(goalPatchAsset[((GoalPatch)col).getGoal()-1]);
-					}else if (col.getPatchPattern() != 0){
+						if (boardViews[i][j] != null) {
+							boardViews[i][j].setImageResource(goalPatchAsset[col.getGoal()]);
+						}
+					}else if (col.getPatchColor() == 0){
+						if (boardViews[i][j] != null) {
+							boardViews[i][j].setImageResource(R.drawable.blank_blank);
+						}
+					}else{
 						if (boardViews[i][j] != null) {
 							boardViews[i][j].setImageResource(patchAsset[col.getPatchColor() - 1][col.getPatchPattern() - 1]);
 						}

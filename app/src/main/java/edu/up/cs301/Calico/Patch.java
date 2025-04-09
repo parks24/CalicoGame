@@ -5,7 +5,7 @@ public class Patch{
     protected int patchColor;
     protected boolean hasCat;
     protected boolean hasButton;
-
+    protected int goal;
     protected boolean selectedPatch;
 
     /*
@@ -65,5 +65,9 @@ public class Patch{
     public void selectPatch()
     {
         selectedPatch = true;
+    }
+    public int getGoal()
+    {
+        return goal;
     }
 }

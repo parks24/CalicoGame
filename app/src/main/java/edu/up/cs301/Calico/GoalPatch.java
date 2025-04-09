@@ -20,27 +20,20 @@ import java.util.Arrays;
 public class GoalPatch extends Patch
 {
     //Instance Variables
-     protected int goal;
+
 
      //creates empty goal patch
      public GoalPatch()
      {
-         super();
+         super(7,0);
          goal = 0;
-         patchPattern = 7;
      }
 
      //creates specific goal patch
      public GoalPatch(int _goal)
      {
-         super();
+         super(7,0);
          goal = _goal;
-     }
-
-     //gets the goal
-     public int getGoal()
-     {
-         return goal;
      }
 
      //is the object not a goal?
