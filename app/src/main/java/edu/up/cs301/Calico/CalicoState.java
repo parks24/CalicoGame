@@ -140,13 +140,13 @@ public class CalicoState extends GameState {
 //		//Row Two
 //		tempPlayer.setPatch(new Patch(3,6),2,1); //2,1
 //		tempPlayer.setPatch(new Patch(5, 3),2,2); //2,2
-//		tempPlayer.setPatch(new GoalPatch(6),2,3); //2,3 GOAL
+		tempPlayer.setPatch(new GoalPatch(2),2,3); //2,3 GOAL
 //		tempPlayer.setPatch(new Patch(4, 1),2,4); //2,4
 //		tempPlayer.setPatch(new Patch(1,2),2,5); //2,5
 //
 //		//Row Three
 //		tempPlayer.setPatch(new Patch(3, 4),3,1); //3,1
-//		tempPlayer.setPatch(new GoalPatch(1),3,2); //3,2 GOAL
+		tempPlayer.setPatch(new GoalPatch(1),3,2); //3,2 GOAL
 //		tempPlayer.setPatch(new Patch(5,4),3,3); //3,3
 //		tempPlayer.setPatch(new Patch(5,6),3,4); //3,4
 //		tempPlayer.setPatch(new Patch(1,1),3,5); //3,5
@@ -155,7 +155,7 @@ public class CalicoState extends GameState {
 //		tempPlayer.setPatch(new Patch(2,1),4,1); //4,1
 //		tempPlayer.setPatch(new Patch(4,5),4,2); //4,2
 //		tempPlayer.setPatch(new Patch(3,5),4,3); //4,3
-//		tempPlayer.setPatch(new GoalPatch(3),4,4); //4,4 GOAL
+		tempPlayer.setPatch(new GoalPatch(3),4,4); //4,4 GOAL
 //		tempPlayer.setPatch(new Patch(3,6),4,5); //4,5
 //
 //		//Row Five

@@ -1,5 +1,7 @@
 package edu.up.cs301.Calico;
 
+import androidx.annotation.NonNull;
+
 public class Patch{
     protected int patchPattern;
     protected int patchColor;
@@ -52,6 +54,7 @@ public class Patch{
         this.patchColor = other.patchColor;
         this.hasCat = other.hasCat;
         this.hasButton = other.hasButton;
+        this.goal = other.goal;
     }
 
     public int getPatchPattern(){
@@ -69,5 +72,15 @@ public class Patch{
     public int getGoal()
     {
         return goal;
+    }
+    public void setGoal(int _goal)
+    {
+        goal = _goal;
+    }
+
+    @NonNull
+    @Override
+    public String toString() {
+        return "Pattern: "+patchPattern+", Color: "+patchColor+" goal: "+goal;
     }
 }
