@@ -78,4 +78,8 @@ public class Cat
         }
         return false;
     }
+
+    public int[] getPatterns() {
+        return patterns;
+    }
 }

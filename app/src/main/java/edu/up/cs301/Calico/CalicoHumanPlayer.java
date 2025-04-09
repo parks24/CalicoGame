@@ -104,6 +104,13 @@ public class CalicoHumanPlayer extends GameHumanPlayer implements OnClickListene
 	protected ImageView board64 = null;
 	protected ImageView board65 = null;
 
+	protected ImageView cat1Pattern1 = null;
+	protected ImageView cat1Pattern2 = null;
+	protected ImageView cat2Pattern1 = null;
+	protected ImageView cat2Pattern2 = null;
+	protected ImageView cat3Pattern1 = null;
+	protected ImageView cat3Pattern2 = null;
+
 	protected TextView catCount1 = null;
 	protected TextView catCount2 = null;
 	protected TextView catCount3 = null;
@@ -244,6 +251,27 @@ public class CalicoHumanPlayer extends GameHumanPlayer implements OnClickListene
 		}
 
 		// updating the display of the cats and buttons
+		ImageView[][] catPatchViews =
+				{{cat1Pattern1,cat1Pattern2},
+				{cat2Pattern1,cat2Pattern2},
+				{cat3Pattern1,cat3Pattern2}};
+		int[] catPatchAssets =
+				{R.drawable.blank_dots,R.drawable.blank_fract,R.drawable.blank_heart,
+				R.drawable.blank_lines,R.drawable.blank_smile,R.drawable.blank_star,};
+
+		i=0;
+		for (Cat cat : state.getCats()) {
+			int j=0;
+			for (int pattern : cat.getPatterns()) {
+				if (catPatchViews[i][j] != null) {
+					catPatchViews[i][j].setImageResource(catPatchAssets[pattern-1]);
+				}
+				j++;
+			}
+			i++;
+		}
+
+
 		TextView[] catViews = {catCount1, catCount2, catCount3};
 		String[] cats = {"Cuddles: ","Smokey: ","Stripe: "};
 
@@ -622,6 +650,15 @@ public class CalicoHumanPlayer extends GameHumanPlayer implements OnClickListene
 		this.playerTile2 = (ImageView) activity.findViewById(R.id.playerTile2);
 		playerTile1.setOnClickListener(this);
 		playerTile2.setOnClickListener(this);
+
+		//Cat patterns
+		this.cat1Pattern1 = (ImageView) activity.findViewById(R.id.cat1pattern1);
+		this.cat1Pattern2 = (ImageView) activity.findViewById(R.id.cat1pattern2);
+		this.cat2Pattern1 = (ImageView) activity.findViewById(R.id.cat2pattern1);
+		this.cat2Pattern2 = (ImageView) activity.findViewById(R.id.cat2pattern2);
+		this.cat3Pattern1 = (ImageView) activity.findViewById(R.id.cat3pattern1);
+		this.cat3Pattern2 = (ImageView) activity.findViewById(R.id.cat3pattern2);
+
 
 		//Cat and Button count
 		this.catCount1 = (TextView) activity.findViewById(R.id.catCount1);

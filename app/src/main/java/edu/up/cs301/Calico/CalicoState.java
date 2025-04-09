@@ -112,9 +112,15 @@ public class CalicoState extends GameState {
 		//adds 2 random of the 6 patterns to each cat
         for (int i = 0; i<3; i++)
         {
-			patternsSent[0] = patterns.get((int) (Math.random() * (patterns.size()-1)));
-			patternsSent[1] = patterns.get((int) (Math.random() * (patterns.size()-1)));
-            cats[i] = new Cat(i+1, patternsSent);
+			int patternIdx = (int) Math.floor(Math.random() * patterns.size());
+			patternsSent[0] = patterns.get(patternIdx);
+			patterns.remove((Integer) patternsSent[0]);
+
+			patternIdx = (int) Math.floor(Math.random() * patterns.size());
+			patternsSent[1] = patterns.get(patternIdx);
+			patterns.remove((Integer) patternsSent[1]);
+
+			cats[i] = new Cat(i+1, patternsSent);
         }
 
 
@@ -243,6 +249,12 @@ public class CalicoState extends GameState {
 		for (int i = 0; i < other.playerBoard.size(); i++)
 		{
 			this.playerBoard.add(new Board(other.playerBoard.get(i)));
+		}
+
+		//copy cats
+		for (int i = 0; i < other.cats.length; i++)
+		{
+			this.cats[i] = new Cat(other.cats[i]);
 		}
 	}
 
@@ -528,5 +540,9 @@ public class CalicoState extends GameState {
 	public int getPlayerTurn()
 	{
 		return playerTurn;
+	}
+
+	public Cat[] getCats() {
+		return cats;
 	}
 }
