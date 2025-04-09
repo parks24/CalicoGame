@@ -43,6 +43,7 @@ public class CalicoState extends GameState {
 	protected Patch selectedPatch;
 	protected Patch[][] preMovePlayerHand;
 	protected Board preMoveBoard;
+	protected int selectedSlot;
 
 
 	public CalicoState()
@@ -313,11 +314,11 @@ public class CalicoState extends GameState {
 				//Make the move
 				currentBoard.setPatch(selectedPatch, selectedRow, selectedCol);
 
-
-				selectedPatch = new Patch();
-				Log.i("SelectedPatchInfo","selectedPatch: " + selectedPatch.getPatchPattern() + selectedPatch.getPatchColor());
-				Log.i("PlayerHandInfo", "Player Hand 0: " + playerHand[playerTurn][0].getPatchPattern() + playerHand[playerTurn][0].getPatchColor());
+				playerHand[playerTurn][selectedSlot] = new Patch();
+				selectedPatch = null;
 				turnStage++;
+
+
 				//confirm move validity
 				return true;
 			}
@@ -334,6 +335,7 @@ public class CalicoState extends GameState {
 			SelectPatch selectMove = (SelectPatch) move;
 			playerHand[playerTurn][selectMove.selectedSlot].selectPatch(); //Select Patch from Hand
 			selectedPatch = playerHand[playerTurn][selectMove.selectedSlot];
+			selectedSlot = selectMove.selectedSlot;
 
 			turnStage++; //Move to placepatch phase of turn
 			return true;
@@ -347,6 +349,20 @@ public class CalicoState extends GameState {
 	{
 		if(move instanceof SelectCommunityPatch)
 		{
+			SelectCommunityPatch selectMove = (SelectCommunityPatch) move;
+
+			if(playerHand[playerTurn][0].getPatchColor() == 0 && playerHand[playerTurn][0].getPatchPattern() == 0)
+			{
+				playerHand[playerTurn][0] = communityPool[selectMove.selectedSlot];
+			}
+
+			else if(playerHand[playerTurn][1].getPatchColor() == 0 && playerHand[playerTurn][1].getPatchPattern() == 0)
+			{
+				playerHand[playerTurn][1] = communityPool[selectMove.selectedSlot];
+			}
+
+			drawNewCommunityPatch(selectMove.selectedSlot);
+			selectedSlot = selectMove.selectedSlot;
 			gameStage++;
 			return true;
 		}

@@ -62,7 +62,6 @@ public class CalicoLocalGame extends LocalGame {
 	protected boolean makeMove(GameAction action) {
 		Log.i("action", action.getClass().toString());
 
-
 		if (action instanceof SelectPatch) {
 			return gameState.selectPatch(action);
 		} else if (action instanceof PlacePatch) {
@@ -74,16 +73,17 @@ public class CalicoLocalGame extends LocalGame {
 
 		else if (action instanceof ConfirmMove)
 		{
-				savedState = new CalicoState(this.gameState);
+			//Confirm post-move state
+			savedState = new CalicoState(this.gameState);
 			return true;
-		}//confirmMove
+		} //Confirm Move
 
 		else if (action instanceof UndoMove)
 		{
 			//Revert state to pre-move copy and set to start of turn
 			gameState = new CalicoState(this.savedState);
 			return true;
-		}//undoMove
+		}//UndoMove
 
 		else if (action instanceof ViewObjectives) {
 			return true;
