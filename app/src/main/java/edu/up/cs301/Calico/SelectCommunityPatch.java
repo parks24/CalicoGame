@@ -8,12 +8,8 @@ public class SelectCommunityPatch extends GameAction
 
     //Instance Variables
     protected Patch selectedPatch;
+    protected int selectedSlot;
 
-    /**
-     * constructor for GameAction
-     *
-     * @param player the player who created the action
-     */
     public SelectCommunityPatch(GamePlayer player)
     {
         super(player);

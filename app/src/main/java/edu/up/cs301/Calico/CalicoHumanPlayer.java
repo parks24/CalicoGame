@@ -388,6 +388,8 @@ public class CalicoHumanPlayer extends GameHumanPlayer implements OnClickListene
 
 		// Board space buttons
 		if (playerNum == state.playerTurn) {
+
+			//Check for place patch stage of turn
 			if(state.turnStage==1) {
 
 				if (button.getId() == R.id.board11) {
@@ -448,6 +450,7 @@ public class CalicoHumanPlayer extends GameHumanPlayer implements OnClickListene
 				}
 			}
 
+			//Check for select community patch stage of turn
 			else if(state.turnStage == 3) {
 
 				// community patch buttons
@@ -461,6 +464,7 @@ public class CalicoHumanPlayer extends GameHumanPlayer implements OnClickListene
 
 			}
 
+			//Check for confirm/undo move stage of turn
 			if(state.turnStage == 2 || state.turnStage == 4) {
 				// confirm and undo buttons
 				 if (button.getId() == R.id.confirm) {
