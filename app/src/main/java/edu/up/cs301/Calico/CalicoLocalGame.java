@@ -88,8 +88,6 @@ public class CalicoLocalGame extends LocalGame {
 			return true;
 		} else if (action instanceof CloseMenu) {
 			return true;
-		} else if (action instanceof ViewPlayerBoard) {
-			return true;
 		} else if (action instanceof CalicoMoveAction) {
 			return gameState.computerMove(action);
 		} else {

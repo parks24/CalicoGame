@@ -38,6 +38,8 @@ public class CalicoHumanPlayer extends GameHumanPlayer implements OnClickListene
 	// indicates the players number for assessing if it is their turn
 	private int playerNum;
 
+	private int displayNum;
+
 	// the android activity that we are running
 	private GameMainActivity myActivity;
 
@@ -141,6 +143,7 @@ public class CalicoHumanPlayer extends GameHumanPlayer implements OnClickListene
 	{
 		super(name);
 		playerNum = 0;
+		displayNum = 0;
 	}
 
 	//Overloaded constructor
@@ -148,6 +151,7 @@ public class CalicoHumanPlayer extends GameHumanPlayer implements OnClickListene
 	{
 		super(name);
 		playerNum = _playerNum;
+		displayNum = 0;
 	}
 
 	/**
@@ -164,6 +168,9 @@ public class CalicoHumanPlayer extends GameHumanPlayer implements OnClickListene
 	 * sets the Calico value in the text view
 	 */
 	protected void updateDisplay() {
+
+		Log.i("Update Display", "Update Display Called. DisplayNum = "+displayNum);
+
 		int[][] patchAsset =
 			{{R.drawable.red_dots, R.drawable.red_fract, R.drawable.red_heart,
 			R.drawable.red_lines, R.drawable.red_smile, R.drawable.red_star},
@@ -194,7 +201,7 @@ public class CalicoHumanPlayer extends GameHumanPlayer implements OnClickListene
 			{board60,board61,board62,board63,board64,board65,null}};
 
 		int i = 0;
-		for (Patch[] row : state.playerBoard.get(playerNum).board) {
+		for (Patch[] row : state.playerBoard.get(displayNum).board) {
 			int j = 0;
 			for (Patch col : row) {
 				if (col != null) {
@@ -237,7 +244,7 @@ public class CalicoHumanPlayer extends GameHumanPlayer implements OnClickListene
 		ImageView[] handViews = {playerTile1, playerTile2};
 
 		i = 0;
-		for ( Patch patch : state.playerHand[playerNum]) {
+		for ( Patch patch : state.playerHand[displayNum]) {
 			if (handViews[i] != null) {
 				if (patch.getPatchColor() == 0){
 					handViews[i].setImageResource(R.drawable.blank_blank);
@@ -276,7 +283,7 @@ public class CalicoHumanPlayer extends GameHumanPlayer implements OnClickListene
 		String[] cats = {"Cuddles: ","Smokey: ","Stripe: "};
 
 		i = 0;
-		for ( int numCat : state.playerBoard.get(playerNum).playerScore.catCount) {
+		for ( int numCat : state.playerBoard.get(displayNum).playerScore.catCount) {
 			String text = cats[i] + numCat;
 			if (catViews[i] != null) {
 				catViews[i].setText(text);
@@ -285,7 +292,7 @@ public class CalicoHumanPlayer extends GameHumanPlayer implements OnClickListene
 		}
 
 		int sum = 0;
-		for (int num : state.playerBoard.get(playerNum).playerScore.buttonCount) {
+		for (int num : state.playerBoard.get(displayNum).playerScore.buttonCount) {
 			sum += num;
 		}
 		String text = "Buttons: " + sum;
@@ -303,88 +310,23 @@ public class CalicoHumanPlayer extends GameHumanPlayer implements OnClickListene
 	{
 		// if we are not yet connected to a game, ignore
 		if (game == null) return;
-//		TextView textVeiw = myActivity.findViewById(R.id.testResultsTextView);
-//		textVeiw.setText("");
-//
-//		//Deepcopy
-//		CalicoState firstInstance = new CalicoState();
-//		CalicoState firstCopy = new CalicoState(firstInstance);
-//
-//		Patch patch1 = new Patch(3,6);
-//		Patch patch2 = new Patch(2,6);
-//
-//		// turn 1 player 4
-//		game.sendAction(new SelectPatch(this,patch1));
-//		textVeiw.append("player 4 selects patch to place\n");
-//		game.sendAction(new PlacePatch(this,1,4));
-//		textVeiw.append("player 4 places patch on board\n");
-//		game.sendAction(new ConfirmMove(this));
-//		textVeiw.append("player 4 confirms placement\n");
-//		game.sendAction(new SelectCommunityPatch(this, patch2));
-//		textVeiw.append("player 4 selects a community tile to take\n");
-//		game.sendAction(new ConfirmMove(this));
-//		textVeiw.append("player 4 confirms selection\n");
-//
-//		// turn 2 player 1
-//		game.sendAction(new SelectPatch(this, patch2));
-//		textVeiw.append("player 1 selects patch to place\n");
-//		game.sendAction(new PlacePatch(this,1,5));
-//		textVeiw.append("player 1 places patch on board\n");
-//		game.sendAction(new ConfirmMove(this));
-//		textVeiw.append("player 1 confirms placement\n");
-//		game.sendAction(new SelectCommunityPatch(this, patch1));
-//		textVeiw.append("player 1 selects a community tile to take\n");
-//		game.sendAction(new ConfirmMove(this));
-//		textVeiw.append("player 1 confirms selection\n");
-//
-//		// turn 3 player 2
-//		game.sendAction(new SelectPatch(this, patch2));
-//		textVeiw.append("player 2 selects patch to place\n");
-//		game.sendAction(new PlacePatch(this,1,5));
-//		textVeiw.append("player 2 places patch on board\n");
-//		game.sendAction(new ConfirmMove(this));
-//		textVeiw.append("player 2 confirms placement\n");
-//		game.sendAction(new SelectCommunityPatch(this, patch1));
-//		textVeiw.append("player 2 selects a community tile to take\n");
-//		game.sendAction(new ConfirmMove(this));
-//		textVeiw.append("player 2 confirms selection\n");
-//
-//		// turn 4 player 3
-//		game.sendAction(new SelectPatch(this, patch2));
-//		textVeiw.append("player 3 selects patch to place\n");
-//		game.sendAction(new PlacePatch(this,1,5));
-//		textVeiw.append("player 3 places patch on board\n");
-//		game.sendAction(new ConfirmMove(this));
-//		textVeiw.append("player 3 confirms placement\n");
-//		game.sendAction(new SelectCommunityPatch(this, patch1));
-//		textVeiw.append("player 3 selects a community tile to take\n");
-//		game.sendAction(new ConfirmMove(this));
-//		textVeiw.append("player 3 confirms selection\n");
-//
-//		// turn 5 player 4
-//		game.sendAction(new SelectPatch(this, patch2));
-//		textVeiw.append("player 4 selects patch to place\n");
-//		game.sendAction(new PlacePatch(this,1,5));
-//		textVeiw.append("player 4 places patch on board\n");
-//		game.sendAction(new ConfirmMove(this));
-//		textVeiw.append("player 4 confirms placement\n");
-//		game.sendAction(new SelectCommunityPatch(this, patch1));
-//		textVeiw.append("player 4 selects a community tile to take\n");
-//		game.sendAction(new ConfirmMove(this));
-//		textVeiw.append("player 4 confirms selection\n");
-//
-//		CalicoState secondInstance = new CalicoState();
-//		CalicoState secondCopy = new CalicoState(secondInstance);
-//
-//		textVeiw.append("\n copy 1\n");
-//		textVeiw.append(firstCopy.toString());
-//		textVeiw.append("\n copy 2\n");
-//		textVeiw.append(secondCopy.toString());
-//		if (firstCopy.toString().equals(secondCopy.toString())){
-//			textVeiw.append("\nfirst and second copy are the same\n");
-//		}else{
-//			textVeiw.append("\nfirst and second copy are different\n");
-//		}
+
+		//display player boards
+		//displayNum = Board to display
+		//updateDisplay is then called.
+		else if (button.getId() == R.id.player1) {
+			displayNum = 0;
+			updateDisplay();
+		} else if (button.getId() == R.id.player2) {
+			displayNum = 1;
+			updateDisplay();
+		} else if (button.getId() == R.id.player3) {
+			displayNum = 2;
+			updateDisplay();
+		} else if (button.getId() == R.id.player4) {
+			displayNum = 3;
+			updateDisplay();
+		}
 
 		// Board space buttons
 		if (playerNum == state.playerTurn) {
@@ -473,17 +415,6 @@ public class CalicoHumanPlayer extends GameHumanPlayer implements OnClickListene
 				}
 			}
 
-				// change displayed board
-				else if (button.getId() == R.id.player1) {
-					game.sendAction(new ViewPlayerBoard(this));
-				} else if (button.getId() == R.id.player2) {
-					game.sendAction(new ViewPlayerBoard(this));
-				} else if (button.getId() == R.id.player3) {
-					game.sendAction(new ViewPlayerBoard(this));
-				} else if (button.getId() == R.id.player4) {
-					game.sendAction(new ViewPlayerBoard(this));
-				}
-
 				// objectives menu
 				else if (button.getId() == R.id.objectives) {
 					game.sendAction(new ViewObjectives(this));
@@ -491,6 +422,7 @@ public class CalicoHumanPlayer extends GameHumanPlayer implements OnClickListene
 
 
 		}
+		// change displayed board
 
 	}// onClick
 	
@@ -504,9 +436,10 @@ public class CalicoHumanPlayer extends GameHumanPlayer implements OnClickListene
 	public void receiveInfo(GameInfo info) {
 		// ignore the message if it's not a CalicoState message
 		if (!(info instanceof CalicoState)) return;
-		
+
 		// update our state; then update the display
 		this.state = (CalicoState)info;
+		Log.i("PlayerTurn: ", String.valueOf(state.playerTurn));
 		updateDisplay();
 	}
 	

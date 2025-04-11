@@ -52,7 +52,7 @@ public class CalicoState extends GameState {
 		//start of game stage of game values
 		playerTurn = 0;
 		turnStage = 0;
-		gameStage = 0;
+		gameStage = 1;
 
 
 		//create deck
@@ -274,7 +274,7 @@ public class CalicoState extends GameState {
 
 			//Log turnStage for debugging purposes
 			Log.i("TurnStage","Turn Stage: " + turnStage);
-
+			Log.i("PlayerTurn","PlayerTurn: " + playerTurn);
 			return true;
 		}
 

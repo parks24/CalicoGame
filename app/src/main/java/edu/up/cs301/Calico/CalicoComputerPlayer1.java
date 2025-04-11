@@ -1,5 +1,7 @@
 package edu.up.cs301.Calico;
 
+import android.util.Log;
+
 import java.util.ArrayList;
 
 import edu.up.cs301.GameFramework.players.GameComputerPlayer;
@@ -82,6 +84,9 @@ public class CalicoComputerPlayer1 extends GameComputerPlayer implements Tickabl
 		// Do nothing, as we ignore all state in deciding our next move. It
 		// depends totally on the timer and random numbers.
 		this.state = (CalicoState)info;
+
+		Log.i("PlayerTurn: ", "Game State Received \nPlayerTurn = " +String.valueOf(state.playerTurn));
+
 		if (playerNum == state.playerTurn && state.gameStage == 1) {
 
 			//randomly selects place on board, patch from inventory, and patch from community
