@@ -16,6 +16,8 @@ import edu.up.cs301.GameFramework.players.GameComputerPlayer;
  * @author Steven R. Vegdahl
  * @version July 2013
  */
+
+//TODO Commenting, Formatting, and Javadocs 
 public class CalicoState extends GameState {
 
 	//Instance Variables
@@ -267,6 +269,7 @@ public class CalicoState extends GameState {
 			if(turnStage == 4)
 			{
 				playerTurn = (playerTurn +1) %4;
+				drawNewCommunityPatch(selectedSlot);
 			}
 
 			//Move to next stage of turn
@@ -287,7 +290,8 @@ public class CalicoState extends GameState {
 		if(move instanceof UndoMove)
 		{
 
-			//Reverting gamestate in localGame auto reverts from 2->0 and 4->2
+			//GameStage reverts before turnStage increases when a move is called.
+			//Therefore when undo is called from stage 4, turnStage of the saved state is 2.
 			if(turnStage == 2)
 			{
 				turnStage = 3;
@@ -308,8 +312,6 @@ public class CalicoState extends GameState {
 	 */
 	public boolean placePatch(GameAction move)
 	{
-
-		//TODO check placePatch playerhand reset w/ tablet
 		if(move instanceof PlacePatch)
 		{
 			//Get players board
@@ -382,9 +384,9 @@ public class CalicoState extends GameState {
 				playerHand[playerTurn][1] = communityPool[selectMove.selectedSlot];
 			}
 
-
-			drawNewCommunityPatch(selectMove.selectedSlot);
+			//set to blank tile
 			selectedSlot = selectMove.selectedSlot;
+			communityPool[selectedSlot] = new Patch();
 			turnStage++;
 
 			//Log turnStage for debugging purposes
