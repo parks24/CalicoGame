@@ -289,12 +289,8 @@ public class CalicoState extends GameState {
 		if(move instanceof UndoMove)
 		{
 
-			//GameStage reverts before turnStage increases when a move is called.
-			//Therefore when undo is called from stage 4, turnStage of the saved state is 2.
-			if(turnStage == 2)
-			{
-				turnStage = 3;
-			}
+			turnStage = 0;
+
 			//Log turnStage for debugging purposes
 			Log.i("TurnStage","UNDO to Turn Stage: " + turnStage);
 
