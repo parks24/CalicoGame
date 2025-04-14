@@ -90,7 +90,7 @@ public class CalicoComputerPlayer1 extends GameComputerPlayer implements Tickabl
 		if (playerNum == state.playerTurn && state.gameStage == 1) {
 
 			//randomly selects place on board, patch from inventory, and patch from community
-			int avaliablePatchIndex = 1 + (int) (Math.random() * (availablePatches.size()));
+			int avaliablePatchIndex =(int) (Math.random() * (availablePatches.size()));
 			int[] locOnBoard = availablePatches.get(avaliablePatchIndex);
 			availablePatches.remove(avaliablePatchIndex);
 

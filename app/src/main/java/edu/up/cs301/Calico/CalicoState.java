@@ -28,9 +28,8 @@ public class CalicoState extends GameState {
 	protected int turnStage; //Player selecting or placing during turn
 	/* 0 = Selecting patch
 	 * 1 = Selecting where to place (place patch)
-	 * 2 = confirm/undo move
-	 * 3 = draw patch from community pool
-	 * 4 = confirm/end turn
+	 * 2 = draw patch from community pool
+	 * 3 = confirm/end turn
 	 */
 	protected int gameStage; //Stage of game
 	/* 0 = placing goal tiles
@@ -266,14 +265,14 @@ public class CalicoState extends GameState {
 		if(move instanceof ConfirmMove)
 		{
 			//Change Player after Round
-			if(turnStage == 4)
+			if(turnStage == 3)
 			{
 				playerTurn = (playerTurn +1) %4;
 				drawNewCommunityPatch(selectedSlot);
 			}
 
 			//Move to next stage of turn
-			turnStage = (turnStage + 1) % 5;
+			turnStage = (turnStage + 1) % 4;
 
 			//Log turnStage for debugging purposes
 			Log.i("TurnStage","Turn Stage: " + turnStage);
@@ -333,7 +332,7 @@ public class CalicoState extends GameState {
 
 				playerHand[playerTurn][selectedSlot] = new Patch();
 				selectedPatch = null;
-				turnStage++;
+				turnStage = 2;
 
 				//Log turnStage for debugging purposes
 				Log.i("TurnStage","Turn Stage: " + turnStage);
@@ -356,7 +355,7 @@ public class CalicoState extends GameState {
 			selectedPatch = playerHand[playerTurn][selectMove.selectedSlot];
 			selectedSlot = selectMove.selectedSlot;
 
-			turnStage++; //Move to placepatch phase of turn
+			turnStage = 1; //Move to placepatch phase of turn
 
 			//Log turnStage for debugging purposes
 			Log.i("TurnStage","Turn Stage: " + turnStage);
@@ -387,7 +386,7 @@ public class CalicoState extends GameState {
 			//set to blank tile
 			selectedSlot = selectMove.selectedSlot;
 			communityPool[selectedSlot] = new Patch();
-			turnStage++;
+			turnStage = 3;
 
 			//Log turnStage for debugging purposes
 			Log.i("TurnStage","Turn Stage: " + turnStage);

@@ -329,7 +329,7 @@ public class CalicoHumanPlayer extends GameHumanPlayer implements OnClickListene
 		}
 
 		// Board space buttons
-		if (playerNum == state.playerTurn) {
+		if (playerNum == state.playerTurn && displayNum == playerNum) {
 
 
 			if(state.turnStage==1) {
@@ -382,18 +382,20 @@ public class CalicoHumanPlayer extends GameHumanPlayer implements OnClickListene
 			}
 
 			//check for select patch from player hand stage of turn
-			else if(state.turnStage == 0) {
+			if(state.turnStage == 0 || state.turnStage == 1) {
 
 				// player patch buttons
 				   if (button.getId() == R.id.playerTile1) {
 					game.sendAction(new SelectPatch(this, 0));
+					Log.i("turnStage","Selecting Player Tile 0");
 				} else if (button.getId() == R.id.playerTile2) {
 					game.sendAction(new SelectPatch(this, 1));
+					   Log.i("turnStage","Selecting Player Tile 1");
 				}
 			}
 
 			//Check for select community patch stage of turn
-			else if(state.turnStage == 3) {
+			else if(state.turnStage == 2) {
 
 				// community patch buttons
 				 if (button.getId() == R.id.commonTile1) {
@@ -406,14 +408,22 @@ public class CalicoHumanPlayer extends GameHumanPlayer implements OnClickListene
 
 			}
 
-			if(state.turnStage == 2 || state.turnStage == 4) {
-				// confirm and undo buttons
-				 if (button.getId() == R.id.confirm) {
+
+			// Confirm Move
+			if(state.turnStage == 3)
+			{
+				if (button.getId() == R.id.confirm)
+				{
 					game.sendAction(new ConfirmMove(this));
-				} else if (button.getId() == R.id.undo) {
-					game.sendAction(new UndoMove(this));
 				}
 			}
+
+			//Undo Move
+			if (button.getId() == R.id.undo)
+			{
+				game.sendAction(new UndoMove(this));
+			}
+
 
 				// objectives menu
 				else if (button.getId() == R.id.objectives) {
