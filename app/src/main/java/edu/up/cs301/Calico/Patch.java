@@ -2,7 +2,11 @@ package edu.up.cs301.Calico;
 
 import androidx.annotation.NonNull;
 
-public class Patch{
+import java.io.Serializable;
+
+public class Patch implements Serializable
+{
+    protected static final long serialVersionUID = 202501504000001L;
     protected int patchPattern;
     protected int patchColor;
     protected boolean hasCat;
