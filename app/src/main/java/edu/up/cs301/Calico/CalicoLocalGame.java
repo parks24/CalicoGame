@@ -87,9 +87,9 @@ public class CalicoLocalGame extends LocalGame {
 		}//UndoMove
 
 		else if (action instanceof ViewObjectives) {
-			return true;
+			return gameState.viewObjectives(action);
 		} else if (action instanceof CloseMenu) {
-			return true;
+			return gameState.closeMenu(action);
 		} else if (action instanceof CalicoMoveAction) {
 			boolean result = gameState.computerMove(action);
 			if (result) {savedState = new CalicoState(this.gameState);}

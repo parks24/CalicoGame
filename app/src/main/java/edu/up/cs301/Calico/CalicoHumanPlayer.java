@@ -44,6 +44,8 @@ public class CalicoHumanPlayer extends GameHumanPlayer implements OnClickListene
 	// the android activity that we are running
 	private GameMainActivity myActivity;
 
+	private boolean objectiveMenuVisibility;
+
 	//Board Buttons
 
 	//Row 0
@@ -134,6 +136,9 @@ public class CalicoHumanPlayer extends GameHumanPlayer implements OnClickListene
 	protected Button viewP3 = null;
 	protected Button viewP4 = null;
 
+	protected Button openObjectives = null;
+	protected Button closeObjectives = null;
+
 
 	/**
 	 * constructor
@@ -145,6 +150,7 @@ public class CalicoHumanPlayer extends GameHumanPlayer implements OnClickListene
 		super(name);
 		playerNum = 0;
 		displayNum = 0;
+		objectiveMenuVisibility = false;
 	}
 
 	//Overloaded constructor
@@ -153,6 +159,7 @@ public class CalicoHumanPlayer extends GameHumanPlayer implements OnClickListene
 		super(name);
 		playerNum = _playerNum;
 		displayNum = 0;
+		objectiveMenuVisibility = false;
 	}
 
 	/**
@@ -335,7 +342,7 @@ public class CalicoHumanPlayer extends GameHumanPlayer implements OnClickListene
 		//display player boards
 		//displayNum = Board to display
 		//updateDisplay is then called.
-		else if (button.getId() == R.id.player1) {
+		if (button.getId() == R.id.player1) {
 			displayNum = 0;
 			updateDisplay();
 		} else if (button.getId() == R.id.player2) {
@@ -347,6 +354,15 @@ public class CalicoHumanPlayer extends GameHumanPlayer implements OnClickListene
 		} else if (button.getId() == R.id.player4) {
 			displayNum = 3;
 			updateDisplay();
+		}
+
+		//objectives menu
+		if (button.getId() == R.id.objectives) {
+			objectiveMenuVisibility = true;
+			setAsGui(myActivity);
+		} else if (button.getId() == R.id.closeMenu) {
+			objectiveMenuVisibility = false;
+			setAsGui(myActivity);
 		}
 
 		// Board space buttons
@@ -445,13 +461,6 @@ public class CalicoHumanPlayer extends GameHumanPlayer implements OnClickListene
 				game.sendAction(new UndoMove(this));
 			}
 
-
-				// objectives menu
-				else if (button.getId() == R.id.objectives) {
-					game.sendAction(new ViewObjectives(this));
-				}
-
-
 		}
 		// change displayed board
 
@@ -485,170 +494,180 @@ public class CalicoHumanPlayer extends GameHumanPlayer implements OnClickListene
 		
 		// remember the activity
 		this.myActivity = activity;
-		
-	    // Load the layout resource for our GUI
-		activity.setContentView(R.layout.calico_human_player);
 
-//		Button testButton = (Button) activity.findViewById(R.id.testButton);
-//		testButton.setOnClickListener(this);
+		if (objectiveMenuVisibility) {
+			activity.setContentView(R.layout.calico_objectives_menu);
+		} else {
+			// Load the layout resource for our GUI
+			activity.setContentView(R.layout.calico_human_player);
+		}
+		setListeners(objectiveMenuVisibility);
+	}
 
-//		this.testResultsTextView = (TextView) activity.findViewById(R.id.testResultsTextView);
+	private void setListeners(boolean objView) {
+		if (objView){
+			this.closeObjectives = (Button) myActivity.findViewById(R.id.closeMenu);
+			closeObjectives.setOnClickListener(this);
+		}else {
+			//Register Board
+			//Row 0
+			this.board00 = (ImageView) myActivity.findViewById(R.id.board00);
+			this.board01 = (ImageView) myActivity.findViewById(R.id.board01);
+			this.board02 = (ImageView) myActivity.findViewById(R.id.board02);
+			this.board03 = (ImageView) myActivity.findViewById(R.id.board03);
+			this.board04 = (ImageView) myActivity.findViewById(R.id.board04);
+			this.board05 = (ImageView) myActivity.findViewById(R.id.board05);
+			board00.setOnClickListener(this);
+			board01.setOnClickListener(this);
+			board02.setOnClickListener(this);
+			board03.setOnClickListener(this);
+			board04.setOnClickListener(this);
+			board05.setOnClickListener(this);
 
-		//Register Board
-		//Row 0
-		this.board00 = (ImageView) activity.findViewById(R.id.board00);
-		this.board01 = (ImageView) activity.findViewById(R.id.board01);
-		this.board02 = (ImageView) activity.findViewById(R.id.board02);
-		this.board03 = (ImageView) activity.findViewById(R.id.board03);
-		this.board04 = (ImageView) activity.findViewById(R.id.board04);
-		this.board05 = (ImageView) activity.findViewById(R.id.board05);
-		board00.setOnClickListener(this);
-		board01.setOnClickListener(this);
-		board02.setOnClickListener(this);
-		board03.setOnClickListener(this);
-		board04.setOnClickListener(this);
-		board05.setOnClickListener(this);
+			//Row 1
+			this.board10 = (ImageView) myActivity.findViewById(R.id.board10);
+			this.board11 = (ImageView) myActivity.findViewById(R.id.board11);
+			this.board12 = (ImageView) myActivity.findViewById(R.id.board12);
+			this.board13 = (ImageView) myActivity.findViewById(R.id.board13);
+			this.board14 = (ImageView) myActivity.findViewById(R.id.board14);
+			this.board15 = (ImageView) myActivity.findViewById(R.id.board15);
+			this.board16 = (ImageView) myActivity.findViewById(R.id.board16);
+			board10.setOnClickListener(this);
+			board11.setOnClickListener(this);
+			board12.setOnClickListener(this);
+			board13.setOnClickListener(this);
+			board14.setOnClickListener(this);
+			board15.setOnClickListener(this);
+			board16.setOnClickListener(this);
 
-		//Row 1
-		this.board10 = (ImageView) activity.findViewById(R.id.board10);
-		this.board11 = (ImageView) activity.findViewById(R.id.board11);
-		this.board12 = (ImageView) activity.findViewById(R.id.board12);
-		this.board13 = (ImageView) activity.findViewById(R.id.board13);
-		this.board14 = (ImageView) activity.findViewById(R.id.board14);
-		this.board15 = (ImageView) activity.findViewById(R.id.board15);
-		this.board16 = (ImageView) activity.findViewById(R.id.board16);
-		board10.setOnClickListener(this);
-		board11.setOnClickListener(this);
-		board12.setOnClickListener(this);
-		board13.setOnClickListener(this);
-		board14.setOnClickListener(this);
-		board15.setOnClickListener(this);
-		board16.setOnClickListener(this);
+			//Row 2
+			this.board20 = (ImageView) myActivity.findViewById(R.id.board20);
+			this.board21 = (ImageView) myActivity.findViewById(R.id.board21);
+			this.board22 = (ImageView) myActivity.findViewById(R.id.board22);
+			this.objectiveTop = (ImageView) myActivity.findViewById(R.id.objectiveTop); //Top Goal Patch
+			this.board24 = (ImageView) myActivity.findViewById(R.id.board24);
+			this.board25 = (ImageView) myActivity.findViewById(R.id.board25);
+			this.board26 = (ImageView) myActivity.findViewById(R.id.board26);
+			board20.setOnClickListener(this);
+			board21.setOnClickListener(this);
+			board22.setOnClickListener(this);
+			objectiveTop.setOnClickListener(this);
+			board24.setOnClickListener(this);
+			board25.setOnClickListener(this);
+			board26.setOnClickListener(this);
 
-		//Row 2
-		this.board20 = (ImageView) activity.findViewById(R.id.board20);
-		this.board21 = (ImageView) activity.findViewById(R.id.board21);
-		this.board22 = (ImageView) activity.findViewById(R.id.board22);
-		this.objectiveTop = (ImageView) activity.findViewById(R.id.objectiveTop); //Top Goal Patch
-		this.board24 = (ImageView) activity.findViewById(R.id.board24);
-		this.board25 = (ImageView) activity.findViewById(R.id.board25);
-		this.board26 = (ImageView) activity.findViewById(R.id.board26);
-		board20.setOnClickListener(this);
-		board21.setOnClickListener(this);
-		board22.setOnClickListener(this);
-		objectiveTop.setOnClickListener(this);
-		board24.setOnClickListener(this);
-		board25.setOnClickListener(this);
-		board26.setOnClickListener(this);
+			//Row 3
+			this.board30 = (ImageView) myActivity.findViewById(R.id.board30);
+			this.board31 = (ImageView) myActivity.findViewById(R.id.board31);
+			this.objectiveMiddle = (ImageView) myActivity.findViewById(R.id.objectiveMiddle); //Middle Goal Patch
+			this.board33 = (ImageView) myActivity.findViewById(R.id.board33);
+			this.board34 = (ImageView) myActivity.findViewById(R.id.board34);
+			this.board35 = (ImageView) myActivity.findViewById(R.id.board35);
+			this.board36 = (ImageView) myActivity.findViewById(R.id.board36);
+			board30.setOnClickListener(this);
+			board31.setOnClickListener(this);
+			objectiveMiddle.setOnClickListener(this);
+			board33.setOnClickListener(this);
+			board34.setOnClickListener(this);
+			board35.setOnClickListener(this);
+			board36.setOnClickListener(this);
 
-		//Row 3
-		this.board30 = (ImageView) activity.findViewById(R.id.board30);
-		this.board31 = (ImageView) activity.findViewById(R.id.board31);
-		this.objectiveMiddle = (ImageView) activity.findViewById(R.id.objectiveMiddle); //Middle Goal Patch
-		this.board33 = (ImageView) activity.findViewById(R.id.board33);
-		this.board34 = (ImageView) activity.findViewById(R.id.board34);
-		this.board35 = (ImageView) activity.findViewById(R.id.board35);
-		this.board36 = (ImageView) activity.findViewById(R.id.board36);
-		board30.setOnClickListener(this);
-		board31.setOnClickListener(this);
-		objectiveMiddle.setOnClickListener(this);
-		board33.setOnClickListener(this);
-		board34.setOnClickListener(this);
-		board35.setOnClickListener(this);
-		board36.setOnClickListener(this);
+			//Row 4
+			this.board40 = (ImageView) myActivity.findViewById(R.id.board40);
+			this.board41 = (ImageView) myActivity.findViewById(R.id.board41);
+			this.board42 = (ImageView) myActivity.findViewById(R.id.board42);
+			this.board43 = (ImageView) myActivity.findViewById(R.id.board43);
+			this.objectiveBottom = (ImageView) myActivity.findViewById(R.id.objectiveBottom);
+			this.board45 = (ImageView) myActivity.findViewById(R.id.board45);
+			this.board46 = (ImageView) myActivity.findViewById(R.id.board46);
+			board40.setOnClickListener(this);
+			board41.setOnClickListener(this);
+			board42.setOnClickListener(this);
+			board43.setOnClickListener(this);
+			objectiveBottom.setOnClickListener(this);
+			board45.setOnClickListener(this);
+			board46.setOnClickListener(this);
 
-		//Row 4
-		this.board40 = (ImageView) activity.findViewById(R.id.board40);
-		this.board41 = (ImageView) activity.findViewById(R.id.board41);
-		this.board42 = (ImageView) activity.findViewById(R.id.board42);
-		this.board43 = (ImageView) activity.findViewById(R.id.board43);
-		this.objectiveBottom = (ImageView) activity.findViewById(R.id.objectiveBottom);
-		this.board45 = (ImageView) activity.findViewById(R.id.board45);
-		this.board46 = (ImageView) activity.findViewById(R.id.board46);
-		board40.setOnClickListener(this);
-		board41.setOnClickListener(this);
-		board42.setOnClickListener(this);
-		board43.setOnClickListener(this);
-		objectiveBottom.setOnClickListener(this);
-		board45.setOnClickListener(this);
-		board46.setOnClickListener(this);
+			//Row 5
+			this.board50 = (ImageView) myActivity.findViewById(R.id.board50);
+			this.board51 = (ImageView) myActivity.findViewById(R.id.board51);
+			this.board52 = (ImageView) myActivity.findViewById(R.id.board52);
+			this.board53 = (ImageView) myActivity.findViewById(R.id.board53);
+			this.board54 = (ImageView) myActivity.findViewById(R.id.board54);
+			this.board55 = (ImageView) myActivity.findViewById(R.id.board55);
+			this.board56 = (ImageView) myActivity.findViewById(R.id.board56);
+			board50.setOnClickListener(this);
+			board51.setOnClickListener(this);
+			board52.setOnClickListener(this);
+			board53.setOnClickListener(this);
+			board54.setOnClickListener(this);
+			board55.setOnClickListener(this);
+			board56.setOnClickListener(this);
 
-		//Row 5
-		this.board50 = (ImageView) activity.findViewById(R.id.board50);
-		this.board51 = (ImageView) activity.findViewById(R.id.board51);
-		this.board52 = (ImageView) activity.findViewById(R.id.board52);
-		this.board53 = (ImageView) activity.findViewById(R.id.board53);
-		this.board54 = (ImageView) activity.findViewById(R.id.board54);
-		this.board55 = (ImageView) activity.findViewById(R.id.board55);
-		this.board56 = (ImageView) activity.findViewById(R.id.board56);
-		board50.setOnClickListener(this);
-		board51.setOnClickListener(this);
-		board52.setOnClickListener(this);
-		board53.setOnClickListener(this);
-		board54.setOnClickListener(this);
-		board55.setOnClickListener(this);
-		board56.setOnClickListener(this);
-
-		//Row 6
-		this.board60 = (ImageView) activity.findViewById(R.id.board60);
-		this.board61 = (ImageView) activity.findViewById(R.id.board61);
-		this.board62 = (ImageView) activity.findViewById(R.id.board62);
-		this.board63 = (ImageView) activity.findViewById(R.id.board63);
-		this.board64 = (ImageView) activity.findViewById(R.id.board64);
-		this.board65 = (ImageView) activity.findViewById(R.id.board65);
-		board60.setOnClickListener(this);
-		board61.setOnClickListener(this);
-		board62.setOnClickListener(this);
-		board63.setOnClickListener(this);
-		board64.setOnClickListener(this);
-		board65.setOnClickListener(this);
-
-
-		//Community Pool
-		this.commonTile1 = (ImageView) activity.findViewById(R.id.commonTile1);
-		this.commonTile2 = (ImageView) activity.findViewById(R.id.commonTile2);
-		this.commonTile3 = (ImageView) activity.findViewById(R.id.commonTile3);
-		commonTile1.setOnClickListener(this);
-		commonTile2.setOnClickListener(this);
-		commonTile3.setOnClickListener(this);
-
-		//Player Inventory
-		this.playerTile1 = (ImageView) activity.findViewById(R.id.playerTile1);
-		this.playerTile2 = (ImageView) activity.findViewById(R.id.playerTile2);
-		playerTile1.setOnClickListener(this);
-		playerTile2.setOnClickListener(this);
-
-		//Cat patterns
-		this.cat1Pattern1 = (ImageView) activity.findViewById(R.id.cat1pattern1);
-		this.cat1Pattern2 = (ImageView) activity.findViewById(R.id.cat1pattern2);
-		this.cat2Pattern1 = (ImageView) activity.findViewById(R.id.cat2pattern1);
-		this.cat2Pattern2 = (ImageView) activity.findViewById(R.id.cat2pattern2);
-		this.cat3Pattern1 = (ImageView) activity.findViewById(R.id.cat3pattern1);
-		this.cat3Pattern2 = (ImageView) activity.findViewById(R.id.cat3pattern2);
+			//Row 6
+			this.board60 = (ImageView) myActivity.findViewById(R.id.board60);
+			this.board61 = (ImageView) myActivity.findViewById(R.id.board61);
+			this.board62 = (ImageView) myActivity.findViewById(R.id.board62);
+			this.board63 = (ImageView) myActivity.findViewById(R.id.board63);
+			this.board64 = (ImageView) myActivity.findViewById(R.id.board64);
+			this.board65 = (ImageView) myActivity.findViewById(R.id.board65);
+			board60.setOnClickListener(this);
+			board61.setOnClickListener(this);
+			board62.setOnClickListener(this);
+			board63.setOnClickListener(this);
+			board64.setOnClickListener(this);
+			board65.setOnClickListener(this);
 
 
-		//Cat and Button count
-		this.catCount1 = (TextView) activity.findViewById(R.id.catCount1);
-		this.catCount2 = (TextView) activity.findViewById(R.id.catCount2);
-		this.catCount3 = (TextView) activity.findViewById(R.id.catCount3);
-		this.buttonCount = (TextView) activity.findViewById(R.id.buttonCount);
+			//Community Pool
+			this.commonTile1 = (ImageView) myActivity.findViewById(R.id.commonTile1);
+			this.commonTile2 = (ImageView) myActivity.findViewById(R.id.commonTile2);
+			this.commonTile3 = (ImageView) myActivity.findViewById(R.id.commonTile3);
+			commonTile1.setOnClickListener(this);
+			commonTile2.setOnClickListener(this);
+			commonTile3.setOnClickListener(this);
 
-		//Confirm and undo buttons
-		this.confirm = (ImageView) activity.findViewById((R.id.confirm));
-		this.undo = (ImageView) activity.findViewById((R.id.undo));
-		confirm.setOnClickListener(this);
-		undo.setOnClickListener(this);
+			//Player Inventory
+			this.playerTile1 = (ImageView) myActivity.findViewById(R.id.playerTile1);
+			this.playerTile2 = (ImageView) myActivity.findViewById(R.id.playerTile2);
+			playerTile1.setOnClickListener(this);
+			playerTile2.setOnClickListener(this);
 
-		//Player board buttons
-		this.viewP1 = (Button) activity.findViewById(R.id.player1);
-		this.viewP2 = (Button) activity.findViewById(R.id.player2);
-		this.viewP3 = (Button) activity.findViewById(R.id.player3);
-		this.viewP4 = (Button) activity.findViewById(R.id.player4);
-		viewP1.setOnClickListener(this);
-		viewP2.setOnClickListener(this);
-		viewP3.setOnClickListener(this);
-		viewP4.setOnClickListener(this);
+			//Cat patterns
+			this.cat1Pattern1 = (ImageView) myActivity.findViewById(R.id.cat1pattern1);
+			this.cat1Pattern2 = (ImageView) myActivity.findViewById(R.id.cat1pattern2);
+			this.cat2Pattern1 = (ImageView) myActivity.findViewById(R.id.cat2pattern1);
+			this.cat2Pattern2 = (ImageView) myActivity.findViewById(R.id.cat2pattern2);
+			this.cat3Pattern1 = (ImageView) myActivity.findViewById(R.id.cat3pattern1);
+			this.cat3Pattern2 = (ImageView) myActivity.findViewById(R.id.cat3pattern2);
 
+
+			//Cat and Button count
+			this.catCount1 = (TextView) myActivity.findViewById(R.id.catCount1);
+			this.catCount2 = (TextView) myActivity.findViewById(R.id.catCount2);
+			this.catCount3 = (TextView) myActivity.findViewById(R.id.catCount3);
+			this.buttonCount = (TextView) myActivity.findViewById(R.id.buttonCount);
+
+			//Confirm and undo buttons
+			this.confirm = (ImageView) myActivity.findViewById((R.id.confirm));
+			this.undo = (ImageView) myActivity.findViewById((R.id.undo));
+			confirm.setOnClickListener(this);
+			undo.setOnClickListener(this);
+
+			//Player board buttons
+			this.viewP1 = (Button) myActivity.findViewById(R.id.player1);
+			this.viewP2 = (Button) myActivity.findViewById(R.id.player2);
+			this.viewP3 = (Button) myActivity.findViewById(R.id.player3);
+			this.viewP4 = (Button) myActivity.findViewById(R.id.player4);
+			viewP1.setOnClickListener(this);
+			viewP2.setOnClickListener(this);
+			viewP3.setOnClickListener(this);
+			viewP4.setOnClickListener(this);
+
+			//Objective menu stuff
+			this.openObjectives = (Button) myActivity.findViewById(R.id.objectives);
+			openObjectives.setOnClickListener(this);
+		}
 	}
 
 	public CalicoState getState() {

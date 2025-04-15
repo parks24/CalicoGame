@@ -27,7 +27,6 @@ public class CalicoState extends GameState implements Serializable {
 	protected static final long serialVersionUID = 202501504000001L;
     protected Cat[] cats = new Cat[3];
 
-	protected boolean objectiveMenuVisibility;
 	protected int playerTurn;
 	protected int turnStage; //Player selecting or placing during turn
 	/* 0 = Selecting patch
@@ -487,7 +486,7 @@ public class CalicoState extends GameState implements Serializable {
 	{
 		if(move instanceof CloseMenu)
 		{
-			objectiveMenuVisibility = false;
+			Log.i("game_info", "visibility set");
 			return true;
 		}
 
@@ -511,7 +510,7 @@ public class CalicoState extends GameState implements Serializable {
 	{
 		if(move instanceof ViewObjectives)
 		{
-			objectiveMenuVisibility = true;
+			Log.i("game_info", "visibility set");
 			return true;
 		}
 
