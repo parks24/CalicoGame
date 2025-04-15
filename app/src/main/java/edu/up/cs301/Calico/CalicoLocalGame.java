@@ -73,15 +73,17 @@ public class CalicoLocalGame extends LocalGame {
 		else if (action instanceof ConfirmMove)
 		{
 			//Confirm post-move state
-			savedState = new CalicoState(this.gameState);
-			return gameState.confirmMove(action);
+			boolean result = gameState.confirmMove(action);
+			if (result) {savedState = new CalicoState(this.gameState);}
+			return result;
 		} //Confirm Move
 
 		else if (action instanceof UndoMove)
 		{
 			//Revert state to pre-move copy and set to start of turn
-			gameState = new CalicoState(this.savedState);
-			return gameState.undoMove(action);
+			boolean result = gameState.undoMove(action);
+			if (result) {gameState = new CalicoState(this.savedState);}
+			return result;
 		}//UndoMove
 
 		else if (action instanceof ViewObjectives) {
@@ -89,7 +91,9 @@ public class CalicoLocalGame extends LocalGame {
 		} else if (action instanceof CloseMenu) {
 			return true;
 		} else if (action instanceof CalicoMoveAction) {
-			return gameState.computerMove(action);
+			boolean result = gameState.computerMove(action);
+			if (result) {savedState = new CalicoState(this.gameState);}
+			return result;
 		} else {
 			// denote that this was an illegal move
 			return false;

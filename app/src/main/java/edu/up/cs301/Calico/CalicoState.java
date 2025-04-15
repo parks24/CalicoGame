@@ -45,6 +45,7 @@ public class CalicoState extends GameState {
 	protected Patch[][] preMovePlayerHand;
 	protected Board preMoveBoard;
 	protected int selectedSlot;
+	protected int communitySlot;
 
 
 	public CalicoState()
@@ -125,8 +126,9 @@ public class CalicoState extends GameState {
 			cats[i] = new Cat(i+1, patternsSent);
         }
 
-		selectedPatch = null;
 		selectedSlot = 3;
+		selectedPatch = null;
+		communitySlot = 4;
 
 	}//default Constructor
 
@@ -262,6 +264,7 @@ public class CalicoState extends GameState {
 
 		selectedPatch = other.selectedPatch;
 		selectedSlot = other.selectedSlot;
+		communitySlot = other.communitySlot;
 	}
 
 	public boolean confirmMove(GameAction move)
@@ -272,7 +275,7 @@ public class CalicoState extends GameState {
 			if(turnStage == 3)
 			{
 				playerTurn = (playerTurn +1) %4;
-				drawNewCommunityPatch(selectedSlot);
+				drawNewCommunityPatch(communitySlot);
 			}
 
 			//Move to next stage of turn
@@ -385,8 +388,8 @@ public class CalicoState extends GameState {
 			}
 
 			//set to blank tile
-			selectedSlot = selectMove.selectedSlot;
-			communityPool[selectedSlot] = new Patch();
+			communitySlot = selectMove.selectedSlot;
+			communityPool[communitySlot] = new Patch();
 			turnStage = 3;
 
 			//Log turnStage for debugging purposes
