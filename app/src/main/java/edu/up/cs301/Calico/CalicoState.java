@@ -276,17 +276,16 @@ public class CalicoState extends GameState {
 			{
 				playerTurn = (playerTurn +1) %4;
 				drawNewCommunityPatch(communitySlot);
+				turnStage = 0;
+				//Log turnStage for debugging purposes
+				Log.i("TurnStage","Turn Stage: " + turnStage);
+				Log.i("PlayerTurn","PlayerTurn: " + playerTurn);
+				return true;
+			}else{
+				Log.i("Timing","confirm move pressed at wrong time");
+				return false;
 			}
-
-			//Move to next stage of turn
-			turnStage = (turnStage + 1) % 4;
-
-			//Log turnStage for debugging purposes
-			Log.i("TurnStage","Turn Stage: " + turnStage);
-			Log.i("PlayerTurn","PlayerTurn: " + playerTurn);
-			return true;
 		}
-
 		return false;
 	}//confirmMove
 
