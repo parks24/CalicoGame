@@ -125,7 +125,8 @@ public class CalicoState extends GameState {
 			cats[i] = new Cat(i+1, patternsSent);
         }
 
-
+		selectedPatch = null;
+		selectedSlot = 3;
 
 	}//default Constructor
 
@@ -258,6 +259,9 @@ public class CalicoState extends GameState {
 		{
 			this.cats[i] = new Cat(other.cats[i]);
 		}
+
+		selectedPatch = other.selectedPatch;
+		selectedSlot = other.selectedSlot;
 	}
 
 	public boolean confirmMove(GameAction move)
@@ -290,7 +294,7 @@ public class CalicoState extends GameState {
 		{
 
 			turnStage = 0;
-
+			selectedSlot = 3;
 			//Log turnStage for debugging purposes
 			Log.i("TurnStage","UNDO to Turn Stage: " + turnStage);
 
@@ -328,6 +332,7 @@ public class CalicoState extends GameState {
 
 				playerHand[playerTurn][selectedSlot] = new Patch();
 				selectedPatch = null;
+				selectedSlot = 3;
 				turnStage = 2;
 
 				//Log turnStage for debugging purposes

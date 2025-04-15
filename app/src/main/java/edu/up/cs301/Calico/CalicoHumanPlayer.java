@@ -5,6 +5,7 @@ import edu.up.cs301.GameFramework.GameMainActivity;
 import edu.up.cs301.GameFramework.actionMessage.GameAction;
 import edu.up.cs301.GameFramework.infoMessage.GameInfo;
 
+import android.graphics.Color;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -236,6 +237,7 @@ public class CalicoHumanPlayer extends GameHumanPlayer implements OnClickListene
 				} else {
 					communityViews[i].setImageResource(patchAsset[patch.getPatchColor() - 1][patch.getPatchPattern() - 1]);
 				}
+				communityViews[i].setBackgroundColor(Color.LTGRAY);
 			}
 			i++;
 		}
@@ -252,8 +254,15 @@ public class CalicoHumanPlayer extends GameHumanPlayer implements OnClickListene
 					handViews[i].setImageResource(patchAsset[patch.getPatchColor() - 1][patch.getPatchPattern() - 1]);
 				}
 			}
-
-
+			i++;
+		}
+		i = 0;
+		for (ImageView view : handViews) {
+			if (i == state.selectedSlot){
+				view.setBackgroundColor(Color.GREEN);
+			}else{
+				view.setBackgroundColor(Color.LTGRAY);
+			}
 			i++;
 		}
 
@@ -298,6 +307,18 @@ public class CalicoHumanPlayer extends GameHumanPlayer implements OnClickListene
 		String text = "Buttons: " + sum;
 		if (buttonCount != null) {
 			buttonCount.setText(text);
+		}
+
+		Button[] playerViews = {viewP1,viewP2,viewP3,viewP4};
+
+		for (int j = 0; j < 4; j++) {
+			if (playerNum == j) {
+					playerViews[j].setBackgroundColor(Color.GREEN);
+			}else if (displayNum == j){
+				playerViews[j].setBackgroundColor(Color.YELLOW);
+			}else {
+				playerViews[j].setBackgroundColor(Color.LTGRAY);
+			}
 		}
 	}//updateDisplay
 
@@ -385,7 +406,7 @@ public class CalicoHumanPlayer extends GameHumanPlayer implements OnClickListene
 			if(state.turnStage == 0 || state.turnStage == 1) {
 
 				// player patch buttons
-				   if (button.getId() == R.id.playerTile1) {
+				if (button.getId() == R.id.playerTile1) {
 					game.sendAction(new SelectPatch(this, 0));
 					Log.i("turnStage","Selecting Player Tile 0");
 				} else if (button.getId() == R.id.playerTile2) {

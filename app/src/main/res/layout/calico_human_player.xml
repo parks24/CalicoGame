@@ -85,7 +85,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:text="Cuddles: 0"
-                android:textColor="@android:color/darker_gray"
+                android:textColor="@android:color/black"
                 android:textSize="34sp" />
 
             <LinearLayout
@@ -142,7 +142,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:text="Smokey: 0"
-                android:textColor="@android:color/darker_gray"
+                android:textColor="@android:color/black"
                 android:textSize="34sp" />
 
             <LinearLayout
@@ -197,7 +197,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:text="Stripe: 0"
-                android:textColor="@android:color/darker_gray"
+                android:textColor="@android:color/black"
                 android:textSize="34sp" />
 
             <LinearLayout
@@ -229,7 +229,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:text="Buttons: 5"
-                android:textColor="@android:color/darker_gray"
+                android:textColor="@android:color/black"
                 android:textSize="34sp" />
 
         </LinearLayout>
