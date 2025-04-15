@@ -146,6 +146,12 @@ public class CalicoLocalGame extends LocalGame {
 //			// is not yet over
 //			return null;
 //		}
+
+		if(gameState.gameStage == 2)
+		{
+			return "";
+		}
+
 		return null;
 
 	}

@@ -43,6 +43,29 @@ public class Board
     {
         board[row][col] = selectedPatch;
     }
+
+    public boolean isComplete()
+    {
+
+        //Scan board for empty patches
+        for(int row = 0; row < board.length; row++)
+        {
+            for(int col = 0; col < board[row].length; col++)
+            {
+
+                if(board[row][col] != null)
+                {
+                    if (board[row][col].getPatchColor() == 0 || board[row][col].getPatchPattern() == 0)
+                    {
+                        return false; //Empty Patch Found
+                    }
+                }
+
+            }//col iteration
+        }//row iteration
+
+        return true; //Board Filled
+    }//isComplete
     public boolean getSimilarPatchesColor(ArrayList<int[]> similarPatches, int[] patch, int color)
     {
 //        //gets patch to check

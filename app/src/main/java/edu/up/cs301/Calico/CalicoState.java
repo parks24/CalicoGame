@@ -277,15 +277,25 @@ public class CalicoState extends GameState {
 				playerTurn = (playerTurn +1) %4;
 				drawNewCommunityPatch(communitySlot);
 				turnStage = 0;
+
 				//Log turnStage for debugging purposes
 				Log.i("TurnStage","Turn Stage: " + turnStage);
 				Log.i("PlayerTurn","PlayerTurn: " + playerTurn);
+
+				//Perform endgame check
+				if(playerBoard.get(0).isComplete() && playerBoard.get(1).isComplete() && playerBoard.get(2).isComplete() && playerBoard.get(3).isComplete())
+				{
+					gameStage = 2;
+					Log.i("GameStage","All Boards Filled, Game Over");
+				}
+
 				return true;
 			}else{
 				Log.i("Timing","confirm move pressed at wrong time");
 				return false;
 			}
 		}
+
 		return false;
 	}//confirmMove
 
