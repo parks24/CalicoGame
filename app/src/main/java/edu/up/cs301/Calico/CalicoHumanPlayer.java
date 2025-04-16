@@ -363,6 +363,7 @@ public class CalicoHumanPlayer extends GameHumanPlayer implements OnClickListene
 		} else if (button.getId() == R.id.closeMenu) {
 			objectiveMenuVisibility = false;
 			setAsGui(myActivity);
+			updateDisplay();
 		}
 
 		// Board space buttons
