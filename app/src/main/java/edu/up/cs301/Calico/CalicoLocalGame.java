@@ -4,6 +4,8 @@ import edu.up.cs301.GameFramework.infoMessage.GameState;
 import edu.up.cs301.GameFramework.players.GamePlayer;
 import edu.up.cs301.GameFramework.LocalGame;
 import edu.up.cs301.GameFramework.actionMessage.GameAction;
+import edu.up.cs301.GameFramework.utilities.MessageBox;
+
 import android.util.Log;
 
 /**
@@ -87,9 +89,9 @@ public class CalicoLocalGame extends LocalGame {
 		}//UndoMove
 
 		else if (action instanceof ViewObjectives) {
-			return true;
+			return gameState.viewObjectives(action);
 		} else if (action instanceof CloseMenu) {
-			return true;
+			return gameState.closeMenu(action);
 		} else if (action instanceof CalicoMoveAction) {
 			boolean result = gameState.computerMove(action);
 			if (result) {savedState = new CalicoState(this.gameState);}
@@ -147,9 +149,10 @@ public class CalicoLocalGame extends LocalGame {
 //			return null;
 //		}
 
+		Log.i("GameStage","GameStage:" + gameState.gameStage);
 		if(gameState.gameStage == 2)
 		{
-			return "";
+			return "Player " + "" + "Won! \n";
 		}
 
 		return null;

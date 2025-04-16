@@ -1,8 +1,9 @@
 package edu.up.cs301.Calico;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Board
+public class Board implements Serializable
 {
     public Patch[][] board = new Patch[7][7];
 
@@ -55,7 +56,7 @@ public class Board
 
                 if(board[row][col] != null)
                 {
-                    if (board[row][col].getPatchColor() == 0 || board[row][col].getPatchPattern() == 0)
+                    if (board[row][col].getPatchColor() == 0 && board[row][col].getPatchPattern() == 0)
                     {
                         return false; //Empty Patch Found
                     }

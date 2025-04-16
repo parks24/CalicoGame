@@ -1,10 +1,12 @@
 package edu.up.cs301.Calico;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Cat
+public class Cat implements Serializable
 {
     //Instance Variables
+    protected static final long serialVersionUID = 202501504000001L;
     protected int name;
     protected int[] patterns = new int[2]; //Patterns on tile
     protected int points;

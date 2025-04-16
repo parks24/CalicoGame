@@ -2,6 +2,7 @@ package edu.up.cs301.Calico;
 
 import android.util.Log;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import edu.up.cs301.GameFramework.actionMessage.GameAction;
@@ -18,12 +19,14 @@ import edu.up.cs301.GameFramework.players.GameComputerPlayer;
  */
 
 //TODO Commenting, Formatting, and Javadocs 
-public class CalicoState extends GameState {
+public class CalicoState extends GameState implements Serializable {
 
 	//Instance Variables
+
+	//UID for network play support
+	protected static final long serialVersionUID = 202501504000001L;
     protected Cat[] cats = new Cat[3];
 
-	protected boolean objectiveMenuVisibility;
 	protected int playerTurn;
 	protected int turnStage; //Player selecting or placing during turn
 	/* 0 = Selecting patch
@@ -133,7 +136,31 @@ public class CalicoState extends GameState {
 	}//default Constructor
 
 
-	
+	//Fills board to end of game for testing purposes
+	public void fillBoard()
+	{
+		for(int playerNum = 0; playerNum < 4; playerNum++)
+		{
+			Board tempBoard = playerBoard.get(playerNum);
+
+			//Fill Board
+			for(int row = 1; row < 6; row++)
+			{
+				for(int col = 1; col < 6; col++)
+				{
+					if(!(tempBoard.getPatch(row,col) instanceof GoalPatch))
+					{
+						tempBoard.setPatch(new Patch(5, 5), row, col);
+					}
+				}
+			}
+		}
+		playerBoard.get(0).setPatch(new Patch(0,0),2,2);
+
+	}
+
+
+
 	public void initPlayerBoard(int player)
 	{
 		Board tempPlayer = playerBoard.get(player);
@@ -178,6 +205,7 @@ public class CalicoState extends GameState {
 
 	}
 
+
 	public void initializeBoardEdges()
 	{
 		//Initialize board edges
@@ -215,6 +243,9 @@ public class CalicoState extends GameState {
 			tempPlayer.setPatch(new Patch(6, 4),6 , 3); //6,3 (star,green)
 			tempPlayer.setPatch(new Patch(5, 3),6 , 4); //6,4 (smile,yellow)
 			tempPlayer.setPatch(new Patch(2, 2),6 , 5); //6,5 (fract,orange)
+
+			tempPlayer.setPatch(new Patch(8,8),0,6);
+			tempPlayer.setPatch(new Patch(8,8),6,6);
 		}
 	}//initializeBoardEdges
 
@@ -282,13 +313,7 @@ public class CalicoState extends GameState {
 				Log.i("TurnStage","Turn Stage: " + turnStage);
 				Log.i("PlayerTurn","PlayerTurn: " + playerTurn);
 
-				//Perform endgame check
-				if(playerBoard.get(0).isComplete() && playerBoard.get(1).isComplete() && playerBoard.get(2).isComplete() && playerBoard.get(3).isComplete())
-				{
-					gameStage = 2;
-					Log.i("GameStage","All Boards Filled, Game Over");
-				}
-
+				endGameCheck();
 				return true;
 			}else{
 				Log.i("Timing","confirm move pressed at wrong time");
@@ -298,6 +323,15 @@ public class CalicoState extends GameState {
 
 		return false;
 	}//confirmMove
+
+	public void endGameCheck()
+	{
+		//Perform endgame check
+		if(playerBoard.get(0).isComplete() && playerBoard.get(1).isComplete() && playerBoard.get(2).isComplete() && playerBoard.get(3).isComplete())
+		{
+			gameStage = 2;
+		}
+	}
 
 	//Actual gameState revert occurs in makeMove method of CalicoLocalGame
 	public boolean undoMove(GameAction move)
@@ -445,7 +479,8 @@ public class CalicoState extends GameState {
 
 			checkButtonCat(((CalicoMoveAction) move).getLocOnBoard(), player);
 			playerTurn = (playerTurn +1) %4;
-            return true;
+			endGameCheck();
+			return true;
 		}
 		return false;
 	}
@@ -454,7 +489,7 @@ public class CalicoState extends GameState {
 	{
 		if(move instanceof CloseMenu)
 		{
-			objectiveMenuVisibility = false;
+			Log.i("game_info", "visibility set");
 			return true;
 		}
 
@@ -478,7 +513,7 @@ public class CalicoState extends GameState {
 	{
 		if(move instanceof ViewObjectives)
 		{
-			objectiveMenuVisibility = true;
+			Log.i("game_info", "visibility set");
 			return true;
 		}
 
