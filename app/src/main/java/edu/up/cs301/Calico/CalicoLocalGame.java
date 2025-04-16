@@ -145,7 +145,7 @@ public class CalicoLocalGame extends LocalGame {
 				}
 			}
 
-			String scoreMessage = "Player " + winningPlayer + "Won with a score of: " + largestScore + "\n"
+			String scoreMessage = "Player " + winningPlayer + " Won with a score of: " + largestScore + "\n"
 								+ "Final Scores: \n"
 								+ "Player One: " + finalScores.get(0) + "\n"
 								+ "Player Two: " + finalScores.get(1) + "\n"
