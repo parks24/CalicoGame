@@ -135,6 +135,8 @@ public class CalicoState extends GameState implements Serializable {
 
 	}//default Constructor
 
+
+	//Fills board to end of game for testing purposes
 	public void fillBoard()
 	{
 		for(int playerNum = 0; playerNum < 4; playerNum++)
