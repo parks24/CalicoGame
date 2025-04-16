@@ -23,6 +23,8 @@ import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 
+import java.util.Arrays;
+
 /**
  * class GameHumanPlayer
  *
@@ -308,6 +310,34 @@ public abstract class GameHumanPlayer implements GamePlayer, Tickable {
                                 gameIsOver(((GameOverInfo)myInfo).getMessage());
                             }},
                         myActivity);
+
+
+                //Display Player Scores
+
+                //Placeholder values for initialization
+                int[] playerScores = {42,85,73,51};
+                int largestScore = playerScores[0];
+                int winningPlayer = 1;
+
+                for(int i = 0; i < playerScores.length; i++)
+                {
+                    if(playerScores[i] > largestScore)
+                    {
+                        largestScore = playerScores[i];
+                        winningPlayer = i+1;
+                    }
+                }
+
+                String finalScores = "Player " + winningPlayer + " won with a score of: " + largestScore + "\n" +
+                        "Final Scores- \n" +
+                        "Player " + "1" + ": " + playerScores[0] + "\n" +
+                        "Player " + "2" + ": " + playerScores[1] + "\n" +
+                        "Player " + "3" + ": " + playerScores[2] + "\n" +
+                        "Player " + "4" + ": " + playerScores[3] + "\n";
+
+                MessageBox.popUpMessage(finalScores, myActivity);
+
+
             }
             else if (myInfo instanceof TimerInfo) {
                 // if we have a timer-tick, and it's our timer object,

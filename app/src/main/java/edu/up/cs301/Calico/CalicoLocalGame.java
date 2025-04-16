@@ -4,6 +4,8 @@ import edu.up.cs301.GameFramework.infoMessage.GameState;
 import edu.up.cs301.GameFramework.players.GamePlayer;
 import edu.up.cs301.GameFramework.LocalGame;
 import edu.up.cs301.GameFramework.actionMessage.GameAction;
+import edu.up.cs301.GameFramework.utilities.MessageBox;
+
 import android.util.Log;
 
 /**
@@ -150,7 +152,7 @@ public class CalicoLocalGame extends LocalGame {
 		Log.i("GameStage","GameStage:" + gameState.gameStage);
 		if(gameState.gameStage == 2)
 		{
-			return "";
+			return "Player " + "" + "Won! \n";
 		}
 
 		return null;
