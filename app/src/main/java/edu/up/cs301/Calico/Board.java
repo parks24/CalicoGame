@@ -204,7 +204,7 @@ public class Board implements Serializable
         //check goal patch 1 [2,3]
         int[][] surroundingPatches = new int[6][2];//check [2,3] [3,2] [4,4]
         int[] patchToCheck = {2,3};
-        int[][] sumPatches = new int[2][7];
+        int[][] sumPatches = new int[2][6];
         int points = 0;
 
         getSurrounding(surroundingPatches, patchToCheck);
@@ -253,20 +253,20 @@ public class Board implements Serializable
         surrounding[1][1] = patch[1]+1;
 
         //Up left
-        surrounding[2][0] = patch[0]+1;
-        surrounding[2][1] = patch[1] - patch[1]%2;
+        surrounding[2][0] = patch[0]-1;
+        surrounding[2][1] = patch[1] - patch[0]%2;
 
         //Up right
-        surrounding[3][0] = patch[0]+1;
-        surrounding[3][1] = patch[1] - patch[1]%2 +1;
+        surrounding[3][0] = patch[0]-1;
+        surrounding[3][1] = patch[1] - patch[0]%2 + 1;
 
         //Down left
-        surrounding[2][0] = patch[0]-1;
-        surrounding[2][1] = patch[1] - patch[1]%2;
+        surrounding[2][0] = patch[0]+1;
+        surrounding[2][1] = patch[1] - patch[0]%2;
 
         //Down right
-        surrounding[3][0] = patch[0]-1;
-        surrounding[3][1] = patch[1] - patch[1]%2 +1;
+        surrounding[3][0] = patch[0]+1;
+        surrounding[3][1] = patch[1] - patch[0]%2 + 1;
     }
 
     //SumSurrounding
