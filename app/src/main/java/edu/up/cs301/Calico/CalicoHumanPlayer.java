@@ -470,6 +470,7 @@ public class CalicoHumanPlayer extends GameHumanPlayer implements OnClickListene
 
 		// update our state; then update the display
 		this.state = (CalicoState)info;
+		this.displayNum = state.playerTurn;
 		Log.i("PlayerTurn: ", String.valueOf(state.playerTurn));
 		updateDisplay();
 	}

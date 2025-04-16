@@ -350,6 +350,8 @@ public class CalicoState extends GameState {
 				//Log turnStage for debugging purposes
 				Log.i("TurnStage","Turn Stage: " + turnStage);
 
+				int[] locOnBoard = {((PlacePatch) move).boardRow, ((PlacePatch) move).boardCol};
+				checkButtonCat(locOnBoard, playerTurn);
 				//confirm move validity
 				return true;
 			}
@@ -409,8 +411,7 @@ public class CalicoState extends GameState {
 		return false;
 	}//selectCommunityPatch
 
-	public boolean computerMove(GameAction move)
-	{
+	public boolean computerMove(GameAction move) {
 		if (move instanceof CalicoMoveAction && move.getPlayer() instanceof GameComputerPlayer)
 		{
 			//get player num
@@ -423,8 +424,8 @@ public class CalicoState extends GameState {
 			//move communityPatch to hand
 			for(int i = 0; i < 2; i++)
 			{
-				if(playerHand[player][i].patchColor == ((CalicoMoveAction) move).getCommunityPatch().patchColor
-				&& playerHand[player][i].patchPattern == ((CalicoMoveAction) move).getCommunityPatch().patchPattern)
+				if(playerHand[player][i].patchColor == ((CalicoMoveAction) move).getPlacedPatch().patchColor
+				&& playerHand[player][i].patchPattern == ((CalicoMoveAction) move).getPlacedPatch().patchPattern)
 				{
 					playerHand[player][i] = ((CalicoMoveAction) move).getCommunityPatch();
 					break;
@@ -444,7 +445,7 @@ public class CalicoState extends GameState {
 
 			checkButtonCat(((CalicoMoveAction) move).getLocOnBoard(), player);
 			playerTurn = (playerTurn +1) %4;
-			return true;
+            return true;
 		}
 		return false;
 	}
@@ -509,7 +510,7 @@ public class CalicoState extends GameState {
 		ArrayList<int[]> similarPatchesPattern = new ArrayList<>();
 		int placedPatchPattern = board.getPatch(patchToCheck[0],patchToCheck[1]).patchPattern;
 		boolean catExists =
-				board.getSimilarPatchesPattern(similarPatchesPattern,patchToCheck,placedPatchPattern);
+				board.getSimilarPatchesPattern(similarPatchesPattern,patchToCheck,placedPatchPattern,this.cats);
 
 
 		//calls cat function to see if cat should be added
@@ -575,7 +576,7 @@ public class CalicoState extends GameState {
 	//param is int of index of patch to get rid of
 	private void drawNewCommunityPatch(int communityIndex)
 	{
-		int patchInDeck = 1 + (int)(Math.random() * (deck.size()));
+		int patchInDeck = (int)(Math.random() * (deck.size()));
 		communityPool[communityIndex] = deck.get(patchInDeck);
 		deck.remove(patchInDeck);
 	}

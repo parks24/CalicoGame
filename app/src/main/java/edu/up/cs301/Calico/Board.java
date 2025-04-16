@@ -68,123 +68,128 @@ public class Board
     }//isComplete
     public boolean getSimilarPatchesColor(ArrayList<int[]> similarPatches, int[] patch, int color)
     {
-//        //gets patch to check
-//        Patch patchToCheck = this.getPatch(patch[0], patch[1]);
-//
-//        //checks if patches are the correct color and not a goal patch
-//        if (patchToCheck != null) {
-//            if (patchToCheck.patchColor == color && patchToCheck.isNotGoal()) {
-//
-//                //checks if patches are already checked in the array
-//                for (int i = 0; i < similarPatches.size(); i++)
-//                    if (similarPatches.get(i) == patch) {
-//                        return false;
-//                    }
-//
-//                //add patch to arrayList
-//                boolean buttonExists = false;
-//                similarPatches.add(patch);
-//
-//                //check if patch already has button
-//                if (patchToCheck.hasButton) return true;
-//
-//                //call on all ajacent patches
-//                int[] checkPatch = {(patch[0] - 1), patch[1] - (patch[1] % 2)};
-//                if (this.validPatchLocation(checkPatch))
-//                    buttonExists = this.getSimilarPatchesColor(similarPatches, checkPatch, color);
-//
-//                checkPatch[1] = patch[1] - (patch[1] % 2) + 1;
-//                if (this.validPatchLocation(checkPatch))
-//                    buttonExists = buttonExists || this.getSimilarPatchesColor(similarPatches, checkPatch, color);
-//
-//                checkPatch[0] = patch[0] + 1;
-//                if (this.validPatchLocation(checkPatch))
-//                    buttonExists = buttonExists || this.getSimilarPatchesColor(similarPatches, checkPatch, color);
-//
-//                checkPatch[1] = patch[1] - (patch[1] % 2);
-//                if (this.validPatchLocation(checkPatch))
-//                    buttonExists = buttonExists || this.getSimilarPatchesColor(similarPatches, checkPatch, color);
-//
-//                checkPatch[1] = patch[1] - 1;
-//                checkPatch[0] = patch[0];
-//                if (this.validPatchLocation(checkPatch))
-//                    buttonExists = buttonExists || this.getSimilarPatchesColor(similarPatches, checkPatch, color);
-//
-//                checkPatch[1] = patch[1] + 1;
-//                if (this.validPatchLocation(checkPatch))
-//                    buttonExists = buttonExists || this.getSimilarPatchesColor(similarPatches, checkPatch, color);
-//
-//
-//                //updates patch's button status
-//                if (similarPatches.size() >= 3 || buttonExists) {
-//                    patchToCheck.hasButton = true;
-//                }
-//
-//                return buttonExists;
-//
-//            }
-//        }
+        //gets patch to check
+        Patch patchToCheck = this.getPatch(patch[0], patch[1]);
+
+        //checks if patches are the correct color and not a goal patch
+        if (patchToCheck != null) {
+            if (patchToCheck.patchColor == color && patchToCheck.isNotGoal()) {
+
+                //checks if patches are already checked in the array
+                for (int i = 0; i < similarPatches.size(); i++)
+                    if (similarPatches.get(i)[0] == patch[0] && similarPatches.get(i)[1]==patch[1]) {
+                        return false;
+                    }
+
+                //add patch to arrayList
+                boolean buttonExists = false;
+                similarPatches.add(patch);
+
+                //check if patch already has button
+                if (patchToCheck.hasButton) return true;
+
+                //call on all ajacent patches
+                int[] checkPatchUL = {(patch[0] - 1), patch[1] - (patch[0] % 2)};
+                if (this.validPatchLocation(checkPatchUL))
+                    buttonExists = this.getSimilarPatchesColor(similarPatches, checkPatchUL, color);
+
+                int[] checkPatchUR = {(patch[0] - 1), patch[1] - (patch[0] % 2)+1};
+                if (this.validPatchLocation(checkPatchUR))
+                    buttonExists = buttonExists || this.getSimilarPatchesColor(similarPatches, checkPatchUR, color);
+
+                int[] checkPatchDL = {(patch[0] + 1), patch[1] - (patch[0] % 2)};
+                if (this.validPatchLocation(checkPatchDL))
+                    buttonExists = buttonExists || this.getSimilarPatchesColor(similarPatches, checkPatchDL, color);
+
+                int[] checkPatchDR = {(patch[0] + 1), patch[1] - (patch[0] % 2) + 1};
+                if (this.validPatchLocation(checkPatchDR))
+                    buttonExists = buttonExists || this.getSimilarPatchesColor(similarPatches, checkPatchDR, color);
+
+                int[] checkPatchL = {patch[0], patch[1] - 1};
+                if (this.validPatchLocation(checkPatchL))
+                    buttonExists = buttonExists || this.getSimilarPatchesColor(similarPatches, checkPatchL, color);
+
+                int[] checkPatchR = {patch[0], patch[1] + 1};
+                if (this.validPatchLocation(checkPatchR))
+                    buttonExists = buttonExists || this.getSimilarPatchesColor(similarPatches, checkPatchR, color);
+
+
+                //updates patch's button status
+                if (similarPatches.size() >= 3 || buttonExists) {
+                    patchToCheck.hasButton = true;
+                }
+
+                return buttonExists;
+
+            }
+        }
         return false;
     }
 
-    public boolean getSimilarPatchesPattern(ArrayList<int[]> similarPatches, int[] patch, int pattern)
+    public boolean getSimilarPatchesPattern(ArrayList<int[]> similarPatches, int[] patch, int pattern, Cat[] cats)
     {
-//        //gets patch to check
-//        Patch patchToCheck = this.getPatch(patch[0], patch[1]);
-//
-//        if (patchToCheck != null) {
-//            if (patchToCheck.patchPattern == pattern && patchToCheck.isNotGoal()) {
-//                for (int i = 0; i < similarPatches.size(); i++)
-//                    if (similarPatches.get(i) == patch) {
-//                        return false;
-//                    }
-//
-//
-//                //check if patch already has button
-//                if (patchToCheck.hasCat) return true;
-//
-//                boolean catExists = false;
-//
-//                similarPatches.add(patch);
-//                //down left
-//                int[] checkPatch = {(patch[0] - 1), patch[1] - (patch[1] % 2)};
-//                if (this.validPatchLocation(checkPatch))
-//                    catExists = this.getSimilarPatchesPattern(similarPatches, checkPatch, pattern);
-//
-//                //down right
-//                checkPatch[1]++;
-//                if (this.validPatchLocation(checkPatch))
-//                    catExists = catExists || this.getSimilarPatchesPattern(similarPatches, checkPatch, pattern);
-//
-//                //up right
-//                checkPatch[0] += 2;
-//                if (this.validPatchLocation(checkPatch))
-//                    catExists = catExists || this.getSimilarPatchesPattern(similarPatches, checkPatch, pattern);
-//
-//                //up left
-//                checkPatch[1]--;
-//                if (this.validPatchLocation(checkPatch))
-//                    catExists = catExists || this.getSimilarPatchesPattern(similarPatches, checkPatch, pattern);
-//
-//                //left
-//                checkPatch[1] = patch[1] - 1;
-//                checkPatch[0] = patch[0];
-//                if (this.validPatchLocation(checkPatch))
-//                    catExists = catExists || this.getSimilarPatchesPattern(similarPatches, checkPatch, pattern);
-//
-//                //right
-//                checkPatch[1] = patch[1] + 1;
-//                if (this.validPatchLocation(checkPatch))
-//                    catExists = catExists || this.getSimilarPatchesPattern(similarPatches, checkPatch, pattern);
-//
-//                if (similarPatches.size() >= 3 || catExists) {
-//                    this.getPatch(patch[0], patch[1]).hasCat = true;
-//                }
-//
-//                return catExists;
-//
-//            }
-//        }
+        //gets patch to check
+        Patch patchToCheck = this.getPatch(patch[0], patch[1]);
+
+        if (patchToCheck != null) {
+            if (patchToCheck.patchPattern == pattern && patchToCheck.isNotGoal()) {
+                for (int i = 0; i < similarPatches.size(); i++)
+                    if (similarPatches.get(i)[0] == patch[0] && similarPatches.get(i)[1] == patch[1]) {
+                        return false;
+                    }
+
+
+                //check if patch already has button
+                if (patchToCheck.hasCat) return true;
+
+                boolean catExists = false;
+
+                similarPatches.add(patch);
+                //down left
+                int[] checkPatchUL = {(patch[0] - 1), patch[1] - (patch[0] % 2)};
+                if (this.validPatchLocation(checkPatchUL))
+                    catExists = this.getSimilarPatchesPattern(similarPatches, checkPatchUL, pattern,cats);
+
+                //down right
+                int[] checkPatchUR = {(patch[0] - 1), patch[1] - (patch[0] % 2)+1};
+                if (this.validPatchLocation(checkPatchUR))
+                    catExists = catExists || this.getSimilarPatchesPattern(similarPatches, checkPatchUR, pattern,cats);
+
+                //up right
+                int[] checkPatchDL = {(patch[0] + 1), patch[1] - (patch[0] % 2)};
+                if (this.validPatchLocation(checkPatchDL))
+                    catExists = catExists || this.getSimilarPatchesPattern(similarPatches, checkPatchDL, pattern,cats);
+
+                //up left
+                int[] checkPatchDR = {(patch[0] + 1), patch[1] - (patch[0] % 2) + 1};
+                if (this.validPatchLocation(checkPatchDR))
+                    catExists = catExists || this.getSimilarPatchesPattern(similarPatches, checkPatchDR, pattern,cats);
+
+                //left
+                int[] checkPatchL = {patch[0], patch[1] -1};
+                if (this.validPatchLocation(checkPatchL))
+                    catExists = catExists || this.getSimilarPatchesPattern(similarPatches, checkPatchL, pattern, cats);
+
+                //right
+                int[] checkPatchR = {patch[0], patch[1]+1};
+                if (this.validPatchLocation(checkPatchR))
+                    catExists = catExists || this.getSimilarPatchesPattern(similarPatches, checkPatchR, pattern, cats);
+
+
+                boolean addCat = false;
+                for(int i = 0; i<3; i++)
+                {
+                    addCat = cats[i].addCat(similarPatches, pattern);
+                }
+
+                if (catExists || addCat) {
+                    this.getPatch(patch[0], patch[1]).hasCat = true;
+                }
+
+                return catExists;
+
+            }
+        }
         return false;
     }
 
