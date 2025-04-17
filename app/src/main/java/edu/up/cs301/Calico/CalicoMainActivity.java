@@ -42,22 +42,17 @@ public class CalicoMainActivity extends GameMainActivity {
 			}});
 		
 		// a computer player type (player type 1)
-		playerTypes.add(new GamePlayerType("Computer Player 1") {
+		playerTypes.add(new GamePlayerType("Dumb Computer") {
 			public GamePlayer createPlayer(String name) {
 				return new CalicoComputerPlayer1(name, 1);
 			}});
 
 		// a computer player type (player type 1)
-		playerTypes.add(new GamePlayerType("Computer Player 2") {
+		playerTypes.add(new GamePlayerType("Smart Computer") {
 			public GamePlayer createPlayer(String name) {
-				return new CalicoComputerPlayer1(name, 2);
+				return new CalicoComputerPlayer2(name, 2);
 			}});
 
-		// a computer player type (player type 1)
-		playerTypes.add(new GamePlayerType("Computer Player 3") {
-			public GamePlayer createPlayer(String name) {
-				return new CalicoComputerPlayer1(name,3);
-			}});
 		
 //		// a computer player type (player type 2)
 //		playerTypes.add(new GamePlayerType("Computer Player (GUI)") {

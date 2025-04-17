@@ -81,8 +81,7 @@ public class CalicoComputerPlayer1 extends GameComputerPlayer implements Tickabl
      */
 	@Override
 	protected void receiveInfo(GameInfo info) {
-		// Do nothing, as we ignore all state in deciding our next move. It
-		// depends totally on the timer and random numbers.
+		// Make move for computer player
 		this.state = (CalicoState)info;
 
 		Log.i("PlayerTurn: ", "Game State Received \nPlayerTurn = " +String.valueOf(state.playerTurn));

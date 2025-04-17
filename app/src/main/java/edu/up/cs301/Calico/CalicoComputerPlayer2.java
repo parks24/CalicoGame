@@ -8,6 +8,7 @@ import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 
 
 /**
@@ -23,122 +24,140 @@ import android.widget.TextView;
 * @version September 2013
 */
 public class CalicoComputerPlayer2 extends CalicoComputerPlayer1 {
-	
-	/*
-	 * instance variables
-	 */
-	
-	// the most recent game state, as given to us by the CounterLocalGame
-	private CalicoState currentGameState = null;
-	
-	// If this player is running the GUI, the activity (null if the player is
-	// not running a GUI).
-	private Activity activityForGui = null;
-	
-	// If this player is running the GUI, the widget containing the Calico's
-	// value (otherwise, null);
-	private TextView counterValueTextView = null;
-	
-	// If this player is running the GUI, the handler for the GUI thread (otherwise
-	// null)
-	private Handler guiHandler = null;
-	
+
+	private CalicoState state;
+	private ArrayList<int[]> availablePatches = new ArrayList<>();
+
 	/**
 	 * constructor
-	 * 
-	 * @param name
-	 * 		the player's name
+	 *
+	 * @param name the player's name
 	 */
-	public CalicoComputerPlayer2(String name) {
-		super(name);
+	public CalicoComputerPlayer2(String name)
+    {
+
+        super(name);
+
+        int[] patch;
+        for(int i = 1; i<=5; i++)
+        {
+            for (int j = 1; j<=5; j++)
+            {
+                if(!(i==2 && j==3) && !(i==3 && j==2) && !(i==4 && j ==4))
+                {
+                    patch = new int[2];
+                    patch[0] = i;
+                    patch[1] = j;
+                    availablePatches.add(patch);
+                }
+            }
+        }
 	}
-	
-    /**
-     * callback method--game's state has changed
-     * 
-     * @param info
-     * 		the information (presumably containing the game's state)
-     */
+
+	public CalicoComputerPlayer2(String name, int playerNum) {
+		super(name, playerNum);
+        int[] patch;
+        for(int i = 1; i<=5; i++)
+        {
+            for (int j = 1; j<=5; j++)
+            {
+                if(!(i==2 && j==3) && !(i==3 && j==2) && !(i==4 && j ==4))
+                {
+                    patch = new int[2];
+                    patch[0] = i;
+                    patch[1] = j;
+                    availablePatches.add(patch);
+                }
+            }
+        }
+	}
+
+	/**
+	 * callback method--game's state has changed
+	 *
+	 * @param info the information (presumably containing the game's state)
+	 */
 	@Override
 	protected void receiveInfo(GameInfo info) {
 		// perform superclass behavior
-		super.receiveInfo(info);
-		
-		Log.i("computer player", "receiving");
-		
-		// if there is no game, ignore
-		if (game == null) {
-			return;
-		}
-		else if (info instanceof CalicoState) {
-			// if we indeed have a Calico-state, update the GUI
-			currentGameState = (CalicoState)info;
-			updateDisplay();
-		}
-	}
-	
-	
-	/** 
-	 * sets the Calico value in the text view
-	 *  */
-	private void updateDisplay() {
-		// if the guiHandler is available, set the new Calico value
-		// in the Calico-display widget, doing it in the Activity's
-		// thread.
-		if (guiHandler != null) {
-			guiHandler.post(
-					new Runnable() {
-						public void run() {
-						if (counterValueTextView != null && currentGameState != null) {
-							//counterValueTextView.setText("" + currentGameState.getCounter());
-						}
-					}});
-		}
-	}
-	
-	/**
-	 * Tells whether we support a GUI
-	 * 
-	 * @return
-	 * 		true because we support a GUI
-	 */
-	public boolean supportsGui() {
-		return true;
-	}
-	
-	/**
-	 * callback method--our player has been chosen/rechosen to be the GUI,
-	 * called from the GUI thread.
-	 * 
-	 * @param a
-	 * 		the activity under which we are running
-	 */
-	@Override
-	public void setAsGui(GameMainActivity a) {
-		
-		// remember who our activity is
-		this.activityForGui = a;
-		
-		// remember the handler for the GUI thread
-		this.guiHandler = new Handler();
-		
-		// Load the layout resource for the our GUI's configuration
-		activityForGui.setContentView(R.layout.calico_human_player);
+		this.state = (CalicoState) info;
 
-		// remember who our text view is, for updating the Calico value
-//		this.counterValueTextView =
-//				(TextView) activityForGui.findViewById(R.id.counterValueTextView);
-		
-		// disable the buttons, since they will have no effect anyway
-//		Button plusButton = (Button)activityForGui.findViewById(R.id.plusButton);
-//		plusButton.setEnabled(false);
-//		Button minusButton = (Button)activityForGui.findViewById(R.id.minusButton);
-//		minusButton.setEnabled(false);
-		
-		// if the state is non=null, update the display
-		if (currentGameState != null) {
-			updateDisplay();
+		Log.i("PlayerTurn: ", "Game State Received \nPlayerTurn = " + String.valueOf(state.playerTurn));
+
+		if (playerNum == state.playerTurn && state.gameStage == 1) {
+
+			Patch placedPatch = state.playerHand[playerNum][0];
+			Patch loopPatch;
+			int placedPatchScore = 0;
+            int patchToRemove = 0;
+			for(int i = 0; i < availablePatches.size(); i++)
+			{
+				//gets potential placedPatch
+				//loopPatch = state.playerBoard.get(state.playerTurn).getPatch(availablePatches.get(i)[0],availablePatches.get(i)[1]);
+				for(int j = 0; j<2; j++) {
+					ArrayList<int[]> similarPatches = new ArrayList<>();
+					int loopPatchScore = 0;
+
+
+                    loopPatch = new Patch(state.playerHand[playerNum][j]);
+					Board boardCopy = new Board(state.playerBoard.get(playerNum));
+                    boardCopy.setPatch(loopPatch,availablePatches.get(i)[0],availablePatches.get(i)[1]);
+
+					boolean exists =
+							boardCopy.getSimilarPatchesColor(similarPatches, availablePatches.get(i), loopPatch.patchColor);
+
+					if(!exists && similarPatches.size() == 2)
+					{
+						loopPatchScore ++;
+					}
+					else if(!exists && similarPatches.size() >= 3)
+					{
+						loopPatchScore +=4;
+					}
+
+					similarPatches.clear();
+					exists =
+							boardCopy.getSimilarPatchesPattern
+									(similarPatches, availablePatches.get(i), loopPatch.patchPattern, state.cats);
+
+
+
+                    boolean addCat = false;
+                    for (int k = 0; k < 3; k++)
+                    {
+                        if(state.cats[k].addCat(similarPatches, loopPatch.patchPattern))
+                        {
+                            addCat = true;
+                            loopPatchScore+= state.cats[k].points + 1 ;
+                        };
+
+                    }
+					if(!exists && similarPatches.size() >= 2 && !addCat)
+					{
+						loopPatchScore +=2;
+					}
+
+                    if(loopPatchScore > placedPatchScore)
+                    {
+                        placedPatchScore = loopPatchScore;
+                        placedPatch = state.playerHand[playerNum][j];
+                        patchToRemove = i;
+                    }
+
+                }
+			}
+			//randomly selects place on board, patch from inventory, and patch from community
+			int[] locOnBoard = availablePatches.get(patchToRemove);
+			availablePatches.remove(patchToRemove);
+
+			int communityIndex = (int) (Math.random() * 3);
+			Patch communityPatch = state.communityPool[communityIndex];
+
+			//call necessary function (same as human player I think) to update game
+			// send the move-action to the game
+			game.sendAction(new CalicoMoveAction(this, locOnBoard, placedPatch, communityPatch));
+
 		}
 	}
-
 }
+
