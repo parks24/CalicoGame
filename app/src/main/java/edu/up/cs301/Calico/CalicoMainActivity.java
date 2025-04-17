@@ -65,7 +65,7 @@ public class CalicoMainActivity extends GameMainActivity {
 		// - from 1 to 2 players
 		// - name of game is "Counter Game"
 		// - port number as defined above
-		GameConfig defaultConfig = new GameConfig(playerTypes, 1, 4, "Calico",
+		GameConfig defaultConfig = new GameConfig(playerTypes, 2, 4, "Calico",
 				PORT_NUMBER);
 
 		// Add the default players to the configuration
