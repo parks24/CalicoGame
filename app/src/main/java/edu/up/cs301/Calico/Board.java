@@ -40,6 +40,7 @@ public class Board implements Serializable
         return board[row][col];
     }//getPatch
 
+
     public void setPatch(Patch selectedPatch, int row, int col)
     {
         board[row][col] = selectedPatch;
@@ -204,24 +205,33 @@ public class Board implements Serializable
         //check goal patch 1 [2,3]
         int[][] surroundingPatches = new int[6][2];//check [2,3] [3,2] [4,4]
         int[] patchToCheck = {2,3};
-        int[][] sumPatches = new int[2][7 ];
+        int[][] sumPatches = new int[2][7];
         int points = 0;
 
         getSurrounding(surroundingPatches, patchToCheck);
         sumSurrounding(surroundingPatches, sumPatches);
 
-        points = getPatch(2,3).getGoalPatchPoints(sumPatches);
+        Patch goalLocation = getPatch(2,3);
+        GoalPatch currentGoalPatch = (GoalPatch)goalLocation;
 
+
+        points = currentGoalPatch.getGoalPatchPoints(sumPatches);
+        resetSumPatch(sumPatches);
 
         //Check goal patch 2 [3,2]
         patchToCheck[0] = 3;
         patchToCheck[1] = 2;
 
-        getSurrounding(surroundingPatches, patchToCheck);
 
+
+        getSurrounding(surroundingPatches, patchToCheck);
         sumSurrounding(surroundingPatches, sumPatches);
 
+        goalLocation = getPatch(3,2);
+        currentGoalPatch = (GoalPatch)goalLocation;
+
         points += getPatch(3,2).getGoalPatchPoints(sumPatches);
+        resetSumPatch(sumPatches);
 
 
         //Check goal patch 3 [4,4]
@@ -229,12 +239,26 @@ public class Board implements Serializable
         patchToCheck[1] = 4;
 
         getSurrounding(surroundingPatches, patchToCheck);
-
         sumSurrounding(surroundingPatches, sumPatches);
 
+        goalLocation = getPatch(4,4);
+        currentGoalPatch = (GoalPatch)goalLocation;
+
         points += getPatch(4,4).getGoalPatchPoints(sumPatches);
+        resetSumPatch(sumPatches);
 
         return points;
+    }
+
+    public void resetSumPatch(int[][] sumPatch)
+    {
+        for(int i = 0; i < sumPatch.length; i++)
+        {
+            for(int j = 0; j < sumPatch[i].length; j++)
+            {
+                sumPatch[i][j] = 0;
+            }
+        }
     }
 
     //getSurrounding
@@ -266,12 +290,12 @@ public class Board implements Serializable
         surrounding[3][1] = patch[1] - patch[0]%2 + 1;
 
         //Down left
-        surrounding[2][0] = patch[0]+1;
-        surrounding[2][1] = patch[1] - patch[0]%2;
+        surrounding[4][0] = patch[0]+1;
+        surrounding[4][1] = patch[1] - patch[0]%2;
 
         //Down right
-        surrounding[3][0] = patch[0]+1;
-        surrounding[3][1] = patch[1] - patch[0]%2 + 1;
+        surrounding[5][0] = patch[0]+1;
+        surrounding[5][1] = patch[1] - patch[0]%2 + 1;
     }
 
     //SumSurrounding

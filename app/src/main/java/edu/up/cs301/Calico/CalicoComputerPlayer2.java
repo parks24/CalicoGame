@@ -1,5 +1,6 @@
 package edu.up.cs301.Calico;
 
+import java.io.Serializable;
 import edu.up.cs301.GameFramework.GameMainActivity;
 import edu.up.cs301.GameFramework.infoMessage.GameInfo;
 import android.app.Activity;
@@ -23,7 +24,7 @@ import java.util.ArrayList;
 * @author Andrew M. Nuxoll
 * @version September 2013
 */
-public class CalicoComputerPlayer2 extends CalicoComputerPlayer1 {
+public class CalicoComputerPlayer2 extends CalicoComputerPlayer1 implements Serializable {
 
 	private CalicoState state;
 	private ArrayList<int[]> availablePatches = new ArrayList<>();
@@ -119,7 +120,6 @@ public class CalicoComputerPlayer2 extends CalicoComputerPlayer1 {
 					exists =
 							boardCopy.getSimilarPatchesPattern
 									(similarPatches, availablePatches.get(i), loopPatch.patchPattern, state.cats);
-
 
 
                     boolean addCat = false;

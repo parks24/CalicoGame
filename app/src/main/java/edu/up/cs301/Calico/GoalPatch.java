@@ -46,8 +46,9 @@ public class GoalPatch extends Patch
      @Override
      public int getGoalPatchPoints(int[][] numEach)
      {
+
          //returns 0 if surrounded with empty patches (not completed board)
-         if(numEach[0][0] == 0 || numEach[1][0] == 0) return 0;
+         if(numEach[0][0] != 0 || numEach[1][0] != 0) return 0;
 
          //keeps track of if patterns and numbers are completed
          int[] checkArray = new int[7];
@@ -68,6 +69,7 @@ public class GoalPatch extends Patch
                  else if (colorRequirement || patternRequirement)
                      return 10; // num for 1 completed
                  break;
+
              case 2:
                  //AAA BBB
                  checkArray[1] = 3;
@@ -83,6 +85,7 @@ public class GoalPatch extends Patch
                  else if (colorRequirement || patternRequirement)
                      return 8; // num for 1 completed
                  break;
+
              case 3:
                  //AA BB CC
                  checkArray[1] = 2;
@@ -115,6 +118,7 @@ public class GoalPatch extends Patch
                  else if (colorRequirement || patternRequirement)
                      return 8; // num for 1 completed
                  break;
+
              case 5:
                  //AAA BB C
                  checkArray[1] = 3;
@@ -130,6 +134,7 @@ public class GoalPatch extends Patch
                  else if (colorRequirement || patternRequirement)
                      return 7; // num for 1 completed
                  break;
+
              case 6:
                  //AA BB C D
                  checkArray[1] = 3;
@@ -146,6 +151,7 @@ public class GoalPatch extends Patch
                      return 8; // num for 1 completed
                  break;
          }
+
          return 0; //when not completed
      }
 

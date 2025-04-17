@@ -13,6 +13,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.view.View.OnClickListener;
 
+import java.io.Serializable;
+
 /**
  * A GUI of a Calico-player. The GUI displays the current value of the Calico,
  * and allows the human player to press the '+' and '-' buttons in order to
@@ -26,7 +28,7 @@ import android.view.View.OnClickListener;
  * @author Andrew M. Nuxoll
  * @version July 2013
  */
-public class CalicoHumanPlayer extends GameHumanPlayer implements OnClickListener {
+public class CalicoHumanPlayer extends GameHumanPlayer implements OnClickListener, Serializable {
 
 	/* instance variables */
 	

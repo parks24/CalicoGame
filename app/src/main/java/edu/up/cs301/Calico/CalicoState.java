@@ -132,6 +132,7 @@ public class CalicoState extends GameState implements Serializable {
 		selectedSlot = 3;
 		selectedPatch = null;
 		communitySlot = 4;
+
 	}//default Constructor
 
 

@@ -2,6 +2,7 @@ package edu.up.cs301.Calico;
 
 import android.util.Log;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import edu.up.cs301.GameFramework.players.GameComputerPlayer;
@@ -17,7 +18,7 @@ import edu.up.cs301.GameFramework.utilities.Tickable;
  * @author Andrew M. Nuxoll
  * @version September 2013
  */
-public class CalicoComputerPlayer1 extends GameComputerPlayer implements Tickable {
+public class CalicoComputerPlayer1 extends GameComputerPlayer implements Tickable, Serializable {
 	
     /**
      * Constructor for objects of class CounterComputerPlayer1

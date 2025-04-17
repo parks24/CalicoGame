@@ -8,6 +8,7 @@ import edu.up.cs301.GameFramework.utilities.MessageBox;
 
 import android.util.Log;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
@@ -19,7 +20,7 @@ import java.util.ArrayList;
  * @author Andrew M. Nuxoll
  * @version July 2013
  */
-public class CalicoLocalGame extends LocalGame {
+public class CalicoLocalGame extends LocalGame implements Serializable {
 
 	// When a Calico game is played, any number of players. The first player
 	// is trying to get the Calico value to TARGET_MAGNITUDE; the second player,
