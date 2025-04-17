@@ -8,6 +8,8 @@ import edu.up.cs301.GameFramework.utilities.MessageBox;
 
 import android.util.Log;
 
+import java.util.ArrayList;
+
 /**
  * A class that represents the state of a game. In our Calico game, the only
  * relevant piece of information is the value of the game's Calico. The
@@ -124,35 +126,34 @@ public class CalicoLocalGame extends LocalGame {
 	 */
 	@Override
 	protected String checkIfGameOver() {
-		
-//		// get the value of the Calico
-//		int counterVal = this.gameState.getCounter();
-//
-//		if (counterVal >= TARGET_MAGNITUDE) {
-//			// Calico has reached target magnitude, so return message that
-//			// player 0 has won.
-//			return playerNames[0]+" has won.";
-//		}
-//		else if (counterVal <= -TARGET_MAGNITUDE) {
-//			// Calico has reached negative of target magnitude; if there
-//			// is a second player, return message that this player has won,
-//			// otherwise that the first player has lost
-//			if (playerNames.length >= 2) {
-//				return playerNames[1]+" has won.";
-//			}
-//			else {
-//				return playerNames[0]+" has lost.";
-//			}
-//		}else {
-//			// game is still between the two limit: return null, as the game
-//			// is not yet over
-//			return null;
-//		}
 
+		//Log GameStage for debugging purposes
 		Log.i("GameStage","GameStage:" + gameState.gameStage);
+
 		if(gameState.gameStage == 2)
 		{
-			return "Player " + "" + "Won! \n";
+			ArrayList<Integer> finalScores = gameState.getPlayerScores();
+			int largestScore = finalScores.get(0);
+			int winningPlayer = 1;
+
+			for(int i = 0; i < finalScores.size(); i++)
+			{
+				if(finalScores.get(i) > largestScore)
+				{
+					largestScore = finalScores.get(i);
+					winningPlayer = i + 1;
+				}
+			}
+
+			String scoreMessage = "Player " + winningPlayer + " Won with a score of: " + largestScore + "\n"
+								+ "Final Scores: \n"
+								+ "Player One: " + finalScores.get(0) + "\n"
+								+ "Player Two: " + finalScores.get(1) + "\n"
+								+ "Player Three: " + finalScores.get(2) + "\n"
+								+ "Player Four: " + finalScores.get(3) + "\n";
+
+
+			return scoreMessage;
 		}
 
 		return null;

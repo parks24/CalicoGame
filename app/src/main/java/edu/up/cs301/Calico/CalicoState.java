@@ -132,7 +132,6 @@ public class CalicoState extends GameState implements Serializable {
 		selectedSlot = 3;
 		selectedPatch = null;
 		communitySlot = 4;
-
 	}//default Constructor
 
 
@@ -614,6 +613,24 @@ public class CalicoState extends GameState implements Serializable {
 		int patchInDeck = (int)(Math.random() * (deck.size()));
 		communityPool[communityIndex] = deck.get(patchInDeck);
 		deck.remove(patchInDeck);
+	}
+
+
+	public ArrayList<Integer> getPlayerScores()
+	{
+
+		ArrayList<Integer> playerScores = new ArrayList<>();
+
+		//Calculate a score for each player board
+		for(int i = 0; i < 4; i++)
+		{
+			Board currentBoard = playerBoard.get(i);
+			int playerScore = currentBoard.getGoalPatchScore();
+			playerScore += currentBoard.playerScore.getPlayerScore(cats);
+			playerScores.add(playerScore);
+		}
+
+		return playerScores;
 	}
 
 	//Getters

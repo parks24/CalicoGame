@@ -204,13 +204,10 @@ public class Board implements Serializable
         //check goal patch 1 [2,3]
         int[][] surroundingPatches = new int[6][2];//check [2,3] [3,2] [4,4]
         int[] patchToCheck = {2,3};
-        int[][] sumPatches = new int[2][7];
+        int[][] sumPatches = new int[2][7 ];
         int points = 0;
 
         getSurrounding(surroundingPatches, patchToCheck);
-
-
-
         sumSurrounding(surroundingPatches, sumPatches);
 
         points = getPatch(2,3).getGoalPatchPoints(sumPatches);
@@ -244,6 +241,14 @@ public class Board implements Serializable
     //fills an integer array containing the coordinates of the 6 surrounding patches
     private void getSurrounding(int[][] surrounding, int[] patch)
     {
+
+        //NOTES FOR DEBUGGING PURPOSES
+        /* Y,X format
+         * Board 2D array does not account for shift in GUI
+         * %2 for even row returns 0, odd returns 1
+         */
+
+
         //left
         surrounding[0][0] = patch[0];
         surrounding[0][1] = patch[1]-1;
@@ -253,20 +258,20 @@ public class Board implements Serializable
         surrounding[1][1] = patch[1]+1;
 
         //Up left
-        surrounding[2][0] = patch[0]+1;
-        surrounding[2][1] = patch[1] - patch[1]%2;
+        surrounding[2][0] = patch[0]-1;
+        surrounding[2][1] = patch[1] - patch[0]%2;
 
         //Up right
-        surrounding[3][0] = patch[0]+1;
-        surrounding[3][1] = patch[1] - patch[1]%2 +1;
+        surrounding[3][0] = patch[0]-1;
+        surrounding[3][1] = patch[1] - patch[0]%2 + 1;
 
         //Down left
-        surrounding[2][0] = patch[0]-1;
-        surrounding[2][1] = patch[1] - patch[1]%2;
+        surrounding[2][0] = patch[0]+1;
+        surrounding[2][1] = patch[1] - patch[0]%2;
 
         //Down right
-        surrounding[3][0] = patch[0]-1;
-        surrounding[3][1] = patch[1] - patch[1]%2 +1;
+        surrounding[3][0] = patch[0]+1;
+        surrounding[3][1] = patch[1] - patch[0]%2 + 1;
     }
 
     //SumSurrounding
