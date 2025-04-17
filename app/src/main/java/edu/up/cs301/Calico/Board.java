@@ -180,8 +180,9 @@ public class Board implements Serializable
                 boolean addCat = false;
                 for(int i = 0; i<3; i++)
                 {
-                    addCat = cats[i].addCat(similarPatches, pattern);
+                    addCat = addCat || cats[i].addCat(similarPatches, pattern);
                 }
+
 
                 if (catExists || addCat) {
                     this.getPatch(patch[0], patch[1]).hasCat = true;
