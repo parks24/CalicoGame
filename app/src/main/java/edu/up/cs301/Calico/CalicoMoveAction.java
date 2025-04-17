@@ -1,5 +1,7 @@
 package edu.up.cs301.Calico;
 
+import java.io.Serializable;
+
 import edu.up.cs301.GameFramework.players.GamePlayer;
 import edu.up.cs301.GameFramework.actionMessage.GameAction;
 
@@ -11,10 +13,10 @@ import edu.up.cs301.GameFramework.actionMessage.GameAction;
  * @author Andrew M. Nuxoll
  * @version September 2012
  */
-public class CalicoMoveAction extends GameAction {
+public class CalicoMoveAction extends GameAction implements Serializable {
 	
 	// to satisfy the serializable interface
-	private static final long serialVersionUID = 28062013L;
+	protected static final long serialVersionUID = 170425;
 
 	//location on board for patch to be placed
 	private int[] locOnBoard;

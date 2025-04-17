@@ -8,6 +8,7 @@ import edu.up.cs301.GameFramework.players.GamePlayer;
 public class PlacePatch extends GameAction implements Serializable
 {
     //Instance Variables
+    protected static final long serialVersionUID = 170425;
     protected int boardRow;
     protected int boardCol;
 

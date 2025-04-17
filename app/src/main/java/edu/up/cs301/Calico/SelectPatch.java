@@ -1,13 +1,16 @@
 package edu.up.cs301.Calico;
 
+import java.io.Serializable;
+
 import edu.up.cs301.GameFramework.actionMessage.GameAction;
 import edu.up.cs301.GameFramework.players.GamePlayer;
 
-public class SelectPatch extends GameAction
+public class SelectPatch extends GameAction implements Serializable
 {
 
     //Instance Variables
     protected Patch selectedPatch;
+    protected static final long serialVersionUID = 170425;
     protected int selectedSlot;
 
     /**

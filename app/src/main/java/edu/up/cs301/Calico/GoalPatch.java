@@ -1,5 +1,6 @@
 package edu.up.cs301.Calico;
 
+import java.io.Serializable;
 import java.util.Arrays;
 
 /**
@@ -17,10 +18,10 @@ import java.util.Arrays;
  * 5 - AAA BB C
  * 6 - AA BB C D
  */
-public class GoalPatch extends Patch
+public class GoalPatch extends Patch implements Serializable
 {
     //Instance Variables
-
+    protected static final long serialVersionUID = 170425;
 
      //creates empty goal patch
      public GoalPatch()

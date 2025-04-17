@@ -28,6 +28,7 @@ public class CalicoComputerPlayer2 extends CalicoComputerPlayer1 implements Seri
 
 	private CalicoState state;
 	private ArrayList<int[]> availablePatches = new ArrayList<>();
+	protected static final long serialVersionUID = 170425L;
 
 	/**
 	 * constructor

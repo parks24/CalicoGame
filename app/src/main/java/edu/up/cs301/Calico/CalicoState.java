@@ -24,7 +24,7 @@ public class CalicoState extends GameState implements Serializable {
 	//Instance Variables
 
 	//UID for network play support
-	protected static final long serialVersionUID = 202501504000001L;
+	protected static final long serialVersionUID = 170425L;
     protected Cat[] cats = new Cat[3];
 
 	protected int playerTurn;

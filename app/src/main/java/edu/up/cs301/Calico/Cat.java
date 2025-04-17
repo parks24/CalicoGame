@@ -6,7 +6,7 @@ import java.util.ArrayList;
 public class Cat implements Serializable
 {
     //Instance Variables
-    protected static final long serialVersionUID = 202501504000001L;
+    protected static final long serialVersionUID = 170425;
     protected int name;
     protected int[] patterns = new int[2]; //Patterns on tile
     protected int points;

@@ -29,6 +29,7 @@ public class CalicoComputerPlayer1 extends GameComputerPlayer implements Tickabl
 
 	private CalicoState state;
 	private ArrayList<int[]> availablePatches = new ArrayList<>();
+	protected static final long serialVersionUID = 170425L;
 
     public CalicoComputerPlayer1(String name) {
         // invoke superclass constructor

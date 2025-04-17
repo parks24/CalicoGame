@@ -8,6 +8,7 @@ public class Board implements Serializable
     public Patch[][] board = new Patch[7][7];
 
     public PlayerScore playerScore;
+    protected static final long serialVersionUID = 170425;
 
     public Board()
     {

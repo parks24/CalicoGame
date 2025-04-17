@@ -1,9 +1,11 @@
 package edu.up.cs301.Calico;
 
+import java.io.Serializable;
 import java.util.Arrays;
 
-public class PlayerScore {
+public class PlayerScore implements Serializable {
     protected int[] buttonCount = new int[7];
+    protected static final long serialVersionUID = 170425;
     protected int[] catCount = new int[3];
 
     //default constructor

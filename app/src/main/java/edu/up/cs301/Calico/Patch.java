@@ -6,7 +6,7 @@ import java.io.Serializable;
 
 public class Patch implements Serializable
 {
-    protected static final long serialVersionUID = 202501504000001L;
+    protected static final long serialVersionUID = 170425;
     protected int patchPattern;
     protected int patchColor;
     protected boolean hasCat;
