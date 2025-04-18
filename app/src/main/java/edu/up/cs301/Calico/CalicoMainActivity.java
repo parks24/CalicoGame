@@ -38,19 +38,19 @@ public class CalicoMainActivity extends GameMainActivity {
 		// a human player player type (player type 0)
 		playerTypes.add(new GamePlayerType("Local Human Player") {
 			public GamePlayer createPlayer(String name) {
-				return new CalicoHumanPlayer(name,0);
+				return new CalicoHumanPlayer(name);
 			}});
 		
 		// a computer player type (player type 1)
 		playerTypes.add(new GamePlayerType("Dumb Computer") {
 			public GamePlayer createPlayer(String name) {
-				return new CalicoComputerPlayer1(name, 1);
+				return new CalicoComputerPlayer1(name);
 			}});
 
 		// a computer player type (player type 1)
 		playerTypes.add(new GamePlayerType("Smart Computer") {
 			public GamePlayer createPlayer(String name) {
-				return new CalicoComputerPlayer2(name, 2);
+				return new CalicoComputerPlayer2(name);
 			}});
 
 		

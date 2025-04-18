@@ -658,6 +658,7 @@ public abstract class GameMainActivity extends Activity implements
         this.playerTable.removeView(row);
         this.tableRows.remove(row);
 
+
     }// removePlayer
 
     /**

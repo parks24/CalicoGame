@@ -39,7 +39,6 @@ public class CalicoHumanPlayer extends GameHumanPlayer implements OnClickListene
 	private CalicoState state;
 
 	// indicates the players number for assessing if it is their turn
-	private int playerNum;
 
 	private int displayNum;
 
@@ -150,7 +149,6 @@ public class CalicoHumanPlayer extends GameHumanPlayer implements OnClickListene
 	public CalicoHumanPlayer(String name)
 	{
 		super(name);
-		playerNum = 0;
 		displayNum = 0;
 		objectiveMenuVisibility = false;
 	}
