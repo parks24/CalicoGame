@@ -258,7 +258,9 @@
             android:id="@+id/closeMenu"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="15"
-            android:text="Close Menu" />
+            android:layout_weight="10"
+            android:background="@android:color/holo_red_light"
+            android:text="Close Menu"
+            android:textSize="24sp" />
     </LinearLayout>
 </LinearLayout>
