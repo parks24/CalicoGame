@@ -26,6 +26,7 @@ public class CalicoState extends GameState implements Serializable {
 	//UID for network play support
 	protected static final long serialVersionUID = 170425L;
     protected Cat[] cats = new Cat[3];
+	protected int numPlayers;
 
 	protected int playerTurn;
 	protected int turnStage; //Player selecting or placing during turn
@@ -41,7 +42,7 @@ public class CalicoState extends GameState implements Serializable {
 	 */
 
 	protected Patch[] communityPool = new Patch[3];
-	protected Patch[][] playerHand = new Patch[4][2];
+	protected Patch[][] playerHand;
 	protected ArrayList<Patch> deck = new ArrayList<>();
 	protected ArrayList<Board> playerBoard = new ArrayList<>();
 	protected Patch selectedPatch;
@@ -51,14 +52,15 @@ public class CalicoState extends GameState implements Serializable {
 	protected int communitySlot;
 
 
-	public CalicoState()
+	public CalicoState(int _numPlayers)
 	{
 
 		//start of game stage of game values
 		playerTurn = 0;
 		turnStage = 0;
 		gameStage = 1;
-
+		numPlayers = _numPlayers;
+		playerHand = new Patch[numPlayers][2];
 
 		//create deck
 		//6 of each tile
@@ -80,7 +82,7 @@ public class CalicoState extends GameState implements Serializable {
 		drawNewCommunityPatch(2);
 
 		//Initialize player hands to default patches
-		for (int i = 0; i<4; i ++)
+		for (int i = 0; i<numPlayers; i ++)
 		{
 			int patchInDeck = 1 + (int)(Math.random() * (deck.size()));
 			playerHand[i][0] = deck.get(patchInDeck);
@@ -91,23 +93,15 @@ public class CalicoState extends GameState implements Serializable {
 			deck.remove(patchInDeck);
 		}
 
-
-		//add a new board for each player
-		playerBoard.add(new Board());
-		playerBoard.add(new Board());
-		playerBoard.add(new Board());
-		playerBoard.add(new Board());
+		//Create and Initialize player boards
+		for (int i = 0; i<numPlayers; i++) {
+			playerBoard.add(new Board());
+			initPlayerBoard(i);
+		}
 
 
 		//Initialize board edges for all players
 		initializeBoardEdges();
-
-		//Initialize player boards
-		initPlayerBoard(0); //Player One
-		initPlayerBoard(1); //Player Two
-		initPlayerBoard(2); //Player Three
-		initPlayerBoard(3); //Player Four
-
 
         //Chooses the cats to add
         //assigns random patterns to each cat
@@ -139,7 +133,7 @@ public class CalicoState extends GameState implements Serializable {
 	//Fills board to end of game for testing purposes
 	public void fillBoard()
 	{
-		for(int playerNum = 0; playerNum < 4; playerNum++)
+		for(int playerNum = 0; playerNum < numPlayers; playerNum++)
 		{
 			Board tempBoard = playerBoard.get(playerNum);
 
@@ -209,7 +203,7 @@ public class CalicoState extends GameState implements Serializable {
 	public void initializeBoardEdges()
 	{
 		//Initialize board edges
-		for(int i = 0; i < 4; i++)
+		for(int i = 0; i < numPlayers; i++)
 		{
 			//pattern then color
 			Board tempPlayer = playerBoard.get(i); //get Board
@@ -260,14 +254,15 @@ public class CalicoState extends GameState implements Serializable {
 		this.playerTurn = other.playerTurn;
 		this.turnStage = other.turnStage;
 		this.gameStage = other.gameStage;
-
+		this.numPlayers = other.numPlayers;
+		this.playerHand = new Patch[numPlayers][2];
 		//initialize community pool to default patches
 		this.communityPool[0] = new Patch(other.communityPool[0]);
 		this.communityPool[1] = new Patch(other.communityPool[1]);
 		this.communityPool[2] = new Patch(other.communityPool[2]);
 
 		//copy player hands
-		for (int i = 0; i<4; i ++)
+		for (int i = 0; i<numPlayers; i ++)
 		{
 			for (int j = 0; j<2; j++)
 			{
@@ -305,7 +300,7 @@ public class CalicoState extends GameState implements Serializable {
 			//Change Player after Round
 			if(turnStage == 3)
 			{
-				playerTurn = (playerTurn +1) %4;
+				playerTurn = (playerTurn +1) % numPlayers;
 				drawNewCommunityPatch(communitySlot);
 				turnStage = 0;
 
@@ -478,7 +473,7 @@ public class CalicoState extends GameState implements Serializable {
 			}
 
 			checkButtonCat(((CalicoMoveAction) move).getLocOnBoard(), player);
-			playerTurn = (playerTurn +1) %4;
+			playerTurn = (playerTurn +1) %numPlayers;
 			endGameCheck();
 			return true;
 		}
@@ -574,7 +569,7 @@ public class CalicoState extends GameState implements Serializable {
 		//Append player scores to currentScores string
 		for(int i = 0; i < playerBoard.size(); i++)
 		{
-			int playerNumber = i+1; //Index by one for accurate player number (1-4 not 0-3)
+			int playerNumber = i+1; //Index by one for accurate player number (1-numPlayers not 0-3)
 			String playerScoreTemp = "Player " + playerNumber + " : " + playerBoard.get(i).playerScore + "\n";
 			currentScores = currentScores.concat(playerScoreTemp); //Add player score to list
 		}
@@ -623,7 +618,7 @@ public class CalicoState extends GameState implements Serializable {
 		ArrayList<Integer> playerScores = new ArrayList<>();
 
 		//Calculate a score for each player board
-		for(int i = 0; i < 4; i++)
+		for(int i = 0; i < numPlayers; i++)
 		{
 			Board currentBoard = playerBoard.get(i);
 			int playerScore = currentBoard.getGoalPatchScore();

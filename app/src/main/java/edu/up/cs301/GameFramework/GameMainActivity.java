@@ -82,7 +82,7 @@ public abstract class GameMainActivity extends Activity implements
     /**
      * contains the game configuration this activity will be used to initialize
      */
-    GameConfig config = null;
+    public GameConfig config = null;
 
     // Each of these is initialized to point to various GUI controls
     TableLayout playerTable = null;
@@ -586,6 +586,7 @@ public abstract class GameMainActivity extends Activity implements
                 if (v == button) {
                     // found it! remove from the layout and the list
                     removePlayer(row);
+                    this.config.removePlayer(i);
                 }
             }
 

@@ -52,7 +52,7 @@ public class CalicoLocalGame extends LocalGame implements Serializable {
 	{
 		// initialize the game state, with the Calico value starting at 0
 		if (! (state instanceof CalicoState)) {
-			state = new CalicoState();
+			state = new CalicoState(4);
 		}
 		this.gameState = (CalicoState)state;
 		super.state = state;

@@ -347,13 +347,13 @@ public class CalicoHumanPlayer extends GameHumanPlayer implements OnClickListene
 		if (button.getId() == R.id.player1) {
 			displayNum = 0;
 			updateDisplay();
-		} else if (button.getId() == R.id.player2) {
+		} else if (button.getId() == R.id.player2 && state.numPlayers>=2) {
 			displayNum = 1;
 			updateDisplay();
-		} else if (button.getId() == R.id.player3) {
+		} else if (button.getId() == R.id.player3 && state.numPlayers>=3) {
 			displayNum = 2;
 			updateDisplay();
-		} else if (button.getId() == R.id.player4) {
+		} else if (button.getId() == R.id.player4 && state.numPlayers>=4) {
 			displayNum = 3;
 			updateDisplay();
 		}
