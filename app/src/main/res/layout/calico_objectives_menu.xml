@@ -21,234 +21,535 @@
                 android:orientation="vertical">
 
                 <LinearLayout
+                    android:id="@+id/Turn_Order"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="vertical">
 
-                    <LinearLayout
+                    <ImageView
+                        android:id="@+id/imageView28"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="horizontal">
+                        android:layout_height="10dp"
+                        android:adjustViewBounds="true"
+                        android:src="@android:color/black" />
 
-                        <ImageView
-                            android:id="@+id/imageView"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:src="@drawable/color_example" />
+                    <TextView
+                        android:id="@+id/textView12"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Turn Order"
+                        android:textAlignment="center"
+                        android:textSize="96sp" />
 
-                        <ImageView
-                            android:id="@+id/imageView4"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:src="@drawable/pattern_example" />
-
-                        <ImageView
-                            android:id="@+id/imageView5"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:src="@drawable/both_example" />
-
-                        <ImageView
-                            android:id="@+id/imageView6"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:src="@drawable/none_example" />
-                    </LinearLayout>
+                    <ImageView
+                        android:id="@+id/imageView29"
+                        android:layout_width="match_parent"
+                        android:layout_height="10dp"
+                        android:layout_marginBottom="15dp"
+                        android:adjustViewBounds="true"
+                        android:src="@android:color/black" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:orientation="horizontal">
+                        android:orientation="vertical">
 
-                        <TextView
-                            android:id="@+id/textView6"
+                        <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="5dp"
+                            android:layout_height="match_parent"
                             android:layout_weight="1"
-                            android:padding="5dp"
-                            android:text="This Design Goal Tile will score 7 points. It was completed using three different pairs of colors. \n\nNote: the pairs do not need to be adjacent to each other to complete the Design Goal Tile."
-                            android:textSize="29sp" />
+                            android:orientation="horizontal">
 
-                        <TextView
-                            android:id="@+id/textView"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="5dp"
-                            android:layout_weight="1"
-                            android:padding="5dp"
-                            android:text="This Design Goal Tile will score 7 points. It was completed using three different pairs of patterns.\n\nNote: the pairs do not need to be adjacent to each other to complete the Design Goal Tile."
-                            android:textSize="29sp" />
+                            <ImageView
+                                android:id="@+id/imageView11"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:src="@drawable/turn_order_1" />
 
-                        <TextView
-                            android:id="@+id/textView4"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="5dp"
-                            android:layout_weight="1"
-                            android:padding="5dp"
-                            android:text="This Design Goal Tile will score 11 points. It was completed twice: once using three different pairs of colors and a second time using three different pairs of patterns."
-                            android:textSize="29sp" />
+                            <ImageView
+                                android:id="@+id/imageView12"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:src="@drawable/turn_order_2" />
 
-                        <TextView
-                            android:id="@+id/textView5"
+                            <ImageView
+                                android:id="@+id/imageView13"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:src="@drawable/turn_order_3" />
+                        </LinearLayout>
+
+                        <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="5dp"
+                            android:layout_height="match_parent"
                             android:layout_weight="1"
-                            android:padding="5dp"
-                            android:text="This Design Goal Tile will score 0 points. There are not three different pairs of colors, nor are there three different pairs of patterns.\n\nNote: while there are three different pairs, they are not exclusively in colors or patterns."
-                            android:textSize="29sp" />
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/textView13"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="5dp"
+                                android:layout_marginRight="5dp"
+                                android:layout_weight="1"
+                                android:text="Select a patch from your hand to place on your board"
+                                android:textAlignment="center"
+                                android:textSize="34sp" />
+
+                            <TextView
+                                android:id="@+id/textView14"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="5dp"
+                                android:layout_marginRight="5dp"
+                                android:layout_weight="1"
+                                android:text="Select a blank spot on the board to place the selected tile"
+                                android:textAlignment="center"
+                                android:textSize="34sp" />
+
+                            <TextView
+                                android:id="@+id/textView15"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="5dp"
+                                android:layout_marginRight="5dp"
+                                android:layout_weight="1"
+                                android:text="Select a patch from the community pool to refill your hand"
+                                android:textAlignment="center"
+                                android:textSize="34sp" />
+                        </LinearLayout>
 
                     </LinearLayout>
+
+                    <ImageView
+                        android:id="@+id/imageView25"
+                        android:layout_width="match_parent"
+                        android:layout_height="10dp"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginBottom="15dp"
+                        android:adjustViewBounds="true"
+                        android:src="@android:color/darker_gray" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:id="@+id/imageView14"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="5"
+                                android:adjustViewBounds="true"
+                                android:src="@android:drawable/ic_delete" />
+
+                            <TextView
+                                android:id="@+id/textView16"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="Use this button to undo you turn at any stage in your turn"
+                                android:textSize="34sp" />
+                        </LinearLayout>
+
+                        <ImageView
+                            android:id="@+id/imageView26"
+                            android:layout_width="match_parent"
+                            android:layout_height="10dp"
+                            android:layout_marginTop="15dp"
+                            android:layout_marginBottom="15dp"
+                            android:adjustViewBounds="true"
+                            android:src="@android:color/darker_gray" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:id="@+id/imageView15"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="5"
+                                android:adjustViewBounds="true"
+                                android:src="@drawable/checkmark" />
+
+                            <TextView
+                                android:id="@+id/textView17"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="Use this button to confirm that you have completed your turn"
+                                android:textSize="34sp" />
+                        </LinearLayout>
+                    </LinearLayout>
+
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/Scoring"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="vertical">
 
+                    <ImageView
+                        android:id="@+id/imageView24"
+                        android:layout_width="match_parent"
+                        android:layout_height="10dp"
+                        android:layout_marginTop="15dp"
+                        android:adjustViewBounds="true"
+                        android:src="@android:color/black" />
+
+                    <TextView
+                        android:id="@+id/textView11"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Scoring Points"
+                        android:textAlignment="center"
+                        android:textSize="96sp" />
+
+                    <ImageView
+                        android:id="@+id/imageView23"
+                        android:layout_width="match_parent"
+                        android:layout_height="10dp"
+                        android:layout_marginBottom="15dp"
+                        android:adjustViewBounds="true"
+                        android:src="@android:color/black" />
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:orientation="horizontal">
+                        android:orientation="vertical">
 
-                        <ImageView
-                            android:id="@+id/imageView7"
+                        <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:src="@drawable/noteq_goal" />
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal">
 
-                        <ImageView
-                            android:id="@+id/imageView8"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:src="@drawable/three2kind_goal" />
+                            <ImageView
+                                android:id="@+id/imageView"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="15dp"
+                                android:layout_marginRight="15dp"
+                                android:layout_weight="1"
+                                android:adjustViewBounds="true"
+                                android:src="@drawable/color_example" />
 
-                        <ImageView
-                            android:id="@+id/imageView9"
+                            <ImageView
+                                android:id="@+id/imageView4"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="15dp"
+                                android:layout_marginRight="15dp"
+                                android:layout_weight="1"
+                                android:adjustViewBounds="true"
+                                android:src="@drawable/pattern_example" />
+
+                            <ImageView
+                                android:id="@+id/imageView5"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="15dp"
+                                android:layout_marginRight="15dp"
+                                android:layout_weight="1"
+                                android:adjustViewBounds="true"
+                                android:src="@drawable/both_example" />
+
+                            <ImageView
+                                android:id="@+id/imageView6"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="15dp"
+                                android:layout_marginRight="15dp"
+                                android:layout_weight="1"
+                                android:adjustViewBounds="true"
+                                android:src="@drawable/none_example" />
+                        </LinearLayout>
+
+                        <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:src="@drawable/two3kind_goal" />
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/textView6"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="5dp"
+                                android:layout_weight="1"
+                                android:padding="5dp"
+                                android:text="This Design Goal Tile will score 7 points. It was completed using three different pairs of colors. \n\nNote: the pairs do not need to be adjacent to each other to complete the Design Goal Tile."
+                                android:textSize="29sp" />
+
+                            <TextView
+                                android:id="@+id/textView"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="5dp"
+                                android:layout_weight="1"
+                                android:padding="5dp"
+                                android:text="This Design Goal Tile will score 7 points. It was completed using three different pairs of patterns.\n\nNote: the pairs do not need to be adjacent to each other to complete the Design Goal Tile."
+                                android:textSize="29sp" />
+
+                            <TextView
+                                android:id="@+id/textView4"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="5dp"
+                                android:layout_weight="1"
+                                android:padding="5dp"
+                                android:text="This Design Goal Tile will score 11 points. It was completed twice: once using three different pairs of colors and a second time using three different pairs of patterns."
+                                android:textSize="29sp" />
+
+                            <TextView
+                                android:id="@+id/textView5"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="5dp"
+                                android:layout_weight="1"
+                                android:padding="5dp"
+                                android:text="This Design Goal Tile will score 0 points. There are not three different pairs of colors, nor are there three different pairs of patterns.\n\nNote: while there are three different pairs, they are not exclusively in colors or patterns."
+                                android:textSize="29sp" />
+
+                        </LinearLayout>
                     </LinearLayout>
 
+                    <ImageView
+                        android:id="@+id/imageView16"
+                        android:layout_width="match_parent"
+                        android:layout_height="10dp"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginBottom="15dp"
+                        android:adjustViewBounds="true"
+                        android:src="@android:color/darker_gray" />
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:orientation="horizontal">
+                        android:orientation="vertical">
 
-                        <TextView
-                            android:id="@+id/textView7"
+                        <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="All different colors\nOR\nAll different patterns"
-                            android:textAlignment="center"
-                            android:textSize="34sp" />
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal">
 
-                        <TextView
-                            android:id="@+id/textView8"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="Three different pairs of colors\nOR\nThree different pairs of patterns"
-                            android:textAlignment="center"
-                            android:textSize="34sp" />
+                            <ImageView
+                                android:id="@+id/imageView7"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:src="@drawable/noteq_goal" />
 
-                        <TextView
-                            android:id="@+id/textView9"
+                            <ImageView
+                                android:id="@+id/imageView8"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:src="@drawable/three2kind_goal" />
+
+                            <ImageView
+                                android:id="@+id/imageView9"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:src="@drawable/two3kind_goal" />
+                        </LinearLayout>
+
+                        <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="Two different 3-of-a-color\nOR\nTwo different 3-of-a-pattern"
-                            android:textAlignment="center"
-                            android:textAllCaps="false"
-                            android:textSize="34sp" />
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/textView7"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="All different colors\nOR\nAll different patterns"
+                                android:textAlignment="center"
+                                android:textSize="34sp" />
+
+                            <TextView
+                                android:id="@+id/textView8"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="Three different pairs of colors\nOR\nThree different pairs of patterns"
+                                android:textAlignment="center"
+                                android:textSize="34sp" />
+
+                            <TextView
+                                android:id="@+id/textView9"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="Two different 3-of-a-color\nOR\nTwo different 3-of-a-pattern"
+                                android:textAlignment="center"
+                                android:textAllCaps="false"
+                                android:textSize="34sp" />
+
+                        </LinearLayout>
 
                     </LinearLayout>
 
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
+                    <ImageView
+                        android:id="@+id/imageView22"
+                        android:layout_width="match_parent"
+                        android:layout_height="10dp"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginBottom="15dp"
+                        android:adjustViewBounds="true"
+                        android:src="@android:color/darker_gray" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:gravity="center_vertical"
-                        android:orientation="horizontal">
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginBottom="10dp"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:id="@+id/imageView1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1.5"
+                                android:adjustViewBounds="true"
+                                android:src="@drawable/cuddles" />
+
+                            <TextView
+                                android:id="@+id/textView1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="This is cuddles he is a good boy\n\nTo earn him you will need a group of 3 or more patches of the same pattern\n\nEach Cuddles you earn is worth 3 points"
+                                android:textAlignment="center"
+                                android:textSize="34sp" />
+                        </LinearLayout>
 
                         <ImageView
-                            android:id="@+id/imageView1"
+                            android:id="@+id/imageView20"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
+                            android:layout_height="10dp"
+                            android:layout_marginTop="15dp"
+                            android:layout_marginBottom="15dp"
                             android:adjustViewBounds="true"
-                            android:src="@drawable/cuddles" />
+                            android:src="@android:color/darker_gray" />
 
-                        <TextView
-                            android:id="@+id/textView1"
+                        <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="this is cuddles he is a good boy"
-                            android:textSize="34sp" />
-                    </LinearLayout>
+                            android:layout_height="match_parent"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginBottom="10dp"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:gravity="center_vertical"
-                        android:orientation="horizontal">
+                            <ImageView
+                                android:id="@+id/imageView2"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1.5"
+                                android:adjustViewBounds="true"
+                                android:src="@drawable/smokey" />
+
+                            <TextView
+                                android:id="@+id/textView2"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="This is smokey he love to eat grass\n\nTo earn him you will need a group of 4 or more patches of the same pattern\n\nEach Smokey you earn is worth 5 points"
+                                android:textAlignment="center"
+                                android:textSize="34sp" />
+                        </LinearLayout>
 
                         <ImageView
-                            android:id="@+id/imageView2"
+                            android:id="@+id/imageView19"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
+                            android:layout_height="10dp"
+                            android:layout_marginTop="15dp"
+                            android:layout_marginBottom="15dp"
                             android:adjustViewBounds="true"
-                            android:src="@drawable/smokey" />
+                            android:src="@android:color/darker_gray" />
 
-                        <TextView
-                            android:id="@+id/textView2"
+                        <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="this is smokey he love to eat grass"
-                            android:textSize="34sp" />
-                    </LinearLayout>
+                            android:layout_height="match_parent"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginBottom="10dp"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:gravity="center_vertical"
-                        android:orientation="horizontal">
+                            <ImageView
+                                android:id="@+id/imageView3"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1.5"
+                                android:adjustViewBounds="true"
+                                android:src="@drawable/stripe" />
+
+                            <TextView
+                                android:id="@+id/textView3"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="This is stripe he like to stare at you on the toilet\n\nTo earn him you will need a group of 5 or more patches of the same pattern\n\nEach Stripe you earn is worth 7 points"
+                                android:textAlignment="center"
+                                android:textSize="34sp" />
+                        </LinearLayout>
 
                         <ImageView
-                            android:id="@+id/imageView3"
+                            android:id="@+id/imageView18"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
+                            android:layout_height="10dp"
+                            android:layout_marginTop="15dp"
+                            android:layout_marginBottom="15dp"
                             android:adjustViewBounds="true"
-                            android:src="@drawable/stripe" />
+                            android:src="@android:color/darker_gray" />
 
-                        <TextView
-                            android:id="@+id/textView3"
+                        <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="this is stripe he like to stare at you on the toilet"
-                            android:textSize="34sp" />
+                            android:layout_height="match_parent"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginBottom="10dp"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:id="@+id/imageView10"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1.5"
+                                android:adjustViewBounds="true"
+                                android:src="@drawable/button" />
+
+                            <TextView
+                                android:id="@+id/textView10"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="This is a Button\n\nTo earn it you will need a group of 3 or more patches of the same color\n\nIf you earn 1 of each color you get a bonus rainbow button\n\nEach buton you earn is worth 3 points"
+                                android:textAlignment="center"
+                                android:textSize="34sp" />
+                        </LinearLayout>
+
                     </LinearLayout>
+
                 </LinearLayout>
 
             </LinearLayout>
