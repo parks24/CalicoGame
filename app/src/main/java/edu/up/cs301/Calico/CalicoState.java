@@ -150,7 +150,6 @@ public class CalicoState extends GameState implements Serializable {
 		//Create and Initialize player boards
 		for (int i = 0; i<numPlayers; i++) {
 			playerBoard.add(new Board());
-			initGoalPatches(i);
 		}
 
 		//Fill ArrayList with 1-6 for GoalPatch Type randomization
@@ -224,14 +223,6 @@ public class CalicoState extends GameState implements Serializable {
 			}
 		}
 		playerBoard.get(0).setPatch(new Patch(0,0),2,2);
-	}
-
-
-
-	public void initGoalPatches(int player)
-	public void initPlayerBoard(int player)
-	{
-		Board tempPlayer = playerBoard.get(player);
 	}
 
 
