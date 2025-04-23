@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 /**
- * @author Luca Sburlino
+ * @author Luca Sburlino, Joseph Early
  * @version 2025
  * Goal Patch Class
  * Establishes the goal patches and calculates how many points they score at the end
