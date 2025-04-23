@@ -1,5 +1,8 @@
 package edu.up.cs301.Calico;
 
+import android.view.View;
+import android.widget.TabHost;
+
 import java.util.ArrayList;
 
 import edu.up.cs301.GameFramework.GameMainActivity;
@@ -79,18 +82,24 @@ public class CalicoMainActivity extends GameMainActivity {
 		return defaultConfig;
 	}//createDefaultConfig
 
-	/**
-	 * create a local game
-	 * 
-	 * @return
-	 * 		the local game, a Calico game
-	 */
+	@Override
+	protected void initSettingsTab() {
+		// Setup the tabbed dialog on the layout and add the content of each tab
+
+
+	}
+
+		/**
+         * create a local game
+         *
+         * @return
+         * 		the local game, a Calico game
+         */
 	@Override
 	public LocalGame createLocalGame(GameState state) {
 		if (state == null) state = new CalicoState(config.getNumPlayers());	//Fixed Constructor Call compilation 28/02/24
 		return new CalicoLocalGame(state);
 	}
-
 }
 
 /**

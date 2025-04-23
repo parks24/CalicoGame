@@ -560,8 +560,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="10"
-            android:background="@android:color/holo_red_light"
-            android:text="Close Menu"
+            android:background="@android:color/white"
+            android:text=""
             android:textSize="24sp" />
     </LinearLayout>
 </LinearLayout>

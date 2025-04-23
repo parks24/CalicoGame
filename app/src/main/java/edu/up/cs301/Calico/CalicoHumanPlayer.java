@@ -358,6 +358,8 @@ public class CalicoHumanPlayer extends GameHumanPlayer implements OnClickListene
 		if (button.getId() == R.id.objectives) {
 			objectiveMenuVisibility = true;
 			setAsGui(myActivity);
+			closeObjectives.setText("Close Menu");
+			closeObjectives.setBackgroundColor(Color.RED);
 		} else if (button.getId() == R.id.closeMenu) {
 			objectiveMenuVisibility = false;
 			setAsGui(myActivity);
@@ -496,6 +498,7 @@ public class CalicoHumanPlayer extends GameHumanPlayer implements OnClickListene
 
 		if (objectiveMenuVisibility) {
 			activity.setContentView(R.layout.calico_objectives_menu);
+
 		} else {
 			// Load the layout resource for our GUI
 			activity.setContentView(R.layout.calico_human_player);
