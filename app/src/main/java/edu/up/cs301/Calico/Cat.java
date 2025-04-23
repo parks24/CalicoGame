@@ -8,6 +8,9 @@ import java.util.ArrayList;
  * Each cat has a name (ID), a pair of pattern preferences, and an associated point value.
  * The cat awards points based on specific pattern matches found in the game.
  * This class implements {@code Serializable} to allow network play.
+ *
+ * @author Luca Sburlino
+ * @version 2025
  */
 public class Cat implements Serializable
 {

@@ -9,11 +9,10 @@ import edu.up.cs301.GameFramework.LocalGame;
 import edu.up.cs301.GameFramework.gameConfiguration.*;
 
 /**
- * this is the primary activity for Counter game
+ * this is the primary activity for Calico game
  * 
- * @author Andrew M. Nuxoll
- * @author Steven R. Vegdahl
- * @version July 2013
+ * @author Luca Sburlino
+ * @version April 2025
  */
 public class CalicoMainActivity extends GameMainActivity {
 	
