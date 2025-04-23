@@ -12,9 +12,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
- * A class that represents the state of our Calico game. In our Calico game, the only
- * relevant piece of information is the value of the game's Calico. The
- * CounterState object is therefore very simple.
+ * CalicoLocalGame manages player actions, sends the updated gameState to players,
+ * and handles end of game checking.
  * 
  * @author Joseph Early
  * @version April 2025
@@ -156,3 +155,11 @@ public class CalicoLocalGame extends LocalGame implements Serializable {
 	}//checkIfGameOver
 
 }// class CounterLocalGame
+
+/**
+ External Citation
+ Date: 23 April 2025
+ Problem: Javadocs
+ Resource: https://chatgpt.com
+ Solution: Used chatGPT to generate Javadocs
+ */

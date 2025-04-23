@@ -67,6 +67,7 @@ public class Board implements Serializable
         return board[row][col];
     }//getPatch
 
+
     /**
      * Sets the patch at the specified row and column.
      *
@@ -170,7 +171,6 @@ public class Board implements Serializable
                 }
 
                 return buttonExists;
-
             }
         }
         return false;
@@ -285,26 +285,26 @@ public class Board implements Serializable
         sumSurrounding(surroundingPatches, sumPatches);
 
         Patch goalLocation = getPatch(2,3);
-        GoalPatch currentGoalPatch = (GoalPatch)goalLocation;
+        GoalPatch patchOne = new GoalPatch(goalLocation.getGoal());
 
-
-        points = currentGoalPatch.getGoalPatchPoints(sumPatches);
+        points = patchOne.getGoalPatchPoints(sumPatches);
         resetSumPatch(sumPatches);
+
+
 
         //Check goal patch 2 [3,2]
         patchToCheck[0] = 3;
         patchToCheck[1] = 2;
 
-
-
         getSurrounding(surroundingPatches, patchToCheck);
         sumSurrounding(surroundingPatches, sumPatches);
 
         goalLocation = getPatch(3,2);
-        currentGoalPatch = (GoalPatch)goalLocation;
+        GoalPatch patchTwo = new GoalPatch(goalLocation.getGoal());
 
-        points += getPatch(3,2).getGoalPatchPoints(sumPatches);
+        points += patchTwo.getGoalPatchPoints(sumPatches);
         resetSumPatch(sumPatches);
+
 
 
         //Check goal patch 3 [4,4]
@@ -315,9 +315,9 @@ public class Board implements Serializable
         sumSurrounding(surroundingPatches, sumPatches);
 
         goalLocation = getPatch(4,4);
-        currentGoalPatch = (GoalPatch)goalLocation;
+        GoalPatch patchThree = new GoalPatch(goalLocation.getGoal());
 
-        points += getPatch(4,4).getGoalPatchPoints(sumPatches);
+        points += patchThree.getGoalPatchPoints(sumPatches);
         resetSumPatch(sumPatches);
 
         return points;
@@ -398,4 +398,14 @@ public class Board implements Serializable
             sum[1][patchToCheck.getPatchPattern()]++;
         }
     }
+
 }//Board
+
+/**
+ External Citation
+     Date: 23 April 2025
+     Problem: Javadocs
+     Resource: https://chatgpt.com
+     Solution: Used chatGPT to generate Javadocs
+ */
+

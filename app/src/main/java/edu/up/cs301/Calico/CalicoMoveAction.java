@@ -75,3 +75,11 @@ public class CalicoMoveAction extends GameAction implements Serializable {
 		return placedPatch;
 	}
 }//class CounterMoveAction
+
+/**
+ External Citation
+ Date: 23 April 2025
+ Problem: Javadocs
+ Resource: https://chatgpt.com
+ Solution: Used chatGPT to generate Javadocs
+ */

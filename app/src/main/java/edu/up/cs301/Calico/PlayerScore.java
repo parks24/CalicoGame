@@ -82,3 +82,11 @@ public class PlayerScore implements Serializable {
         this.catCount[catNumber]++;
     }
 }
+
+/**
+ External Citation
+ Date: 23 April 2025
+ Problem: Javadocs
+ Resource: https://chatgpt.com
+ Solution: Used chatGPT to generate Javadocs
+ */

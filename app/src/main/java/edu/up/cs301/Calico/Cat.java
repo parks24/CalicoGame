@@ -117,3 +117,11 @@ public class Cat implements Serializable
         return patterns;
     }
 }
+
+/**
+ External Citation
+ Date: 23 April 2025
+ Problem: Javadocs
+ Resource: https://chatgpt.com
+ Solution: Used chatGPT to generate Javadocs
+ */

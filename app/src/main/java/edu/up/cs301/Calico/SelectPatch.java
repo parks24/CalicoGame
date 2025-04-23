@@ -41,3 +41,11 @@ public class SelectPatch extends GameAction implements Serializable
     }
 
 }//SelectPatch
+
+/**
+ External Citation
+ Date: 23 April 2025
+ Problem: Javadocs
+ Resource: https://chatgpt.com
+ Solution: Used chatGPT to generate Javadocs
+ */

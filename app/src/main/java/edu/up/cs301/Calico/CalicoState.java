@@ -12,8 +12,7 @@ import edu.up.cs301.GameFramework.players.GameComputerPlayer;
 
 
 /**
- * This contains the state for the Counter game. The state consist of simply
- * the value of the Calico.
+ * Game state for Calico. Contains all information about the game.
  * 
  * @author Brian Parks
  * @author Luca Sburlino
@@ -199,6 +198,7 @@ public class CalicoState extends GameState implements Serializable {
 		selectedSlot = 3;
 		selectedPatch = null;
 		communitySlot = 4;
+
 
 	}//default Constructor
 
@@ -687,3 +687,11 @@ public class CalicoState extends GameState implements Serializable {
 		return cats;
 	}
 }
+
+/**
+ External Citation
+ Date: 23 April 2025
+ Problem: Javadocs
+ Resource: https://chatgpt.com
+ Solution: Used chatGPT to generate Javadocs
+ */

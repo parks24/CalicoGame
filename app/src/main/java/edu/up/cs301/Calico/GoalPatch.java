@@ -144,7 +144,8 @@ public class GoalPatch extends Patch implements Serializable
              case 5:
                  //AAA BB C
                  checkArray[1] = 3;
-                 checkArray[2] = 3;
+                 checkArray[2] = 2;
+                 checkArray[3] = 1;
 
                  //Gets if color or patch requirement was met
                  colorRequirement = checkEquals(checkArray, numEach[0]);
@@ -159,8 +160,10 @@ public class GoalPatch extends Patch implements Serializable
 
              case 6:
                  //AA BB C D
-                 checkArray[1] = 3;
-                 checkArray[2] = 3;
+                 checkArray[1] = 2;
+                 checkArray[2] = 2;
+                 checkArray[3] = 1;
+                 checkArray[4] = 1;
 
                  //Gets if color or patch requirement was met
                  colorRequirement = checkEquals(checkArray, numEach[0]);
@@ -200,3 +203,11 @@ public class GoalPatch extends Patch implements Serializable
 
 
 }
+
+/**
+ External Citation
+ Date: 23 April 2025
+ Problem: Javadocs
+ Resource: https://chatgpt.com
+ Solution: Used chatGPT to generate Javadocs
+ */

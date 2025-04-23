@@ -167,3 +167,10 @@ public class CalicoComputerPlayer2 extends CalicoComputerPlayer1 implements Seri
 	}
 }
 
+/**
+ External Citation
+ Date: 23 April 2025
+ Problem: Javadocs
+ Resource: https://chatgpt.com
+ Solution: Used chatGPT to generate Javadocs
+ */

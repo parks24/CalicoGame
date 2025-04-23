@@ -26,21 +26,13 @@ import java.io.Serializable;
 public class CalicoHumanPlayer extends GameHumanPlayer implements OnClickListener, Serializable {
 
 	/* instance variables */
-	
-	// The TextView the displays the current Calico value
-	private TextView testResultsTextView;
-	
-	// the most recent game state, as given to us by the CounterLocalGame
-	private CalicoState state;
 
-	// indicates the players number for assessing if it is their turn
+	private TextView testResultsTextView; // The TextView the displays the current Calico value
+	private CalicoState state; // the most recent game state, as given to us by the CounterLocalGame
+	private int displayNum; // indicates the players number for assessing if it is their turn
+	private GameMainActivity myActivity; // the android activity that we are running
+	private boolean objectiveMenuVisibility; //True if menu is open, false if closed
 
-	private int displayNum;
-
-	// the android activity that we are running
-	private GameMainActivity myActivity;
-
-	private boolean objectiveMenuVisibility;
 
 	//Board Buttons
 
@@ -105,6 +97,7 @@ public class CalicoHumanPlayer extends GameHumanPlayer implements OnClickListene
 	protected ImageView board64 = null;
 	protected ImageView board65 = null;
 
+	//Cats
 	protected ImageView cat1Pattern1 = null;
 	protected ImageView cat1Pattern2 = null;
 	protected ImageView cat2Pattern1 = null;
@@ -117,16 +110,19 @@ public class CalicoHumanPlayer extends GameHumanPlayer implements OnClickListene
 	protected TextView catCount3 = null;
 	protected TextView buttonCount = null;
 
+	//Community Pool Patches
 	protected ImageView commonTile1 = null;
 	protected ImageView commonTile2 = null;
 	protected ImageView commonTile3 = null;
 
+	//Player Inventory Patches
 	protected ImageView playerTile1 = null;
 	protected ImageView playerTile2 = null;
 
 	protected ImageView confirm = null;
 	protected ImageView undo = null;
 
+	//View Player Buttons
 	protected Button viewP1 = null;
 	protected Button viewP2 = null;
 	protected Button viewP3 = null;
@@ -682,6 +678,7 @@ public class CalicoHumanPlayer extends GameHumanPlayer implements OnClickListene
 		}
 	}
 
+
 	public CalicoState getState() {
 		return state;
 	}
@@ -692,3 +689,10 @@ public class CalicoHumanPlayer extends GameHumanPlayer implements OnClickListene
 
 }//CalicoHumanPlayer
 
+/**
+ External Citation
+ Date: 23 April 2025
+ Problem: Javadocs
+ Resource: https://chatgpt.com
+ Solution: Used chatGPT to generate Javadocs
+ */

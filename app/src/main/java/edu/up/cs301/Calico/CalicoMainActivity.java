@@ -9,11 +9,11 @@ import edu.up.cs301.GameFramework.LocalGame;
 import edu.up.cs301.GameFramework.gameConfiguration.*;
 
 /**
- * this is the primary activity for Counter game
- * 
- * @author Andrew M. Nuxoll
- * @author Steven R. Vegdahl
- * @version July 2013
+ * The primary activity for Calico.
+ * This class handles default configuration and starts the local game.
+ *
+ * @author Luca Sburlino
+ * @version April 2025
  */
 public class CalicoMainActivity extends GameMainActivity {
 	
@@ -21,10 +21,11 @@ public class CalicoMainActivity extends GameMainActivity {
 	private static final int PORT_NUMBER = 2234;
 
 	/**
-	 * Create the default configuration for this game:
-	 * - one human player vs. one computer player
-	 * - minimum of 1 player, maximum of 2
-	 * - one kind of computer player and one kind of human player available
+	 * Creates the default configuration for Calico:
+	 *
+	 * - 1-4 Players available
+	 * - Smart and Dumb AI
+	 * - Network Play availability
 	 * 
 	 * @return
 	 * 		the new configuration object, representing the default configuration
@@ -53,17 +54,11 @@ public class CalicoMainActivity extends GameMainActivity {
 				return new CalicoComputerPlayer2(name);
 			}});
 
-		
-//		// a computer player type (player type 2)
-//		playerTypes.add(new GamePlayerType("Computer Player (GUI)") {
-//			public GamePlayer createPlayer(String name) {
-//				return new CalicoComputerPlayer2(name);
-//			}});
 
 		// Create a game configuration class for Counter:
 		// - player types as given above
-		// - from 1 to 2 players
-		// - name of game is "Counter Game"
+		// - from 1 to 4 players
+		// - name of game is "Calico"
 		// - port number as defined above
 		GameConfig defaultConfig = new GameConfig(playerTypes, 1, 4, "Calico",
 				PORT_NUMBER);
@@ -73,6 +68,7 @@ public class CalicoMainActivity extends GameMainActivity {
 		defaultConfig.addPlayer("Computer", 1); // player 2: a computer player
 		defaultConfig.addPlayer("Computer", 1);
 		defaultConfig.addPlayer("Computer", 1);
+
 		// Set the default remote-player setup:
 		// - player name: "Remote Player"
 		// - IP code: (empty string)
@@ -96,3 +92,11 @@ public class CalicoMainActivity extends GameMainActivity {
 	}
 
 }
+
+/**
+ External Citation
+ Date: 23 April 2025
+ Problem: Javadocs
+ Resource: https://chatgpt.com
+ Solution: Used chatGPT to generate Javadocs
+ */

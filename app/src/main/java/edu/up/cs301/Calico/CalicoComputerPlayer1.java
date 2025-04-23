@@ -121,6 +121,12 @@ public class CalicoComputerPlayer1 extends GameComputerPlayer implements Tickabl
 	 */
 	protected void timerTicked() {
 	}
-
-
 }
+
+/**
+ External Citation
+ Date: 23 April 2025
+ Problem: Javadocs
+ Resource: https://chatgpt.com
+ Solution: Used chatGPT to generate Javadocs
+ */
