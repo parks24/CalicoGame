@@ -89,12 +89,6 @@ public class CalicoLocalGame extends LocalGame implements Serializable {
 			boolean result = gameState.undoMove(action);
 			if (result) {gameState = new CalicoState(this.savedState);}
 			return result;
-		}//UndoMove
-
-		else if (action instanceof ViewObjectives) {
-			return gameState.viewObjectives(action);
-		} else if (action instanceof CloseMenu) {
-			return gameState.closeMenu(action);
 		} else if (action instanceof CalicoMoveAction) {
 			boolean result = gameState.computerMove(action);
 			if (result) {savedState = new CalicoState(this.gameState);}

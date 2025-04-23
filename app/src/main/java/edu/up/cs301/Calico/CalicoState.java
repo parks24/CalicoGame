@@ -14,8 +14,10 @@ import edu.up.cs301.GameFramework.players.GameComputerPlayer;
  * This contains the state for the Counter game. The state consist of simply
  * the value of the Calico.
  * 
- * @author Steven R. Vegdahl
- * @version July 2013
+ * @author Brian Parks
+ * @author Luca Sburlino
+ * @author Joseph Early
+ * @version 2025
  */
 
 //TODO Commenting, Formatting, and Javadocs 
@@ -25,33 +27,80 @@ public class CalicoState extends GameState implements Serializable {
 
 	//UID for network play support
 	protected static final long serialVersionUID = 170425L;
-    protected Cat[] cats = new Cat[3];
+
+	/**
+	 * Array holding the Cat objectives used in the game.
+	 */
+	protected Cat[] cats = new Cat[3];
+
+	/**
+	 * Number of players in the game.
+	 */
 	protected int numPlayers;
 
+	/**
+	 * Indicates which player's turn it currently is.
+	 */
 	protected int playerTurn;
-	protected int turnStage; //Player selecting or placing during turn
-	/* 0 = Selecting patch
+
+	/**
+	 * Indicates the stage of the current player's turn.
+	 * 0 = Selecting patch
 	 * 1 = Selecting where to place (place patch)
 	 * 2 = draw patch from community pool
 	 * 3 = confirm/end turn
 	 */
-	protected int gameStage; //Stage of game
-	/* 0 = placing goal tiles
+	protected int turnStage;
+
+	/**
+	 * Stage of game
+	 * 0̶ ̶=̶ ̶p̶l̶a̶c̶i̶n̶g̶ ̶g̶o̶a̶l̶ ̶t̶i̶l̶e̶s̶
 	 * 1 = placing tiles
 	 * 2 = board filled
 	 */
+	protected int gameStage;
 
+	/**
+	 * Pool of patches available for all players to draw from.
+	 */
 	protected Patch[] communityPool = new Patch[3];
+
+	/**
+	 * Each player's hand of 2 patches.
+	 */
 	protected Patch[][] playerHand;
+
+	/**
+	 * Main deck of available patches, used to fill communityPool.
+	 */
 	protected ArrayList<Patch> deck = new ArrayList<>();
+
+	/**
+	 * List of player boards, one for each player.
+	 */
 	protected ArrayList<Board> playerBoard = new ArrayList<>();
+
+	/**
+	 * The currently selected patch by the active player.
+	 */
 	protected Patch selectedPatch;
-	protected Patch[][] preMovePlayerHand;
-	protected Board preMoveBoard;
+
+	/**
+	 * Index of the selected slot on the player board for patch placement.
+	 */
 	protected int selectedSlot;
+
+	/**
+	 * Index of the patch selected from the community pool.
+	 */
 	protected int communitySlot;
 
 
+	/**
+	 * Constructor for the CalicoState object, sets up initial game state based on the number of players.
+	 *
+	 * @param _numPlayers Number of players in the game.
+	 */
 	public CalicoState(int _numPlayers)
 	{
 
@@ -130,31 +179,6 @@ public class CalicoState extends GameState implements Serializable {
 	}//default Constructor
 
 
-	//Fills board to end of game for testing purposes
-	public void fillBoard()
-	{
-		for(int playerNum = 0; playerNum < numPlayers; playerNum++)
-		{
-			Board tempBoard = playerBoard.get(playerNum);
-
-			//Fill Board
-			for(int row = 1; row < 6; row++)
-			{
-				for(int col = 1; col < 6; col++)
-				{
-					if(!(tempBoard.getPatch(row,col) instanceof GoalPatch))
-					{
-						tempBoard.setPatch(new Patch(5, 5), row, col);
-					}
-				}
-			}
-		}
-		playerBoard.get(0).setPatch(new Patch(0,0),2,2);
-
-	}
-
-
-
 	public void initPlayerBoard(int player)
 	{
 		Board tempPlayer = playerBoard.get(player);
@@ -200,6 +224,9 @@ public class CalicoState extends GameState implements Serializable {
 	}
 
 
+	/**
+	 * Initialize edges of the player boards
+	 */
 	public void initializeBoardEdges()
 	{
 		//Initialize board edges
@@ -293,6 +320,13 @@ public class CalicoState extends GameState implements Serializable {
 		communitySlot = other.communitySlot;
 	}
 
+
+	/**
+	 * Confirms the player's move and ends their turn if the game is in the correct stage.
+	 *
+	 * @param move the {@link GameAction} attempted by the player.
+	 * @return true if the move was confirmed successfully, false otherwise.
+	 */
 	public boolean confirmMove(GameAction move)
 	{
 		if(move instanceof ConfirmMove)
@@ -319,6 +353,10 @@ public class CalicoState extends GameState implements Serializable {
 		return false;
 	}//confirmMove
 
+
+	/**
+	 * Checks if all player boards are filled and updates the game stage if the game is complete.
+	 */
 	public void endGameCheck()
 	{
 		//Perform endgame check
@@ -328,7 +366,13 @@ public class CalicoState extends GameState implements Serializable {
 		}
 	}
 
-	//Actual gameState revert occurs in makeMove method of CalicoLocalGame
+	/**
+	 * Reverts the game to the pre-move state.
+	 * Actual undo occurs in CalicoLocalGame.
+	 *
+	 * @param move the {@link GameAction} to undo.
+	 * @return true if undo was initiated, false otherwise.
+	 */
 	public boolean undoMove(GameAction move)
 	{
 		if(move instanceof UndoMove)
@@ -348,7 +392,7 @@ public class CalicoState extends GameState implements Serializable {
 	/** Places selectedPatch from player inventory to player board
 	 *
 	 * @param move gameAction
-	 * @return
+	 * @return true if the patch was successfully placed, false otherwise.
 	 */
 	public boolean placePatch(GameAction move)
 	{
@@ -390,6 +434,13 @@ public class CalicoState extends GameState implements Serializable {
 		return false;
 	}//placePatch
 
+
+	/**
+	 * Handles the action of selecting a patch from the player’s hand.
+	 *
+	 * @param move the {@link GameAction}, expected to be of type {@link SelectPatch}.
+	 * @return true if the patch was successfully selected, false otherwise.
+	 */
 	public boolean selectPatch(GameAction move)
 	{
 		if(move instanceof SelectPatch)
@@ -410,6 +461,13 @@ public class CalicoState extends GameState implements Serializable {
 
 	}//selectPatch
 
+
+	/**
+	 * Handles selection of a patch from the community pool by the current player.
+	 *
+	 * @param move the {@link GameAction}, expected to be of type {@link SelectCommunityPatch}.
+	 * @return true if a patch was taken and community updated, false otherwise.
+	 */
 	public boolean selectCommunityPatch(GameAction move)
 	{
 		if(move instanceof SelectCommunityPatch)
@@ -440,6 +498,13 @@ public class CalicoState extends GameState implements Serializable {
 		return false;
 	}//selectCommunityPatch
 
+
+	/**
+	 * Performs a move automatically on behalf of a computer player.
+	 *
+	 * @param move the {@link GameAction}, expected to be of type {@link CalicoMoveAction}.
+	 * @return true if the move was successfully processed, false otherwise.
+	 */
 	public boolean computerMove(GameAction move) {
 		if (move instanceof CalicoMoveAction && move.getPlayer() instanceof GameComputerPlayer)
 		{
@@ -480,42 +545,13 @@ public class CalicoState extends GameState implements Serializable {
 		return false;
 	}
 
-	public boolean closeMenu(GameAction move)
-	{
-		if(move instanceof CloseMenu)
-		{
-			Log.i("game_info", "visibility set");
-			return true;
-		}
 
-		return false;
-	}
-
-	public boolean viewPlayerBoard(GameAction move)
-	{
-		if(move instanceof ViewPlayerBoard)
-		{
-			//Get players board
-			Board currentBoard = playerBoard.get(playerTurn);
-			currentBoard.setView(); //Update Current View to Board
-			return true;
-		}
-
-		return false;
-	}//viewPlayerBoard
-
-	public boolean viewObjectives(GameAction move)
-	{
-		if(move instanceof ViewObjectives)
-		{
-			Log.i("game_info", "visibility set");
-			return true;
-		}
-
-		return false;
-	}
-
-
+	/**
+	 * Checks if a button or cat should be awarded to the player based on the recently placed patch.
+	 *
+	 * @param patchToCheck the coordinates of the patch that was just placed.
+	 * @param player       the player number placing the patch.
+	 */
 	public void checkButtonCat(int[] patchToCheck, int player)
 	{
 
@@ -552,6 +588,7 @@ public class CalicoState extends GameState implements Serializable {
 		}
 
 	}//checkButton
+
 
 
 	@Override
@@ -602,8 +639,11 @@ public class CalicoState extends GameState implements Serializable {
 		return turnInfo + currentScores + communityPoolInfo + playerHandInfo;
 	}//toString
 
-	//Cycle deck
-	//param is int of index of patch to get rid of
+	/**
+	 * drawNewCommunityPatch
+	 * Cycles deck
+	 * @param communityIndex is int of index of patch to get rid of
+	 */
 	private void drawNewCommunityPatch(int communityIndex)
 	{
 		int patchInDeck = (int)(Math.random() * (deck.size()));
@@ -612,6 +652,10 @@ public class CalicoState extends GameState implements Serializable {
 	}
 
 
+	/**
+	 * getPlayerScores
+	 * @return arraylist of playerscores
+	 */
 	public ArrayList<Integer> getPlayerScores()
 	{
 
@@ -629,12 +673,10 @@ public class CalicoState extends GameState implements Serializable {
 		return playerScores;
 	}
 
-	//Getters
-	public int getPlayerTurn()
-	{
-		return playerTurn;
-	}
-
+	/**
+	 * get cats array
+	 * @return cats array
+	 */
 	public Cat[] getCats() {
 		return cats;
 	}

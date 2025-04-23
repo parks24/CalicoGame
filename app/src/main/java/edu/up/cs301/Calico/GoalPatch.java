@@ -5,6 +5,7 @@ import java.util.Arrays;
 
 /**
  * @author Luca Sburlino
+ * @version 2025
  * Goal Patch Class
  * Establishes the goal patches and calculates how many points they score at the end
  * of the game
@@ -23,15 +24,22 @@ public class GoalPatch extends Patch implements Serializable
     //Instance Variables
     protected static final long serialVersionUID = 170425;
 
-     //creates empty goal patch
-     public GoalPatch()
+    /**
+     * Default Constructor
+     * creates empty goal patch
+     */
+    public GoalPatch()
      {
          patchColor = 0;
          patchPattern = 7;
          goal = 0;
      }
 
-     //creates specific goal patch
+    /**
+     * Constructs a GoalPatch with a specific goal type.
+     *
+     * @param _goal The int representing the goal condition (1-6).
+     */
      public GoalPatch(int _goal)
      {
          patchColor = 0;
@@ -39,11 +47,23 @@ public class GoalPatch extends Patch implements Serializable
          goal = _goal;
      }
 
-     //is the object not a goal?
+    /**
+     * Indicates that this patch is a goal patch.
+     *
+     * @return false
+     */
      @Override
      public boolean isNotGoal(){return false;}
 
-     //returns the number of points a specific goal patch has
+    /**
+     * Evaluates the surrounding patches based on the current goal type and
+     * returns the number of points this goal patch scores.
+     *
+     * @param numEach A 2D array where:
+     *                - index [0] contains color counts
+     *                - index [1] contains pattern counts
+     * @return Points scored based on if surrounding patches match the goal.
+     */
      @Override
      public int getGoalPatchPoints(int[][] numEach)
      {
@@ -156,6 +176,14 @@ public class GoalPatch extends Patch implements Serializable
          return 0; //when not completed
      }
 
+
+    /**
+     * Helper method to compare two arrays for equality after sorting.
+     *
+     * @param a First array to compare.
+     * @param b Second array to compare.
+     * @return true if arrays have the same elements in the same counts, false otherwise.
+     */
     private boolean checkEquals(int[] a, int[] b)
     {
         if (a.length != b.length) return false;

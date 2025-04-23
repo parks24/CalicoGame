@@ -6,12 +6,11 @@ import edu.up.cs301.GameFramework.players.GamePlayer;
 import edu.up.cs301.GameFramework.actionMessage.GameAction;
 
 /**
- * A CounterMoveAction is an action that is a "move" the game: either increasing
- * or decreasing the Calico value.
- * 
- * @author Steven R. Vegdahl
- * @author Andrew M. Nuxoll
- * @version September 2012
+ * Default move action used by both computer players
+ * sends state location on board, patch to place, and the community patch to put into the hand
+ *
+ * @author Luca Sburlino
+ * @version 2025
  */
 public class CalicoMoveAction extends GameAction implements Serializable {
 	
@@ -32,9 +31,9 @@ public class CalicoMoveAction extends GameAction implements Serializable {
 	 * 
 	 * @param player
 	 *            the player making the move
-	 * @param _locOnBoard
-	 * @param _placedPatch
-	 * @param _communityPatch
+	 * @param _locOnBoard place to place _placedPatch
+	 * @param _placedPatch patch to place
+	 * @param _communityPatch patch to fill inventory with
 	 *
 	 */
 	public CalicoMoveAction(GamePlayer player, int[] _locOnBoard, Patch _placedPatch, Patch _communityPatch) {
@@ -45,20 +44,33 @@ public class CalicoMoveAction extends GameAction implements Serializable {
 	}
 	
 	/**
-	 * getter method, to tell whether the move is a "plus"
+	 * getter method, to return community patch
 	 * 
 	 * @return
-	 * 		a boolean that tells whether this move is a "plus"
+	 * 		community patch
 	 */
 	public Patch getCommunityPatch() {
 		return communityPatch;
 		
 	}
 
+	/**
+	 * getter method, to return the location on board
+	 *
+	 * @return
+	 * 		locOnBoard
+	 */
 	public int[] getLocOnBoard() {
 		return locOnBoard;
 	}
 
+
+	/**
+	 * getter method, to return the placed Patch
+	 *
+	 * @return
+	 * 		placedPatch
+	 */
 	public Patch getPlacedPatch() {
 		return placedPatch;
 	}

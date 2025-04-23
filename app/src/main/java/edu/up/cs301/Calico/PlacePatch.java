@@ -5,6 +5,14 @@ import java.io.Serializable;
 import edu.up.cs301.GameFramework.actionMessage.GameAction;
 import edu.up.cs301.GameFramework.players.GamePlayer;
 
+/**
+ * An action to select community patch.
+ * Sends selected spot in community patch array to game state.
+ * game state will move the tile in that spot to the player's hand
+ *
+ * @author Joseph Early
+ * @version 2025
+ */
 public class PlacePatch extends GameAction implements Serializable
 {
     //Instance Variables

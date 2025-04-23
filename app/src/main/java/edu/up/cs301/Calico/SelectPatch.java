@@ -5,16 +5,21 @@ import java.io.Serializable;
 import edu.up.cs301.GameFramework.actionMessage.GameAction;
 import edu.up.cs301.GameFramework.players.GamePlayer;
 
+/**
+ * An action to place patch. Sends selected spot in players hand to the game state
+ *
+ * @author Joseph Early
+ * @version 2025
+ */
 public class SelectPatch extends GameAction implements Serializable
 {
 
     //Instance Variables
-    protected Patch selectedPatch;
     protected static final long serialVersionUID = 170425;
     protected int selectedSlot;
 
     /**
-     * constructor for GameAction
+     * default constructor for Select patch
      *
      * @param player the player who created the action
      */
@@ -23,26 +28,16 @@ public class SelectPatch extends GameAction implements Serializable
         super(player);
     }
 
-    public SelectPatch(GamePlayer player, Patch patch)
-    {
-        super(player);
-        selectedPatch = patch;
-    }
-
+    /**
+     * constructor for Select patch
+     *
+     * @param player the player who created the action
+     * @param slot the slot of a player's hand they selected
+     */
     public SelectPatch(GamePlayer player, int slot)
     {
         super(player);
         selectedSlot = slot;
-    }
-
-    public Patch getSelectedPatch()
-    {
-        return selectedPatch;
-    }
-
-    public int getSelectedSlot()
-    {
-        return selectedSlot;
     }
 
 }//SelectPatch

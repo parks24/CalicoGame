@@ -5,6 +5,13 @@ import java.io.Serializable;
 import edu.up.cs301.GameFramework.actionMessage.GameAction;
 import edu.up.cs301.GameFramework.players.GamePlayer;
 
+
+/**
+ * An action to undo move. It resets the game state to the state at the start of move
+ *
+ * @author Joseph Early
+ * @version 2025
+ */
 public class UndoMove extends GameAction implements Serializable
 {
     //Instance Variables
@@ -13,7 +20,7 @@ public class UndoMove extends GameAction implements Serializable
 
 
     /**
-     * constructor for GameAction
+     * constructor for UndoMove
      *
      * @param player the player who created the action
      */
@@ -22,13 +29,4 @@ public class UndoMove extends GameAction implements Serializable
         super(player);
     }
 
-    public GameAction getLastPlayedMove()
-    {
-        return lastPlayedMove;
-    }
-
-    public void setLastPlayedMove(GameAction move)
-    {
-        lastPlayedMove = move;
-    }
 }
