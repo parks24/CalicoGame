@@ -12,25 +12,18 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
- * A class that represents the state of a game. In our Calico game, the only
+ * A class that represents the state of our Calico game. In our Calico game, the only
  * relevant piece of information is the value of the game's Calico. The
  * CounterState object is therefore very simple.
  * 
- * @author Steven R. Vegdahl
- * @author Andrew M. Nuxoll
- * @version July 2013
+ * @author Joseph Early
+ * @version April 2025
  */
 public class CalicoLocalGame extends LocalGame implements Serializable {
 
-	// When a Calico game is played, any number of players. The first player
-	// is trying to get the Calico value to TARGET_MAGNITUDE; the second player,
-	// if present, is trying to get the Calico to -TARGET_MAGNITUDE. The
-	// remaining players are neither winners nor losers, but can interfere by
-	// modifying the Calico.
 	public static final int TARGET_MAGNITUDE = 10;
 
-	// the game's state
-	private CalicoState gameState;
+	private CalicoState gameState; //Current Calico Game State
 	protected CalicoState savedState; //pre-change state for undoMove
 	
 	/**
@@ -46,7 +39,10 @@ public class CalicoLocalGame extends LocalGame implements Serializable {
 	}
 
 	/**
-	 * This ctor should be called when a new Calico game is started
+	 * Constructor for CalicoLocalGame.
+	 * Initializes the game state either from a passed state or with default settings.
+	 *
+	 * @param state the initial GameState; if not a CalicoState, a new one will be created
 	 */
 	public CalicoLocalGame(GameState state)
 	{
@@ -58,13 +54,17 @@ public class CalicoLocalGame extends LocalGame implements Serializable {
 		super.state = state;
 
 		savedState = new CalicoState(gameState);
-	}
+	}//CalicoLocalGame
 
 	/**
-	 * The only type of GameAction that should be sent is CounterMoveAction
+	 * Sends GameAction to action methods in CalicoState to update the game accordingly.
+	 *
+	 * @param action the GameAction taken by the player
+	 * @return true if the action was valid and applied successfully, false otherwise
 	 */
 	@Override
-	protected boolean makeMove(GameAction action) {
+	protected boolean makeMove(GameAction action)
+	{
 		Log.i("action", action.getClass().toString());
 
 		if (action instanceof SelectPatch) {
@@ -106,7 +106,9 @@ public class CalicoLocalGame extends LocalGame implements Serializable {
 	}//makeMove
 	
 	/**
-	 * send the updated state to a given player
+	 * Sends a deepcopy of the updated CalicoState to GamePlayer p
+	 *
+	 *  @param p the player to send the state to
 	 */
 	@Override
 	protected void sendUpdatedStateTo(GamePlayer p)
@@ -126,7 +128,8 @@ public class CalicoLocalGame extends LocalGame implements Serializable {
 	 * 		game is not over
 	 */
 	@Override
-	protected String checkIfGameOver() {
+	protected String checkIfGameOver()
+	{
 
 		//Log GameStage for debugging purposes
 		Log.i("GameStage","GameStage:" + gameState.gameStage);
@@ -152,13 +155,10 @@ public class CalicoLocalGame extends LocalGame implements Serializable {
 								+ "Player Two: " + finalScores.get(1) + "\n"
 								+ "Player Three: " + finalScores.get(2) + "\n"
 								+ "Player Four: " + finalScores.get(3) + "\n";
-
-
 			return scoreMessage;
 		}
 
 		return null;
-
-	}
+	}//checkIfGameOver
 
 }// class CounterLocalGame

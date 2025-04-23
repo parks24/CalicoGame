@@ -1,6 +1,7 @@
 package edu.up.cs301.Calico;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Arrays;
 
 /**
@@ -42,6 +43,7 @@ public class GoalPatch extends Patch implements Serializable
      //is the object not a goal?
      @Override
      public boolean isNotGoal(){return false;}
+
 
      //returns the number of points a specific goal patch has
      @Override
