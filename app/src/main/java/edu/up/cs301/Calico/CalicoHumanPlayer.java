@@ -16,17 +16,12 @@ import android.view.View.OnClickListener;
 import java.io.Serializable;
 
 /**
- * A GUI of a Calico-player. The GUI displays the current value of the Calico,
- * and allows the human player to press the '+' and '-' buttons in order to
- * send moves to the game.
- * 
- * Just for fun, the GUI is implemented so that if the player presses either button
- * when the Calico-value is zero, the screen flashes briefly, with the flash-color
- * being dependent on whether the player is player 0 or player 1.
- * 
- * @author Steven R. Vegdahl
- * @author Andrew M. Nuxoll
- * @version July 2013
+ * A GUI of a Calico-player. The class handles user interaction with the UI
+ * sending GameActions to update the GameState accordingly.
+
+ * @author Brian Parks
+ * @author Joseph Early
+ * @version April 2025
  */
 public class CalicoHumanPlayer extends GameHumanPlayer implements OnClickListener, Serializable {
 
@@ -142,9 +137,9 @@ public class CalicoHumanPlayer extends GameHumanPlayer implements OnClickListene
 
 
 	/**
-	 * constructor
-	 * @param name
-	 * 		the player's name
+	 * Constructor for CalicoHumanPlayer.
+	 *
+	 * @param name the player's name
 	 */
 	public CalicoHumanPlayer(String name)
 	{
@@ -153,7 +148,12 @@ public class CalicoHumanPlayer extends GameHumanPlayer implements OnClickListene
 		objectiveMenuVisibility = false;
 	}
 
-	//Overloaded constructor
+	/**
+	 * Overloaded constructor that takes a specific player number
+	 *
+	 * @param name       the player's name
+	 * @param _playerNum the player's number
+	 */
 	public CalicoHumanPlayer(String name, int _playerNum)
 	{
 		super(name);
@@ -173,7 +173,7 @@ public class CalicoHumanPlayer extends GameHumanPlayer implements OnClickListene
 	}
 	
 	/**
-	 * sets the Calico value in the text view
+	 * Updates the display elements on the GUI to reflect the current game state.
 	 */
 	protected void updateDisplay() {
 
@@ -330,6 +330,8 @@ public class CalicoHumanPlayer extends GameHumanPlayer implements OnClickListene
 	}//updateDisplay
 
 	/**
+	 *  Handles user interaction with the UI determining move validity with
+	 *  CalicoState's turnStage and updating display accordingly.
 	 *
 	 * @param button
 	 * 		the button that was clicked
@@ -446,7 +448,6 @@ public class CalicoHumanPlayer extends GameHumanPlayer implements OnClickListene
 
 			}
 
-
 			// Confirm Move
 			if(state.turnStage == 3)
 			{
@@ -506,11 +507,20 @@ public class CalicoHumanPlayer extends GameHumanPlayer implements OnClickListene
 		setListeners(objectiveMenuVisibility);
 	}
 
+	/**
+	 * Initializes all view references and registers OnClickListeners.
+	 *
+	 * @param objView Menu visibility (True if open, false if closed)
+	 */
 	private void setListeners(boolean objView) {
-		if (objView){
+		if (objView)
+		{
 			this.closeObjectives = (Button) myActivity.findViewById(R.id.closeMenu);
 			closeObjectives.setOnClickListener(this);
-		}else {
+		}
+
+		else
+		{
 			//Register Board
 			//Row 0
 			this.board00 = (ImageView) myActivity.findViewById(R.id.board00);
@@ -679,5 +689,6 @@ public class CalicoHumanPlayer extends GameHumanPlayer implements OnClickListene
 	public void setState(CalicoState state) {
 		this.state = state;
 	}
-}// class CalicoHumanPlayer
+
+}//CalicoHumanPlayer
 

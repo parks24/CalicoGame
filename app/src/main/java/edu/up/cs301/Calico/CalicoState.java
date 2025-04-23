@@ -4,6 +4,7 @@ import android.util.Log;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Random;
 
 import edu.up.cs301.GameFramework.actionMessage.GameAction;
 import edu.up.cs301.GameFramework.infoMessage.GameState;
@@ -94,6 +95,10 @@ public class CalicoState extends GameState implements Serializable {
 	 * Index of the patch selected from the community pool.
 	 */
 	protected int communitySlot;
+	protected ArrayList<Integer> goalPatchTypes = new ArrayList<>();
+	protected int goalOne;
+	protected int goalTwo;
+	protected int goalThree;
 
 
 	/**
@@ -145,11 +150,31 @@ public class CalicoState extends GameState implements Serializable {
 		//Create and Initialize player boards
 		for (int i = 0; i<numPlayers; i++) {
 			playerBoard.add(new Board());
-			initPlayerBoard(i);
+			initGoalPatches(i);
+		}
+
+		//Fill ArrayList with 1-6 for GoalPatch Type randomization
+		for(int i = 0; i < 6; i++)
+		{
+			goalPatchTypes.add(i + 1);
 		}
 
 
-		//Initialize board edges for all players
+		//Randomize Goal Patches
+		Random r = new Random();
+		int r1 = r.nextInt(goalPatchTypes.size());
+		goalOne = goalPatchTypes.get(r1);
+		goalPatchTypes.remove(r1);
+
+		int r2 = r.nextInt(goalPatchTypes.size());
+		goalTwo = goalPatchTypes.get(r2);
+		goalPatchTypes.remove(r2);
+
+		int r3 = r.nextInt(goalPatchTypes.size());
+		goalThree = goalPatchTypes.get(r3);
+		goalPatchTypes.remove(r3);
+
+		//Initialize board edges and goal patches for all players
 		initializeBoardEdges();
 
         //Chooses the cats to add
@@ -179,48 +204,34 @@ public class CalicoState extends GameState implements Serializable {
 	}//default Constructor
 
 
+	//Fills board to end of game for testing purposes
+	public void fillBoard()
+	{
+		for(int playerNum = 0; playerNum < numPlayers; playerNum++)
+		{
+			Board tempBoard = playerBoard.get(playerNum);
+
+			//Fill Board
+			for(int row = 1; row < 6; row++)
+			{
+				for(int col = 1; col < 6; col++)
+				{
+					if(!(tempBoard.getPatch(row,col) instanceof GoalPatch))
+					{
+						tempBoard.setPatch(new Patch(5, 5), row, col);
+					}
+				}
+			}
+		}
+		playerBoard.get(0).setPatch(new Patch(0,0),2,2);
+	}
+
+
+
+	public void initGoalPatches(int player)
 	public void initPlayerBoard(int player)
 	{
 		Board tempPlayer = playerBoard.get(player);
-
-//		//Row One
-//		tempPlayer.setPatch(new Patch(6,4),1,1); //1,1 (star, green)
-//		tempPlayer.setPatch(new Patch(6,3),1,2); //1,2 (star, yellow)
-//		tempPlayer.setPatch(new Patch(2,1),1,3); //1,3 (fract, red)
-//
-//		if(player != 3) //Check for Player Four
-//		{
-//			tempPlayer.setPatch(new Patch(5,6),1,4); //1,4 (smile, pink)
-//		}
-//
-//		//Row Two
-//		tempPlayer.setPatch(new Patch(3,6),2,1); //2,1
-//		tempPlayer.setPatch(new Patch(5, 3),2,2); //2,2
-		tempPlayer.setPatch(new GoalPatch(2),2,3); //2,3 GOAL
-//		tempPlayer.setPatch(new Patch(4, 1),2,4); //2,4
-//		tempPlayer.setPatch(new Patch(1,2),2,5); //2,5
-//
-//		//Row Three
-//		tempPlayer.setPatch(new Patch(3, 4),3,1); //3,1
-		tempPlayer.setPatch(new GoalPatch(1),3,2); //3,2 GOAL
-//		tempPlayer.setPatch(new Patch(5,4),3,3); //3,3
-//		tempPlayer.setPatch(new Patch(5,6),3,4); //3,4
-//		tempPlayer.setPatch(new Patch(1,1),3,5); //3,5
-//
-//		//Row Four
-//		tempPlayer.setPatch(new Patch(2,1),4,1); //4,1
-//		tempPlayer.setPatch(new Patch(4,5),4,2); //4,2
-//		tempPlayer.setPatch(new Patch(3,5),4,3); //4,3
-		tempPlayer.setPatch(new GoalPatch(3),4,4); //4,4 GOAL
-//		tempPlayer.setPatch(new Patch(3,6),4,5); //4,5
-//
-//		//Row Five
-//		tempPlayer.setPatch(new Patch(2,5),5,1); //5,1
-//		tempPlayer.setPatch(new Patch(4,1),5,2); //5,2
-//		tempPlayer.setPatch(new Patch(4,2),5,3); //5,3
-//		tempPlayer.setPatch(new Patch(5,6),5,4); //5,4
-//		tempPlayer.setPatch(new Patch(3,1),5,5); //5,5
-
 	}
 
 
@@ -234,6 +245,11 @@ public class CalicoState extends GameState implements Serializable {
 		{
 			//pattern then color
 			Board tempPlayer = playerBoard.get(i); //get Board
+
+			//Initialize GoalPatches
+			tempPlayer.setPatch(new GoalPatch(goalOne),2,3); //2,3 GOAL
+			tempPlayer.setPatch(new GoalPatch(goalTwo),3,2); //3,2 GOAL
+			tempPlayer.setPatch(new GoalPatch(goalThree),4,4); //4,4 GOAL
 
 			//Top Row (row 0)
 			tempPlayer.setPatch(new Patch(4, 3),0 , 0); //0,0 (lines, yellow)
@@ -588,7 +604,6 @@ public class CalicoState extends GameState implements Serializable {
 		}
 
 	}//checkButton
-
 
 
 	@Override

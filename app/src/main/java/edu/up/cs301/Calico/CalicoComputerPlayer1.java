@@ -9,33 +9,35 @@ import edu.up.cs301.GameFramework.players.GameComputerPlayer;
 import edu.up.cs301.GameFramework.infoMessage.GameInfo;
 import edu.up.cs301.GameFramework.utilities.Tickable;
 
+
 /**
- * A computer-version of a Calico-player.  Since this is such a simple game,
- * it just sends "+" and "-" commands with equal probability, at an average
- * rate of one per second. 
- * 
- * @author Steven R. Vegdahl
- * @author Andrew M. Nuxoll
- * @version September 2013
+ * A computer-version of a Calico-player. This player makes decisions about
+ * patch selection and placement off random chance.
+ *
+ * @author Luca Sburlino
+ * @version April 2025
  */
+
 public class CalicoComputerPlayer1 extends GameComputerPlayer implements Tickable, Serializable {
-	
-    /**
-     * Constructor for objects of class CounterComputerPlayer1
-     * 
-     * @param name
-     * 		the player's name
-     */
+
 
 	private CalicoState state;
 	private ArrayList<int[]> availablePatches = new ArrayList<>();
 	protected static final long serialVersionUID = 170425L;
 
-    public CalicoComputerPlayer1(String name) {
+
+	/**
+	 * Constructor for the CalicoComputerPlayer1 class.
+	 * Initializes the player's name and generates a list of valid patch positions.
+	 *
+	 * @param name the name of the player
+	 */
+    public CalicoComputerPlayer1(String name)
+	{
         // invoke superclass constructor
         super(name);
 
-		//create arraList of all available patches
+		//create arrayList of all available patches
 		int[] patch;
 		for(int i = 1; i<=5; i++)
 		{
@@ -50,8 +52,15 @@ public class CalicoComputerPlayer1 extends GameComputerPlayer implements Tickabl
 				}
 			}
 		}
-    }
+    }//CalicoComputerPlayer1
 
+	/**
+	 * Constructor for the CalicoComputerPlayer1 class with specified player number.
+	 * Initializes the player's name, number, and the list of valid patch positions.
+	 *
+	 * @param name the name of the player
+	 * @param playerNum the number assigned to the specified player
+	 */
 	public CalicoComputerPlayer1(String name, int playerNum) {
 		// invoke superclass constructor
 		super(name);

@@ -13,17 +13,12 @@ import java.util.ArrayList;
 
 
 /**
-* A computer-version of a Calico-player.  Since this is such a simple game,
-* it just sends "+" and "-" commands with equal probability, at an average
-* rate of one per second. This computer player does, however, have an option to
-* display the game as it is progressing, so if there is no human player on the
-* device, this player will display a GUI that shows the value of the Calico
-* as the game is being played.
-* 
-* @author Steven R. Vegdahl
-* @author Andrew M. Nuxoll
-* @version September 2013
-*/
+ * A computer-version of a Calico-player. This computer-player makes decisions by evaluating
+ * which patch placement would result in the largest score increase off of buttons and cats.
+ *
+ * @author Luca Sburlino
+ * @version April 2025
+ */
 public class CalicoComputerPlayer2 extends CalicoComputerPlayer1 implements Serializable {
 
 	private CalicoState state;
@@ -31,9 +26,10 @@ public class CalicoComputerPlayer2 extends CalicoComputerPlayer1 implements Seri
 	protected static final long serialVersionUID = 170425L;
 
 	/**
-	 * constructor
+	 * Default Constructor
+	 * Initializes the player's name and generates a list of valid patch positions.
 	 *
-	 * @param name the player's name
+	 * @param name the players name
 	 */
 	public CalicoComputerPlayer2(String name)
     {
@@ -54,9 +50,18 @@ public class CalicoComputerPlayer2 extends CalicoComputerPlayer1 implements Seri
                 }
             }
         }
-	}
+	}//CalicoComputerPlayer2
 
-	public CalicoComputerPlayer2(String name, int playerNum) {
+
+	/**
+	 * Constructor for the CalicoComputerPlayer2 class with specified player number.
+	 * Initializes the player's name, number, and the list of valid patch positions.
+	 *
+	 * @param name the player name
+	 * @param playerNum the number assigned to the specified player
+	 */
+	public CalicoComputerPlayer2(String name, int playerNum)
+	{
 		super(name, playerNum);
         int[] patch;
         for(int i = 1; i<=5; i++)
@@ -72,10 +77,11 @@ public class CalicoComputerPlayer2 extends CalicoComputerPlayer1 implements Seri
                 }
             }
         }
-	}
+	}//CalicoComputerPlayer2
 
 	/**
-	 * callback method--game's state has changed
+	 * callback method--game's state has changed.
+	 * Sends GameAction based off best calculated move.
 	 *
 	 * @param info the information (presumably containing the game's state)
 	 */
@@ -157,7 +163,6 @@ public class CalicoComputerPlayer2 extends CalicoComputerPlayer1 implements Seri
 			//call necessary function (same as human player I think) to update game
 			// send the move-action to the game
 			game.sendAction(new CalicoMoveAction(this, locOnBoard, placedPatch, communityPatch));
-
 		}
 	}
 }
